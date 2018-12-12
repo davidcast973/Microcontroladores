@@ -1,0 +1,45 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Oct 11 22:44:42 2018
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000036
+                   .cinit    romdata   0x00001b    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/MATRIZ6       code   0x002007    program   0x000002
+                   .udata      udata   0x000020       data   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00001c      
+                            0x002007    0x002007      
+            30 out of 8455 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               ASIGNACION   0x000006    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                      FIN   0x000010    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                   ITERAR   0x00000c    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                  PUERTOS   0x000016    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                     CONT   0x000020       data     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                      NUM   0x000021       data     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               ASIGNACION   0x000006    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                   ITERAR   0x00000c    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                      FIN   0x000010    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                  PUERTOS   0x000016    program     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                     CONT   0x000020       data     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+                      NUM   0x000021       data     static /home/david/MPLABXProjects/Matriz64to0.X/matriz64to0.asm
+
+

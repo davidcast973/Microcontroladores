@@ -1,0 +1,2590 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
+                                                                                               Tue Dec 11 22:34:33 2018
+
+Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
+     1  0000                     
+      + 0000                     
+     2                           ; Version 2.00
+     3                           ; Generated 27/05/2018 GMT
+     4                           
+     5                           ; 
+     6                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+     7                           ; All rights reserved.
+     8                           ; 
+     9                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+                                 ip").
+    10                           ; 
+    11                           ; Redistribution and use in source and binary forms, with or without modification, are
+    12                           ; permitted provided that the following conditions are met:
+    13                           ; 
+    14                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+                                 t of
+    15                           ;        conditions and the following disclaimer.
+    16                           ; 
+    17                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+                                 list
+    18                           ;        of conditions and the following disclaimer in the documentation and/or other
+    19                           ;        materials provided with the distribution.
+    20                           ; 
+    21                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+                                 is
+    22                           ;        software without specific prior written permission.
+    23                           ; 
+    24                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+
+    25                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+                                 OR
+    26                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+                                 T,
+    27                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+                                 
+    28                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+                                 
+    29                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+                                 RICT
+    30                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+                                 SE OF
+    31                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    32                           ; 
+    33                           
+    34                           
+    35                           ; 
+    36                           ; Code-generator required, PIC16F887 Definitions
+    37                           ; 
+    38  0004                     fsr0 equ 04h
+    39  0004                     indf equ 00h
+    40  0000                     indf0 equ 00h
+    41  0000                     pc equ 02h
+    42  0002                     pcl equ 02h
+    43  0002                     pclath equ 0Ah
+    44  000A                     status equ 03h
+    45  0003                     
+     2                           opt pagewidth 120
+     3  0000                     byte0	macro	val
+     4                           	(getbyte(val,0))
+     5                           endm
+     6  0000                     byte1	macro	val
+     7                           	(getbyte(val,1))
+     8                           endm
+     9  0000                     byte2	macro	val
+    10                           	(getbyte(val,2))
+    11                           endm
+    12  0000                     byte3	macro	val
+    13                           	(getbyte(val,3))
+    14                           endm
+    15  0000                     byte4	macro	val
+    16                           	(getbyte(val,4))
+    17                           endm
+    18  0000                     byte5	macro	val
+    19                           	(getbyte(val,5))
+    20                           endm
+    21  0000                     byte6	macro	val
+    22                           	(getbyte(val,6))
+    23                           endm
+    24  0000                     byte7	macro	val
+    25                           	(getbyte(val,7))
+    26                           endm
+    27  0000                     getword	macro	val,pos
+    28                           	(((val) >> (8 * pos)) and 0xffff)
+    29                           endm
+    30  0000                     word0	macro	val
+    31                           	(getword(val,0))
+    32                           endm
+    33  0000                     word1	macro	val
+    34                           	(getword(val,2))
+    35                           endm
+    36  0000                     word2	macro	val
+    37                           	(getword(val,4))
+    38                           endm
+    39  0000                     word3	macro	val
+    40                           	(getword(val,6))
+    41                           endm
+    42  0000                     gettword	macro	val,pos
+    43                           	(((val) >> (8 * pos)) and 0xffffff)
+    44                           endm
+    45  0000                     tword0	macro	val
+    46                           	(gettword(val,0))
+    47                           endm
+    48  0000                     tword1	macro	val
+    49                           	(gettword(val,3))
+    50                           endm
+    51  0000                     tword2	macro	val
+    52                           	(gettword(val,6))
+    53                           endm
+    54  0000                     getdword	macro	val,pos
+    55                           	(((val) >> (8 * pos)) and 0xffffffff)
+    56                           endm
+    57  0000                     dword0	macro	val
+    58                           	(getdword(val,0))
+    59                           endm
+    60  0000                     dword1	macro	val
+    61                           	(getdword(val,4))
+    62                           endm
+    63  0000                     clrc	macro
+    64                           	bcf	3,0
+    65                           	endm
+    66  0000                     clrz	macro
+    67                           	bcf	3,2
+    68                           	endm
+    69  0000                     setc	macro
+    70                           	bsf	3,0
+    71                           	endm
+    72  0000                     setz	macro
+    73                           	bsf	3,2
+    74                           	endm
+    75  0000                     skipc	macro
+    76                           	btfss	3,0
+    77                           	endm
+    78  0000                     skipz	macro
+    79                           	btfss	3,2
+    80                           	endm
+    81  0000                     skipnc	macro
+    82                           	btfsc	3,0
+    83                           	endm
+    84  0000                     skipnz	macro
+    85                           	btfsc	3,2
+    86                           	endm
+    87  0000                     # 54 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    88                           INDF equ 00h ;# 
+    89  0000                     # 61 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    90                           TMR0 equ 01h ;# 
+    91  0001                     # 68 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    92                           PCL equ 02h ;# 
+    93  0002                     # 75 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    94                           STATUS equ 03h ;# 
+    95  0003                     # 161 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    96                           FSR equ 04h ;# 
+    97  0004                     # 168 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    98                           PORTA equ 05h ;# 
+    99  0005                     # 230 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   100                           PORTB equ 06h ;# 
+   101  0006                     # 292 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   102                           PORTC equ 07h ;# 
+   103  0007                     # 354 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   104                           PORTD equ 08h ;# 
+   105  0008                     # 416 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   106                           PORTE equ 09h ;# 
+   107  0009                     # 454 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   108                           PCLATH equ 0Ah ;# 
+   109  000A                     # 461 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   110                           INTCON equ 0Bh ;# 
+   111  000B                     # 539 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   112                           PIR1 equ 0Ch ;# 
+   113  000C                     # 595 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   114                           PIR2 equ 0Dh ;# 
+   115  000D                     # 652 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   116                           TMR1 equ 0Eh ;# 
+   117  000E                     # 659 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   118                           TMR1L equ 0Eh ;# 
+   119  000E                     # 666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   120                           TMR1H equ 0Fh ;# 
+   121  000F                     # 673 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   122                           T1CON equ 010h ;# 
+   123  0010                     # 767 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   124                           TMR2 equ 011h ;# 
+   125  0011                     # 774 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   126                           T2CON equ 012h ;# 
+   127  0012                     # 845 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   128                           SSPBUF equ 013h ;# 
+   129  0013                     # 852 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   130                           SSPCON equ 014h ;# 
+   131  0014                     # 922 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   132                           CCPR1 equ 015h ;# 
+   133  0015                     # 929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   134                           CCPR1L equ 015h ;# 
+   135  0015                     # 936 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   136                           CCPR1H equ 016h ;# 
+   137  0016                     # 943 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   138                           CCP1CON equ 017h ;# 
+   139  0017                     # 1040 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   140                           RCSTA equ 018h ;# 
+   141  0018                     # 1135 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   142                           TXREG equ 019h ;# 
+   143  0019                     # 1142 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   144                           RCREG equ 01Ah ;# 
+   145  001A                     # 1149 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   146                           CCPR2 equ 01Bh ;# 
+   147  001B                     # 1156 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   148                           CCPR2L equ 01Bh ;# 
+   149  001B                     # 1163 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   150                           CCPR2H equ 01Ch ;# 
+   151  001C                     # 1170 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   152                           CCP2CON equ 01Dh ;# 
+   153  001D                     # 1240 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   154                           ADRESH equ 01Eh ;# 
+   155  001E                     # 1247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   156                           ADCON0 equ 01Fh ;# 
+   157  001F                     # 1348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   158                           OPTION_REG equ 081h ;# 
+   159  0081                     # 1418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   160                           TRISA equ 085h ;# 
+   161  0085                     # 1480 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   162                           TRISB equ 086h ;# 
+   163  0086                     # 1542 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   164                           TRISC equ 087h ;# 
+   165  0087                     # 1604 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   166                           TRISD equ 088h ;# 
+   167  0088                     # 1666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   168                           TRISE equ 089h ;# 
+   169  0089                     # 1704 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   170                           PIE1 equ 08Ch ;# 
+   171  008C                     # 1760 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   172                           PIE2 equ 08Dh ;# 
+   173  008D                     # 1817 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   174                           PCON equ 08Eh ;# 
+   175  008E                     # 1864 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   176                           OSCCON equ 08Fh ;# 
+   177  008F                     # 1929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   178                           OSCTUNE equ 090h ;# 
+   179  0090                     # 1981 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   180                           SSPCON2 equ 091h ;# 
+   181  0091                     # 2043 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   182                           PR2 equ 092h ;# 
+   183  0092                     # 2050 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   184                           SSPADD equ 093h ;# 
+   185  0093                     # 2057 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   186                           SSPMSK equ 093h ;# 
+   187  0093                     # 2062 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   188                           MSK equ 093h ;# 
+   189  0093                     # 2179 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   190                           SSPSTAT equ 094h ;# 
+   191  0094                     # 2348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   192                           WPUB equ 095h ;# 
+   193  0095                     # 2418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   194                           IOCB equ 096h ;# 
+   195  0096                     # 2488 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   196                           VRCON equ 097h ;# 
+   197  0097                     # 2558 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   198                           TXSTA equ 098h ;# 
+   199  0098                     # 2644 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   200                           SPBRG equ 099h ;# 
+   201  0099                     # 2706 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   202                           SPBRGH equ 09Ah ;# 
+   203  009A                     # 2776 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   204                           PWM1CON equ 09Bh ;# 
+   205  009B                     # 2846 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   206                           ECCPAS equ 09Ch ;# 
+   207  009C                     # 2928 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   208                           PSTRCON equ 09Dh ;# 
+   209  009D                     # 2972 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   210                           ADRESL equ 09Eh ;# 
+   211  009E                     # 2979 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   212                           ADCON1 equ 09Fh ;# 
+   213  009F                     # 3013 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   214                           WDTCON equ 0105h ;# 
+   215  0105                     # 3066 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   216                           CM1CON0 equ 0107h ;# 
+   217  0107                     # 3131 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   218                           CM2CON0 equ 0108h ;# 
+   219  0108                     # 3196 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   220                           CM2CON1 equ 0109h ;# 
+   221  0109                     # 3247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   222                           EEDATA equ 010Ch ;# 
+   223  010C                     # 3252 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   224                           EEDAT equ 010Ch ;# 
+   225  010C                     # 3259 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   226                           EEADR equ 010Dh ;# 
+   227  010D                     # 3266 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   228                           EEDATH equ 010Eh ;# 
+   229  010E                     # 3273 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   230                           EEADRH equ 010Fh ;# 
+   231  010F                     # 3280 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   232                           SRCON equ 0185h ;# 
+   233  0185                     # 3337 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   234                           BAUDCTL equ 0187h ;# 
+   235  0187                     # 3389 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   236                           ANSEL equ 0188h ;# 
+   237  0188                     # 3451 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   238                           ANSELH equ 0189h ;# 
+   239  0189                     # 3501 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   240                           EECON1 equ 018Ch ;# 
+   241  018C                     # 3546 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   242                           EECON2 equ 018Dh ;# 
+   243  018D                     # 54 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   244                           INDF equ 00h ;# 
+   245  0000                     # 61 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   246                           TMR0 equ 01h ;# 
+   247  0001                     # 68 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   248                           PCL equ 02h ;# 
+   249  0002                     # 75 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   250                           STATUS equ 03h ;# 
+   251  0003                     # 161 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   252                           FSR equ 04h ;# 
+   253  0004                     # 168 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   254                           PORTA equ 05h ;# 
+   255  0005                     # 230 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   256                           PORTB equ 06h ;# 
+   257  0006                     # 292 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   258                           PORTC equ 07h ;# 
+   259  0007                     # 354 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   260                           PORTD equ 08h ;# 
+   261  0008                     # 416 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   262                           PORTE equ 09h ;# 
+   263  0009                     # 454 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   264                           PCLATH equ 0Ah ;# 
+   265  000A                     # 461 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   266                           INTCON equ 0Bh ;# 
+   267  000B                     # 539 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   268                           PIR1 equ 0Ch ;# 
+   269  000C                     # 595 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   270                           PIR2 equ 0Dh ;# 
+   271  000D                     # 652 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   272                           TMR1 equ 0Eh ;# 
+   273  000E                     # 659 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   274                           TMR1L equ 0Eh ;# 
+   275  000E                     # 666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   276                           TMR1H equ 0Fh ;# 
+   277  000F                     # 673 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   278                           T1CON equ 010h ;# 
+   279  0010                     # 767 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   280                           TMR2 equ 011h ;# 
+   281  0011                     # 774 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   282                           T2CON equ 012h ;# 
+   283  0012                     # 845 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   284                           SSPBUF equ 013h ;# 
+   285  0013                     # 852 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   286                           SSPCON equ 014h ;# 
+   287  0014                     # 922 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   288                           CCPR1 equ 015h ;# 
+   289  0015                     # 929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   290                           CCPR1L equ 015h ;# 
+   291  0015                     # 936 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   292                           CCPR1H equ 016h ;# 
+   293  0016                     # 943 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   294                           CCP1CON equ 017h ;# 
+   295  0017                     # 1040 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   296                           RCSTA equ 018h ;# 
+   297  0018                     # 1135 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   298                           TXREG equ 019h ;# 
+   299  0019                     # 1142 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   300                           RCREG equ 01Ah ;# 
+   301  001A                     # 1149 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   302                           CCPR2 equ 01Bh ;# 
+   303  001B                     # 1156 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   304                           CCPR2L equ 01Bh ;# 
+   305  001B                     # 1163 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   306                           CCPR2H equ 01Ch ;# 
+   307  001C                     # 1170 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   308                           CCP2CON equ 01Dh ;# 
+   309  001D                     # 1240 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   310                           ADRESH equ 01Eh ;# 
+   311  001E                     # 1247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   312                           ADCON0 equ 01Fh ;# 
+   313  001F                     # 1348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   314                           OPTION_REG equ 081h ;# 
+   315  0081                     # 1418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   316                           TRISA equ 085h ;# 
+   317  0085                     # 1480 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   318                           TRISB equ 086h ;# 
+   319  0086                     # 1542 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   320                           TRISC equ 087h ;# 
+   321  0087                     # 1604 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   322                           TRISD equ 088h ;# 
+   323  0088                     # 1666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   324                           TRISE equ 089h ;# 
+   325  0089                     # 1704 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   326                           PIE1 equ 08Ch ;# 
+   327  008C                     # 1760 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   328                           PIE2 equ 08Dh ;# 
+   329  008D                     # 1817 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   330                           PCON equ 08Eh ;# 
+   331  008E                     # 1864 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   332                           OSCCON equ 08Fh ;# 
+   333  008F                     # 1929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   334                           OSCTUNE equ 090h ;# 
+   335  0090                     # 1981 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   336                           SSPCON2 equ 091h ;# 
+   337  0091                     # 2043 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   338                           PR2 equ 092h ;# 
+   339  0092                     # 2050 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   340                           SSPADD equ 093h ;# 
+   341  0093                     # 2057 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   342                           SSPMSK equ 093h ;# 
+   343  0093                     # 2062 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   344                           MSK equ 093h ;# 
+   345  0093                     # 2179 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   346                           SSPSTAT equ 094h ;# 
+   347  0094                     # 2348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   348                           WPUB equ 095h ;# 
+   349  0095                     # 2418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   350                           IOCB equ 096h ;# 
+   351  0096                     # 2488 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   352                           VRCON equ 097h ;# 
+   353  0097                     # 2558 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   354                           TXSTA equ 098h ;# 
+   355  0098                     # 2644 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   356                           SPBRG equ 099h ;# 
+   357  0099                     # 2706 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   358                           SPBRGH equ 09Ah ;# 
+   359  009A                     # 2776 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   360                           PWM1CON equ 09Bh ;# 
+   361  009B                     # 2846 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   362                           ECCPAS equ 09Ch ;# 
+   363  009C                     # 2928 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   364                           PSTRCON equ 09Dh ;# 
+   365  009D                     # 2972 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   366                           ADRESL equ 09Eh ;# 
+   367  009E                     # 2979 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   368                           ADCON1 equ 09Fh ;# 
+   369  009F                     # 3013 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   370                           WDTCON equ 0105h ;# 
+   371  0105                     # 3066 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   372                           CM1CON0 equ 0107h ;# 
+   373  0107                     # 3131 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   374                           CM2CON0 equ 0108h ;# 
+   375  0108                     # 3196 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   376                           CM2CON1 equ 0109h ;# 
+   377  0109                     # 3247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   378                           EEDATA equ 010Ch ;# 
+   379  010C                     # 3252 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   380                           EEDAT equ 010Ch ;# 
+   381  010C                     # 3259 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   382                           EEADR equ 010Dh ;# 
+   383  010D                     # 3266 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   384                           EEDATH equ 010Eh ;# 
+   385  010E                     # 3273 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   386                           EEADRH equ 010Fh ;# 
+   387  010F                     # 3280 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   388                           SRCON equ 0185h ;# 
+   389  0185                     # 3337 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   390                           BAUDCTL equ 0187h ;# 
+   391  0187                     # 3389 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   392                           ANSEL equ 0188h ;# 
+   393  0188                     # 3451 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   394                           ANSELH equ 0189h ;# 
+   395  0189                     # 3501 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   396                           EECON1 equ 018Ch ;# 
+   397  018C                     # 3546 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   398                           EECON2 equ 018Dh ;# 
+   399  018D                     	FNROOT	_main
+   400                           	global	_PORTDbits
+   401                           _PORTDbits	set	0x8
+   402  0008                     	global	_INTCONbits
+   403                           _INTCONbits	set	0xB
+   404  000B                     	global	_PORTCbits
+   405                           _PORTCbits	set	0x7
+   406  0007                     	global	_TMR0
+   407                           _TMR0	set	0x1
+   408  0001                     	global	_PORTBbits
+   409                           _PORTBbits	set	0x6
+   410  0006                     	global	_WPUB
+   411                           _WPUB	set	0x95
+   412  0095                     	global	_TRISC
+   413                           _TRISC	set	0x87
+   414  0087                     	global	_OPTION_REGbits
+   415                           _OPTION_REGbits	set	0x81
+   416  0081                     	global	_TRISD
+   417                           _TRISD	set	0x88
+   418  0088                     	global	_TRISB
+   419                           _TRISB	set	0x86
+   420  0086                     	global	_ANSELHbits
+   421                           _ANSELHbits	set	0x189
+   422  0189                     ; #config settings
+   423                           global __CFG_FOSC$XT
+   424                           __CFG_FOSC$XT equ 0x0
+   425  0000                     global __CFG_WDTE$OFF
+   426                           __CFG_WDTE$OFF equ 0x0
+   427  0000                     	file	"/tmp/xcXqzfCet"
+   428                           	line	#
+   429                           psect cinit,class=CODE,delta=2
+   430                           global start_initialization
+   431                           start_initialization:
+   432  07FC                     
+   433                           global __initialization
+   434                           __initialization:
+   435  07FC                     psect cinit,class=CODE,delta=2,merge=1
+   436                           global end_of_initialization,__end_of__initialization
+   437                           
+   438                           ;End of C runtime variable initialization code
+   439                           
+   440                           end_of_initialization:
+   441  07FC                     __end_of__initialization:
+   442  07FC                     clrf status
+   443  07FC  0183               ljmp _main	;jump to C main() function
+   444  07FD  120A  118A  2D02   psect	cstackCOMMON,class=COMMON,space=1,noexec
+   445                           global __pcstackCOMMON
+   446                           __pcstackCOMMON:
+   447  0070                     ?_main:	; 1 bytes @ 0x0
+   448  0070                     ??_main:	; 1 bytes @ 0x0
+   449  0070                     	global	main@i
+   450                           main@i:	; 2 bytes @ 0x0
+   451  0070                     	ds	2
+   452  0070                     	global	main@j
+   453                           main@j:	; 2 bytes @ 0x2
+   454  0072                     	ds	2
+   455  0072                     ;!
+   456                           ;!Data Sizes:
+   457                           ;!    Strings     0
+   458                           ;!    Constant    0
+   459                           ;!    Data        0
+   460                           ;!    BSS         0
+   461                           ;!    Persistent  0
+   462                           ;!    Stack       0
+   463                           ;!
+   464                           ;!Auto Spaces:
+   465                           ;!    Space          Size  Autos    Used
+   466                           ;!    COMMON           14      4       4
+   467                           ;!    BANK0            80      0       0
+   468                           ;!    BANK1            80      0       0
+   469                           ;!    BANK3            96      0       0
+   470                           ;!    BANK2            96      0       0
+   471                           
+   472                           ;!
+   473                           ;!Pointer List with Targets:
+   474                           ;!
+   475                           ;!    None.
+   476                           
+   477                           
+   478                           ;!
+   479                           ;!Critical Paths under _main in COMMON
+   480                           ;!
+   481                           ;!    None.
+   482                           ;!
+   483                           ;!Critical Paths under _main in BANK0
+   484                           ;!
+   485                           ;!    None.
+   486                           ;!
+   487                           ;!Critical Paths under _main in BANK1
+   488                           ;!
+   489                           ;!    None.
+   490                           ;!
+   491                           ;!Critical Paths under _main in BANK3
+   492                           ;!
+   493                           ;!    None.
+   494                           ;!
+   495                           ;!Critical Paths under _main in BANK2
+   496                           ;!
+   497                           ;!    None.
+   498                           
+   499 ;;
+   500 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   501 ;;
+   502                           
+   503                           ;!
+   504                           ;!Call Graph Tables:
+   505                           ;!
+   506                           ;! ---------------------------------------------------------------------------------
+   507                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   508                           ;! ---------------------------------------------------------------------------------
+   509                           ;! (0) _main                                                 4     4      0     480
+   510                           ;!                                              0 COMMON     4     4      0
+   511                           ;! ---------------------------------------------------------------------------------
+   512                           ;! Estimated maximum stack depth 0
+   513                           ;! ---------------------------------------------------------------------------------
+   514                           ;!
+   515                           ;! Call Graph Graphs:
+   516                           ;!
+   517                           ;! _main (ROOT)
+   518                           ;!
+   519                           
+   520                           ;! Address spaces:
+   521                           
+   522                           ;!Name               Size   Autos  Total    Cost      Usage
+   523                           ;!BITCOMMON            E      0       0       0        0.0%
+   524                           ;!EEDATA             100      0       0       0        0.0%
+   525                           ;!NULL                 0      0       0       0        0.0%
+   526                           ;!CODE                 0      0       0       0        0.0%
+   527                           ;!COMMON               E      4       4       1       28.6%
+   528                           ;!BITSFR0              0      0       0       1        0.0%
+   529                           ;!SFR0                 0      0       0       1        0.0%
+   530                           ;!BITSFR1              0      0       0       2        0.0%
+   531                           ;!SFR1                 0      0       0       2        0.0%
+   532                           ;!STACK                0      0       0       2        0.0%
+   533                           ;!ABS                  0      0       0       3        0.0%
+   534                           ;!BITBANK0            50      0       0       4        0.0%
+   535                           ;!BITSFR3              0      0       0       4        0.0%
+   536                           ;!SFR3                 0      0       0       4        0.0%
+   537                           ;!BANK0               50      0       0       5        0.0%
+   538                           ;!BITSFR2              0      0       0       5        0.0%
+   539                           ;!SFR2                 0      0       0       5        0.0%
+   540                           ;!BITBANK1            50      0       0       6        0.0%
+   541                           ;!BANK1               50      0       0       7        0.0%
+   542                           ;!BITBANK3            60      0       0       8        0.0%
+   543                           ;!BANK3               60      0       0       9        0.0%
+   544                           ;!BITBANK2            60      0       0      10        0.0%
+   545                           ;!BANK2               60      0       0      11        0.0%
+   546                           ;!DATA                 0      0       0      12        0.0%
+   547                           
+   548                           	global	_main
+   549                           
+   550 ;; *************** function _main *****************
+   551 ;; Defined at:
+   552 ;;		line 18 in file "pianinFeo.c"
+   553 ;; Parameters:    Size  Location     Type
+   554 ;;		None
+   555 ;; Auto vars:     Size  Location     Type
+   556 ;;  j               2    2[COMMON] int 
+   557 ;;  i               2    0[COMMON] int 
+   558 ;; Return value:  Size  Location     Type
+   559 ;;                  1    wreg      void 
+   560 ;; Registers used:
+   561 ;;		wreg, status,2, status,0, btemp+1
+   562 ;; Tracked objects:
+   563 ;;		On entry : B00/0
+   564 ;;		On exit  : 0/0
+   565 ;;		Unchanged: 0/0
+   566 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   567 ;;      Params:         0       0       0       0       0
+   568 ;;      Locals:         4       0       0       0       0
+   569 ;;      Temps:          0       0       0       0       0
+   570 ;;      Totals:         4       0       0       0       0
+   571 ;;Total ram usage:        4 bytes
+   572 ;; This function calls:
+   573 ;;		Nothing
+   574 ;; This function is called by:
+   575 ;;		Startup code after reset
+   576 ;; This function uses a non-reentrant model
+   577 ;;
+   578                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
+   579                           	file	"pianinFeo.c"
+   580                           	line	18
+   581                           global __pmaintext
+   582                           __pmaintext:	;psect for function _main
+   583  0502                     psect	maintext
+   584                           	file	"pianinFeo.c"
+   585                           	line	18
+   586                           	global	__size_of_main
+   587                           	__size_of_main	equ	__end_of_main-_main
+   588  02FA                     	
+   589                           _main:	
+   590  0502                     ;incstack = 0
+   591                           	opt	stack 8
+   592                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1]
+   593                           	line	22
+   594                           	
+   595                           l690:	
+   596  0502                     ;pianinFeo.c: 22:     int i = 0;
+   597                           	clrf	(main@i)
+   598  0502  01F0               	clrf	(main@i+1)
+   599  0503  01F1               	line	23
+   600                           ;pianinFeo.c: 23:     int j = 0;
+   601                           	clrf	(main@j)
+   602  0504  01F2               	clrf	(main@j+1)
+   603  0505  01F3               	line	24
+   604                           	
+   605                           l692:	
+   606  0506                     ;pianinFeo.c: 24:     ANSELHbits.ANS13 = 0;
+   607                           	bsf	status, 5	;RP0=1, select bank3
+   608  0506  1683               	bsf	status, 6	;RP1=1, select bank3
+   609  0507  1703               	bcf	(393)^0180h,5	;volatile
+   610  0508  1289               	line	25
+   611                           	
+   612                           l694:	
+   613  0509                     ;pianinFeo.c: 25:     ANSELHbits.ANS11 = 0;
+   614                           	bcf	(393)^0180h,3	;volatile
+   615  0509  1189               	line	26
+   616                           	
+   617                           l696:	
+   618  050A                     ;pianinFeo.c: 26:     ANSELHbits.ANS8 = 0;
+   619                           	bcf	(393)^0180h,0	;volatile
+   620  050A  1009               	line	27
+   621                           	
+   622                           l698:	
+   623  050B                     ;pianinFeo.c: 27:     ANSELHbits.ANS10 = 0;
+   624                           	bcf	(393)^0180h,2	;volatile
+   625  050B  1109               	line	28
+   626                           	
+   627                           l700:	
+   628  050C                     ;pianinFeo.c: 28:     ANSELHbits.ANS12 = 0;
+   629                           	bcf	(393)^0180h,4	;volatile
+   630  050C  1209               	line	29
+   631                           	
+   632                           l702:	
+   633  050D                     ;pianinFeo.c: 29:     TRISB = 0xFF;
+   634                           	movlw	low(0FFh)
+   635  050D  30FF               	bsf	status, 5	;RP0=1, select bank1
+   636  050E  1683               	bcf	status, 6	;RP1=0, select bank1
+   637  050F  1303               	movwf	(134)^080h	;volatile
+   638  0510  0086               	line	30
+   639                           	
+   640                           l704:	
+   641  0511                     ;pianinFeo.c: 30:     TRISD = 0xFF;
+   642                           	movlw	low(0FFh)
+   643  0511  30FF               	movwf	(136)^080h	;volatile
+   644  0512  0088               	line	31
+   645                           	
+   646                           l706:	
+   647  0513                     ;pianinFeo.c: 31:     OPTION_REGbits.nRBPU = 0;
+   648                           	bcf	(129)^080h,7	;volatile
+   649  0513  1381               	line	32
+   650                           	
+   651                           l708:	
+   652  0514                     ;pianinFeo.c: 32:     TRISC = 0xF7;
+   653                           	movlw	low(0F7h)
+   654  0514  30F7               	movwf	(135)^080h	;volatile
+   655  0515  0087               	line	33
+   656                           	
+   657                           l710:	
+   658  0516                     ;pianinFeo.c: 33:     WPUB = 0xFF;
+   659                           	movlw	low(0FFh)
+   660  0516  30FF               	movwf	(149)^080h	;volatile
+   661  0517  0095               	goto	l712
+   662  0518  2D19               	line	35
+   663                           ;pianinFeo.c: 35:     while (1) {
+   664                           	
+   665                           l27:	
+   666  0519                     	line	38
+   667                           	
+   668                           l712:	
+   669  0519                     ;pianinFeo.c: 38:         OPTION_REGbits.T0CS = 0;
+   670                           	bsf	status, 5	;RP0=1, select bank1
+   671  0519  1683               	bcf	status, 6	;RP1=0, select bank1
+   672  051A  1303               	bcf	(129)^080h,5	;volatile
+   673  051B  1281               	line	39
+   674                           	
+   675                           l714:	
+   676  051C                     ;pianinFeo.c: 39:         OPTION_REGbits.T0SE = 1;
+   677                           	bsf	(129)^080h,4	;volatile
+   678  051C  1601               	line	40
+   679                           	
+   680                           l716:	
+   681  051D                     ;pianinFeo.c: 40:         OPTION_REGbits.PSA = 0;
+   682                           	bcf	(129)^080h,3	;volatile
+   683  051D  1181               	line	42
+   684                           	
+   685                           l718:	
+   686  051E                     ;pianinFeo.c: 42:         if (PORTBbits.RB5 == 0) {
+   687                           	bcf	status, 5	;RP0=0, select bank0
+   688  051E  1283               	bcf	status, 6	;RP1=0, select bank0
+   689  051F  1303               	btfsc	(6),5	;volatile
+   690  0520  1A86               	goto	u11
+   691  0521  2D23               	goto	u10
+   692  0522  2D24               u11:
+   693  0523                     	goto	l28
+   694  0523  2D7A               u10:
+   695  0524                     	line	45
+   696                           	
+   697                           l720:	
+   698  0524                     ;pianinFeo.c: 45:             OPTION_REGbits.PS2 = 0;
+   699                           	bsf	status, 5	;RP0=1, select bank1
+   700  0524  1683               	bcf	status, 6	;RP1=0, select bank1
+   701  0525  1303               	bcf	(129)^080h,2	;volatile
+   702  0526  1101               	line	46
+   703                           ;pianinFeo.c: 46:             OPTION_REGbits.PS1 = 1;
+   704                           	bsf	(129)^080h,1	;volatile
+   705  0527  1481               	line	47
+   706                           ;pianinFeo.c: 47:             OPTION_REGbits.PS0 = 0;
+   707                           	bcf	(129)^080h,0	;volatile
+   708  0528  1001               	line	49
+   709                           	
+   710                           l722:	
+   711  0529                     ;pianinFeo.c: 49:             TMR0 = 18;
+   712                           	movlw	low(012h)
+   713  0529  3012               	bcf	status, 5	;RP0=0, select bank0
+   714  052A  1283               	bcf	status, 6	;RP1=0, select bank0
+   715  052B  1303               	movwf	(1)	;volatile
+   716  052C  0081               	line	51
+   717                           	
+   718                           l724:	
+   719  052D                     ;pianinFeo.c: 51:             for (i = 0; i < 526; i++) {
+   720                           	clrf	(main@i)
+   721  052D  01F0               	clrf	(main@i+1)
+   722  052E  01F1               	
+   723                           l726:	
+   724  052F                     	movf	(main@i+1),w
+   725  052F  0871               	xorlw	80h
+   726  0530  3A80               	movwf	btemp+1
+   727  0531  00FF               	movlw	(02h)^80h
+   728  0532  3082               	subwf	btemp+1,w
+   729  0533  027F               	skipz
+   730  0534  1D03               	goto	u25
+   731  0535  2D38               	movlw	0Eh
+   732  0536  300E               	subwf	(main@i),w
+   733  0537  0270               u25:
+   734  0538                     
+   735                           	skipc
+   736  0538  1C03               	goto	u21
+   737  0539  2D3B               	goto	u20
+   738  053A  2D3C               u21:
+   739  053B                     	goto	l31
+   740  053B  2D4D               u20:
+   741  053C                     	goto	l712
+   742  053C  2D19               	
+   743                           l728:	
+   744  053D                     	goto	l712
+   745  053D  2D19               	
+   746                           l29:	
+   747  053E                     	line	52
+   748                           ;pianinFeo.c: 52:                 while (INTCONbits.T0IF != 1) {
+   749                           	goto	l31
+   750  053E  2D4D               	
+   751                           l32:	
+   752  053F                     	line	53
+   753                           	
+   754                           l730:	
+   755  053F                     ;pianinFeo.c: 53:                     if (j == 0) {
+   756                           	movf	((main@j)),w
+   757  053F  0872               iorwf	((main@j+1)),w
+   758  0540  0473               	btfss	status,2
+   759  0541  1D03               	goto	u31
+   760  0542  2D44               	goto	u30
+   761  0543  2D45               u31:
+   762  0544                     	goto	l33
+   763  0544  2D49               u30:
+   764  0545                     	line	54
+   765                           	
+   766                           l732:	
+   767  0545                     ;pianinFeo.c: 54:                         PORTCbits.RC3 = 1;
+   768                           	bcf	status, 5	;RP0=0, select bank0
+   769  0545  1283               	bcf	status, 6	;RP1=0, select bank0
+   770  0546  1303               	bsf	(7),3	;volatile
+   771  0547  1587               	line	55
+   772                           ;pianinFeo.c: 55:                     } else {
+   773                           	goto	l31
+   774  0548  2D4D               	
+   775                           l33:	
+   776  0549                     	line	56
+   777                           ;pianinFeo.c: 56:                         PORTCbits.RC3 = 0;
+   778                           	bcf	status, 5	;RP0=0, select bank0
+   779  0549  1283               	bcf	status, 6	;RP1=0, select bank0
+   780  054A  1303               	bcf	(7),3	;volatile
+   781  054B  1187               	goto	l31
+   782  054C  2D4D               	line	57
+   783                           ;pianinFeo.c: 57:                     }
+   784                           	
+   785                           l34:	
+   786  054D                     	line	58
+   787                           ;pianinFeo.c: 58:                 }
+   788                           	
+   789                           l31:	
+   790  054D                     	line	52
+   791                           ;pianinFeo.c: 52:                 while (INTCONbits.T0IF != 1) {
+   792                           	btfss	(11),2	;volatile
+   793  054D  1D0B               	goto	u41
+   794  054E  2D50               	goto	u40
+   795  054F  2D51               u41:
+   796  0550                     	goto	l730
+   797  0550  2D3F               u40:
+   798  0551                     	goto	l734
+   799  0551  2D52               	
+   800                           l35:	
+   801  0552                     	line	60
+   802                           	
+   803                           l734:	
+   804  0552                     ;pianinFeo.c: 60:                 TMR0 = 18;
+   805                           	movlw	low(012h)
+   806  0552  3012               	bcf	status, 5	;RP0=0, select bank0
+   807  0553  1283               	bcf	status, 6	;RP1=0, select bank0
+   808  0554  1303               	movwf	(1)	;volatile
+   809  0555  0081               	line	61
+   810                           	
+   811                           l736:	
+   812  0556                     ;pianinFeo.c: 61:                 INTCONbits.T0IF = 0;
+   813                           	bcf	(11),2	;volatile
+   814  0556  110B               	line	63
+   815                           	
+   816                           l738:	
+   817  0557                     ;pianinFeo.c: 63:                 if (j == 0) {
+   818                           	movf	((main@j)),w
+   819  0557  0872               iorwf	((main@j+1)),w
+   820  0558  0473               	btfss	status,2
+   821  0559  1D03               	goto	u51
+   822  055A  2D5C               	goto	u50
+   823  055B  2D5D               u51:
+   824  055C                     	goto	l742
+   825  055C  2D62               u50:
+   826  055D                     	line	64
+   827                           	
+   828                           l740:	
+   829  055D                     ;pianinFeo.c: 64:                     j = 1;
+   830                           	movlw	01h
+   831  055D  3001               	movwf	(main@j)
+   832  055E  00F2               	movlw	0
+   833  055F  3000               	movwf	((main@j))+1
+   834  0560  00F3               	line	65
+   835                           ;pianinFeo.c: 65:                 } else {
+   836                           	goto	l744
+   837  0561  2D65               	
+   838                           l36:	
+   839  0562                     	line	66
+   840                           	
+   841                           l742:	
+   842  0562                     ;pianinFeo.c: 66:                     j = 0;
+   843                           	clrf	(main@j)
+   844  0562  01F2               	clrf	(main@j+1)
+   845  0563  01F3               	goto	l744
+   846  0564  2D65               	line	67
+   847                           ;pianinFeo.c: 67:                 }
+   848                           	
+   849                           l37:	
+   850  0565                     	line	68
+   851                           	
+   852                           l744:	
+   853  0565                     ;pianinFeo.c: 68:             }
+   854                           	movlw	01h
+   855  0565  3001               	addwf	(main@i),f
+   856  0566  07F0               	skipnc
+   857  0567  1803               	incf	(main@i+1),f
+   858  0568  0AF1               	movlw	0
+   859  0569  3000               	addwf	(main@i+1),f
+   860  056A  07F1               	
+   861                           l746:	
+   862  056B                     	movf	(main@i+1),w
+   863  056B  0871               	xorlw	80h
+   864  056C  3A80               	movwf	btemp+1
+   865  056D  00FF               	movlw	(02h)^80h
+   866  056E  3082               	subwf	btemp+1,w
+   867  056F  027F               	skipz
+   868  0570  1D03               	goto	u65
+   869  0571  2D74               	movlw	0Eh
+   870  0572  300E               	subwf	(main@i),w
+   871  0573  0270               u65:
+   872  0574                     
+   873                           	skipc
+   874  0574  1C03               	goto	u61
+   875  0575  2D77               	goto	u60
+   876  0576  2D78               u61:
+   877  0577                     	goto	l31
+   878  0577  2D4D               u60:
+   879  0578                     	goto	l712
+   880  0578  2D19               	
+   881                           l30:	
+   882  0579                     	line	69
+   883                           ;pianinFeo.c: 69:         } else if (PORTBbits.RB4 == 0) {
+   884                           	goto	l712
+   885  0579  2D19               	
+   886                           l28:	
+   887  057A                     	btfsc	(6),4	;volatile
+   888  057A  1A06               	goto	u71
+   889  057B  2D7D               	goto	u70
+   890  057C  2D7E               u71:
+   891  057D                     	goto	l39
+   892  057D  2DD4               u70:
+   893  057E                     	line	71
+   894                           	
+   895                           l748:	
+   896  057E                     ;pianinFeo.c: 71:             OPTION_REGbits.PS2 = 0;
+   897                           	bsf	status, 5	;RP0=1, select bank1
+   898  057E  1683               	bcf	status, 6	;RP1=0, select bank1
+   899  057F  1303               	bcf	(129)^080h,2	;volatile
+   900  0580  1101               	line	72
+   901                           ;pianinFeo.c: 72:             OPTION_REGbits.PS1 = 1;
+   902                           	bsf	(129)^080h,1	;volatile
+   903  0581  1481               	line	73
+   904                           ;pianinFeo.c: 73:             OPTION_REGbits.PS0 = 1;
+   905                           	bsf	(129)^080h,0	;volatile
+   906  0582  1401               	line	75
+   907                           	
+   908                           l750:	
+   909  0583                     ;pianinFeo.c: 75:             TMR0 = 130;
+   910                           	movlw	low(082h)
+   911  0583  3082               	bcf	status, 5	;RP0=0, select bank0
+   912  0584  1283               	bcf	status, 6	;RP1=0, select bank0
+   913  0585  1303               	movwf	(1)	;volatile
+   914  0586  0081               	line	77
+   915                           	
+   916                           l752:	
+   917  0587                     ;pianinFeo.c: 77:             for (i = 0; i < 500; i++) {
+   918                           	clrf	(main@i)
+   919  0587  01F0               	clrf	(main@i+1)
+   920  0588  01F1               	
+   921                           l754:	
+   922  0589                     	movf	(main@i+1),w
+   923  0589  0871               	xorlw	80h
+   924  058A  3A80               	movwf	btemp+1
+   925  058B  00FF               	movlw	(01h)^80h
+   926  058C  3081               	subwf	btemp+1,w
+   927  058D  027F               	skipz
+   928  058E  1D03               	goto	u85
+   929  058F  2D92               	movlw	0F4h
+   930  0590  30F4               	subwf	(main@i),w
+   931  0591  0270               u85:
+   932  0592                     
+   933                           	skipc
+   934  0592  1C03               	goto	u81
+   935  0593  2D95               	goto	u80
+   936  0594  2D96               u81:
+   937  0595                     	goto	l42
+   938  0595  2DA7               u80:
+   939  0596                     	goto	l712
+   940  0596  2D19               	
+   941                           l756:	
+   942  0597                     	goto	l712
+   943  0597  2D19               	
+   944                           l40:	
+   945  0598                     	line	78
+   946                           ;pianinFeo.c: 78:                 while (INTCONbits.T0IF != 1) {
+   947                           	goto	l42
+   948  0598  2DA7               	
+   949                           l43:	
+   950  0599                     	line	79
+   951                           	
+   952                           l758:	
+   953  0599                     ;pianinFeo.c: 79:                     if (j == 0) {
+   954                           	movf	((main@j)),w
+   955  0599  0872               iorwf	((main@j+1)),w
+   956  059A  0473               	btfss	status,2
+   957  059B  1D03               	goto	u91
+   958  059C  2D9E               	goto	u90
+   959  059D  2D9F               u91:
+   960  059E                     	goto	l44
+   961  059E  2DA3               u90:
+   962  059F                     	line	80
+   963                           	
+   964                           l760:	
+   965  059F                     ;pianinFeo.c: 80:                         PORTCbits.RC3 = 1;
+   966                           	bcf	status, 5	;RP0=0, select bank0
+   967  059F  1283               	bcf	status, 6	;RP1=0, select bank0
+   968  05A0  1303               	bsf	(7),3	;volatile
+   969  05A1  1587               	line	81
+   970                           ;pianinFeo.c: 81:                     } else {
+   971                           	goto	l42
+   972  05A2  2DA7               	
+   973                           l44:	
+   974  05A3                     	line	82
+   975                           ;pianinFeo.c: 82:                         PORTCbits.RC3 = 0;
+   976                           	bcf	status, 5	;RP0=0, select bank0
+   977  05A3  1283               	bcf	status, 6	;RP1=0, select bank0
+   978  05A4  1303               	bcf	(7),3	;volatile
+   979  05A5  1187               	goto	l42
+   980  05A6  2DA7               	line	83
+   981                           ;pianinFeo.c: 83:                     }
+   982                           	
+   983                           l45:	
+   984  05A7                     	line	84
+   985                           ;pianinFeo.c: 84:                 }
+   986                           	
+   987                           l42:	
+   988  05A7                     	line	78
+   989                           ;pianinFeo.c: 78:                 while (INTCONbits.T0IF != 1) {
+   990                           	btfss	(11),2	;volatile
+   991  05A7  1D0B               	goto	u101
+   992  05A8  2DAA               	goto	u100
+   993  05A9  2DAB               u101:
+   994  05AA                     	goto	l758
+   995  05AA  2D99               u100:
+   996  05AB                     	goto	l762
+   997  05AB  2DAC               	
+   998                           l46:	
+   999  05AC                     	line	86
+  1000                           	
+  1001                           l762:	
+  1002  05AC                     ;pianinFeo.c: 86:                 TMR0 = 130;
+  1003                           	movlw	low(082h)
+  1004  05AC  3082               	bcf	status, 5	;RP0=0, select bank0
+  1005  05AD  1283               	bcf	status, 6	;RP1=0, select bank0
+  1006  05AE  1303               	movwf	(1)	;volatile
+  1007  05AF  0081               	line	87
+  1008                           	
+  1009                           l764:	
+  1010  05B0                     ;pianinFeo.c: 87:                 INTCONbits.T0IF = 0;
+  1011                           	bcf	(11),2	;volatile
+  1012  05B0  110B               	line	89
+  1013                           	
+  1014                           l766:	
+  1015  05B1                     ;pianinFeo.c: 89:                 if (j == 0) {
+  1016                           	movf	((main@j)),w
+  1017  05B1  0872               iorwf	((main@j+1)),w
+  1018  05B2  0473               	btfss	status,2
+  1019  05B3  1D03               	goto	u111
+  1020  05B4  2DB6               	goto	u110
+  1021  05B5  2DB7               u111:
+  1022  05B6                     	goto	l770
+  1023  05B6  2DBC               u110:
+  1024  05B7                     	line	90
+  1025                           	
+  1026                           l768:	
+  1027  05B7                     ;pianinFeo.c: 90:                     j = 1;
+  1028                           	movlw	01h
+  1029  05B7  3001               	movwf	(main@j)
+  1030  05B8  00F2               	movlw	0
+  1031  05B9  3000               	movwf	((main@j))+1
+  1032  05BA  00F3               	line	91
+  1033                           ;pianinFeo.c: 91:                 } else {
+  1034                           	goto	l772
+  1035  05BB  2DBF               	
+  1036                           l47:	
+  1037  05BC                     	line	92
+  1038                           	
+  1039                           l770:	
+  1040  05BC                     ;pianinFeo.c: 92:                     j = 0;
+  1041                           	clrf	(main@j)
+  1042  05BC  01F2               	clrf	(main@j+1)
+  1043  05BD  01F3               	goto	l772
+  1044  05BE  2DBF               	line	93
+  1045                           ;pianinFeo.c: 93:                 }
+  1046                           	
+  1047                           l48:	
+  1048  05BF                     	line	94
+  1049                           	
+  1050                           l772:	
+  1051  05BF                     ;pianinFeo.c: 94:             }
+  1052                           	movlw	01h
+  1053  05BF  3001               	addwf	(main@i),f
+  1054  05C0  07F0               	skipnc
+  1055  05C1  1803               	incf	(main@i+1),f
+  1056  05C2  0AF1               	movlw	0
+  1057  05C3  3000               	addwf	(main@i+1),f
+  1058  05C4  07F1               	
+  1059                           l774:	
+  1060  05C5                     	movf	(main@i+1),w
+  1061  05C5  0871               	xorlw	80h
+  1062  05C6  3A80               	movwf	btemp+1
+  1063  05C7  00FF               	movlw	(01h)^80h
+  1064  05C8  3081               	subwf	btemp+1,w
+  1065  05C9  027F               	skipz
+  1066  05CA  1D03               	goto	u125
+  1067  05CB  2DCE               	movlw	0F4h
+  1068  05CC  30F4               	subwf	(main@i),w
+  1069  05CD  0270               u125:
+  1070  05CE                     
+  1071                           	skipc
+  1072  05CE  1C03               	goto	u121
+  1073  05CF  2DD1               	goto	u120
+  1074  05D0  2DD2               u121:
+  1075  05D1                     	goto	l42
+  1076  05D1  2DA7               u120:
+  1077  05D2                     	goto	l712
+  1078  05D2  2D19               	
+  1079                           l41:	
+  1080  05D3                     	line	104
+  1081                           ;pianinFeo.c: 104:         } else if (PORTBbits.RB2 == 0) {
+  1082                           	goto	l712
+  1083  05D3  2D19               	
+  1084                           l39:	
+  1085  05D4                     	btfsc	(6),2	;volatile
+  1086  05D4  1906               	goto	u131
+  1087  05D5  2DD7               	goto	u130
+  1088  05D6  2DD8               u131:
+  1089  05D7                     	goto	l50
+  1090  05D7  2E2E               u130:
+  1091  05D8                     	line	105
+  1092                           	
+  1093                           l776:	
+  1094  05D8                     ;pianinFeo.c: 105:             OPTION_REGbits.PS2 = 0;
+  1095                           	bsf	status, 5	;RP0=1, select bank1
+  1096  05D8  1683               	bcf	status, 6	;RP1=0, select bank1
+  1097  05D9  1303               	bcf	(129)^080h,2	;volatile
+  1098  05DA  1101               	line	106
+  1099                           ;pianinFeo.c: 106:             OPTION_REGbits.PS1 = 1;
+  1100                           	bsf	(129)^080h,1	;volatile
+  1101  05DB  1481               	line	107
+  1102                           ;pianinFeo.c: 107:             OPTION_REGbits.PS0 = 1;
+  1103                           	bsf	(129)^080h,0	;volatile
+  1104  05DC  1401               	line	109
+  1105                           	
+  1106                           l778:	
+  1107  05DD                     ;pianinFeo.c: 109:             TMR0 = 112;
+  1108                           	movlw	low(070h)
+  1109  05DD  3070               	bcf	status, 5	;RP0=0, select bank0
+  1110  05DE  1283               	bcf	status, 6	;RP1=0, select bank0
+  1111  05DF  1303               	movwf	(1)	;volatile
+  1112  05E0  0081               	line	111
+  1113                           	
+  1114                           l780:	
+  1115  05E1                     ;pianinFeo.c: 111:             for (i = 0; i < 435; i++) {
+  1116                           	clrf	(main@i)
+  1117  05E1  01F0               	clrf	(main@i+1)
+  1118  05E2  01F1               	
+  1119                           l782:	
+  1120  05E3                     	movf	(main@i+1),w
+  1121  05E3  0871               	xorlw	80h
+  1122  05E4  3A80               	movwf	btemp+1
+  1123  05E5  00FF               	movlw	(01h)^80h
+  1124  05E6  3081               	subwf	btemp+1,w
+  1125  05E7  027F               	skipz
+  1126  05E8  1D03               	goto	u145
+  1127  05E9  2DEC               	movlw	0B3h
+  1128  05EA  30B3               	subwf	(main@i),w
+  1129  05EB  0270               u145:
+  1130  05EC                     
+  1131                           	skipc
+  1132  05EC  1C03               	goto	u141
+  1133  05ED  2DEF               	goto	u140
+  1134  05EE  2DF0               u141:
+  1135  05EF                     	goto	l53
+  1136  05EF  2E01               u140:
+  1137  05F0                     	goto	l712
+  1138  05F0  2D19               	
+  1139                           l784:	
+  1140  05F1                     	goto	l712
+  1141  05F1  2D19               	
+  1142                           l51:	
+  1143  05F2                     	line	112
+  1144                           ;pianinFeo.c: 112:                 while (INTCONbits.T0IF != 1) {
+  1145                           	goto	l53
+  1146  05F2  2E01               	
+  1147                           l54:	
+  1148  05F3                     	line	113
+  1149                           	
+  1150                           l786:	
+  1151  05F3                     ;pianinFeo.c: 113:                     if (j == 0) {
+  1152                           	movf	((main@j)),w
+  1153  05F3  0872               iorwf	((main@j+1)),w
+  1154  05F4  0473               	btfss	status,2
+  1155  05F5  1D03               	goto	u151
+  1156  05F6  2DF8               	goto	u150
+  1157  05F7  2DF9               u151:
+  1158  05F8                     	goto	l55
+  1159  05F8  2DFD               u150:
+  1160  05F9                     	line	114
+  1161                           	
+  1162                           l788:	
+  1163  05F9                     ;pianinFeo.c: 114:                         PORTCbits.RC3 = 1;
+  1164                           	bcf	status, 5	;RP0=0, select bank0
+  1165  05F9  1283               	bcf	status, 6	;RP1=0, select bank0
+  1166  05FA  1303               	bsf	(7),3	;volatile
+  1167  05FB  1587               	line	115
+  1168                           ;pianinFeo.c: 115:                     } else {
+  1169                           	goto	l53
+  1170  05FC  2E01               	
+  1171                           l55:	
+  1172  05FD                     	line	116
+  1173                           ;pianinFeo.c: 116:                         PORTCbits.RC3 = 0;
+  1174                           	bcf	status, 5	;RP0=0, select bank0
+  1175  05FD  1283               	bcf	status, 6	;RP1=0, select bank0
+  1176  05FE  1303               	bcf	(7),3	;volatile
+  1177  05FF  1187               	goto	l53
+  1178  0600  2E01               	line	117
+  1179                           ;pianinFeo.c: 117:                     }
+  1180                           	
+  1181                           l56:	
+  1182  0601                     	line	118
+  1183                           ;pianinFeo.c: 118:                 }
+  1184                           	
+  1185                           l53:	
+  1186  0601                     	line	112
+  1187                           ;pianinFeo.c: 112:                 while (INTCONbits.T0IF != 1) {
+  1188                           	btfss	(11),2	;volatile
+  1189  0601  1D0B               	goto	u161
+  1190  0602  2E04               	goto	u160
+  1191  0603  2E05               u161:
+  1192  0604                     	goto	l786
+  1193  0604  2DF3               u160:
+  1194  0605                     	goto	l790
+  1195  0605  2E06               	
+  1196                           l57:	
+  1197  0606                     	line	120
+  1198                           	
+  1199                           l790:	
+  1200  0606                     ;pianinFeo.c: 120:                 TMR0 = 112;
+  1201                           	movlw	low(070h)
+  1202  0606  3070               	bcf	status, 5	;RP0=0, select bank0
+  1203  0607  1283               	bcf	status, 6	;RP1=0, select bank0
+  1204  0608  1303               	movwf	(1)	;volatile
+  1205  0609  0081               	line	121
+  1206                           	
+  1207                           l792:	
+  1208  060A                     ;pianinFeo.c: 121:                 INTCONbits.T0IF = 0;
+  1209                           	bcf	(11),2	;volatile
+  1210  060A  110B               	line	123
+  1211                           	
+  1212                           l794:	
+  1213  060B                     ;pianinFeo.c: 123:                 if (j == 0) {
+  1214                           	movf	((main@j)),w
+  1215  060B  0872               iorwf	((main@j+1)),w
+  1216  060C  0473               	btfss	status,2
+  1217  060D  1D03               	goto	u171
+  1218  060E  2E10               	goto	u170
+  1219  060F  2E11               u171:
+  1220  0610                     	goto	l798
+  1221  0610  2E16               u170:
+  1222  0611                     	line	124
+  1223                           	
+  1224                           l796:	
+  1225  0611                     ;pianinFeo.c: 124:                     j = 1;
+  1226                           	movlw	01h
+  1227  0611  3001               	movwf	(main@j)
+  1228  0612  00F2               	movlw	0
+  1229  0613  3000               	movwf	((main@j))+1
+  1230  0614  00F3               	line	125
+  1231                           ;pianinFeo.c: 125:                 } else {
+  1232                           	goto	l800
+  1233  0615  2E19               	
+  1234                           l58:	
+  1235  0616                     	line	126
+  1236                           	
+  1237                           l798:	
+  1238  0616                     ;pianinFeo.c: 126:                     j = 0;
+  1239                           	clrf	(main@j)
+  1240  0616  01F2               	clrf	(main@j+1)
+  1241  0617  01F3               	goto	l800
+  1242  0618  2E19               	line	127
+  1243                           ;pianinFeo.c: 127:                 }
+  1244                           	
+  1245                           l59:	
+  1246  0619                     	line	128
+  1247                           	
+  1248                           l800:	
+  1249  0619                     ;pianinFeo.c: 128:             }
+  1250                           	movlw	01h
+  1251  0619  3001               	addwf	(main@i),f
+  1252  061A  07F0               	skipnc
+  1253  061B  1803               	incf	(main@i+1),f
+  1254  061C  0AF1               	movlw	0
+  1255  061D  3000               	addwf	(main@i+1),f
+  1256  061E  07F1               	
+  1257                           l802:	
+  1258  061F                     	movf	(main@i+1),w
+  1259  061F  0871               	xorlw	80h
+  1260  0620  3A80               	movwf	btemp+1
+  1261  0621  00FF               	movlw	(01h)^80h
+  1262  0622  3081               	subwf	btemp+1,w
+  1263  0623  027F               	skipz
+  1264  0624  1D03               	goto	u185
+  1265  0625  2E28               	movlw	0B3h
+  1266  0626  30B3               	subwf	(main@i),w
+  1267  0627  0270               u185:
+  1268  0628                     
+  1269                           	skipc
+  1270  0628  1C03               	goto	u181
+  1271  0629  2E2B               	goto	u180
+  1272  062A  2E2C               u181:
+  1273  062B                     	goto	l53
+  1274  062B  2E01               u180:
+  1275  062C                     	goto	l712
+  1276  062C  2D19               	
+  1277                           l52:	
+  1278  062D                     	line	136
+  1279                           ;pianinFeo.c: 136:         } else if (PORTBbits.RB1 == 0) {
+  1280                           	goto	l712
+  1281  062D  2D19               	
+  1282                           l50:	
+  1283  062E                     	btfsc	(6),1	;volatile
+  1284  062E  1886               	goto	u191
+  1285  062F  2E31               	goto	u190
+  1286  0630  2E32               u191:
+  1287  0631                     	goto	l61
+  1288  0631  2E88               u190:
+  1289  0632                     	line	137
+  1290                           	
+  1291                           l804:	
+  1292  0632                     ;pianinFeo.c: 137:             OPTION_REGbits.PS2 = 0;
+  1293                           	bsf	status, 5	;RP0=1, select bank1
+  1294  0632  1683               	bcf	status, 6	;RP1=0, select bank1
+  1295  0633  1303               	bcf	(129)^080h,2	;volatile
+  1296  0634  1101               	line	138
+  1297                           ;pianinFeo.c: 138:             OPTION_REGbits.PS1 = 1;
+  1298                           	bsf	(129)^080h,1	;volatile
+  1299  0635  1481               	line	139
+  1300                           ;pianinFeo.c: 139:             OPTION_REGbits.PS0 = 1;
+  1301                           	bsf	(129)^080h,0	;volatile
+  1302  0636  1401               	line	141
+  1303                           	
+  1304                           l806:	
+  1305  0637                     ;pianinFeo.c: 141:             TMR0 = 93;
+  1306                           	movlw	low(05Dh)
+  1307  0637  305D               	bcf	status, 5	;RP0=0, select bank0
+  1308  0638  1283               	bcf	status, 6	;RP1=0, select bank0
+  1309  0639  1303               	movwf	(1)	;volatile
+  1310  063A  0081               	line	143
+  1311                           	
+  1312                           l808:	
+  1313  063B                     ;pianinFeo.c: 143:             for (i = 0; i < 385; i++) {
+  1314                           	clrf	(main@i)
+  1315  063B  01F0               	clrf	(main@i+1)
+  1316  063C  01F1               	
+  1317                           l810:	
+  1318  063D                     	movf	(main@i+1),w
+  1319  063D  0871               	xorlw	80h
+  1320  063E  3A80               	movwf	btemp+1
+  1321  063F  00FF               	movlw	(01h)^80h
+  1322  0640  3081               	subwf	btemp+1,w
+  1323  0641  027F               	skipz
+  1324  0642  1D03               	goto	u205
+  1325  0643  2E46               	movlw	081h
+  1326  0644  3081               	subwf	(main@i),w
+  1327  0645  0270               u205:
+  1328  0646                     
+  1329                           	skipc
+  1330  0646  1C03               	goto	u201
+  1331  0647  2E49               	goto	u200
+  1332  0648  2E4A               u201:
+  1333  0649                     	goto	l64
+  1334  0649  2E5B               u200:
+  1335  064A                     	goto	l712
+  1336  064A  2D19               	
+  1337                           l812:	
+  1338  064B                     	goto	l712
+  1339  064B  2D19               	
+  1340                           l62:	
+  1341  064C                     	line	144
+  1342                           ;pianinFeo.c: 144:                 while (INTCONbits.T0IF != 1) {
+  1343                           	goto	l64
+  1344  064C  2E5B               	
+  1345                           l65:	
+  1346  064D                     	line	145
+  1347                           	
+  1348                           l814:	
+  1349  064D                     ;pianinFeo.c: 145:                     if (j == 0) {
+  1350                           	movf	((main@j)),w
+  1351  064D  0872               iorwf	((main@j+1)),w
+  1352  064E  0473               	btfss	status,2
+  1353  064F  1D03               	goto	u211
+  1354  0650  2E52               	goto	u210
+  1355  0651  2E53               u211:
+  1356  0652                     	goto	l66
+  1357  0652  2E57               u210:
+  1358  0653                     	line	146
+  1359                           	
+  1360                           l816:	
+  1361  0653                     ;pianinFeo.c: 146:                         PORTCbits.RC3 = 1;
+  1362                           	bcf	status, 5	;RP0=0, select bank0
+  1363  0653  1283               	bcf	status, 6	;RP1=0, select bank0
+  1364  0654  1303               	bsf	(7),3	;volatile
+  1365  0655  1587               	line	147
+  1366                           ;pianinFeo.c: 147:                     } else {
+  1367                           	goto	l64
+  1368  0656  2E5B               	
+  1369                           l66:	
+  1370  0657                     	line	148
+  1371                           ;pianinFeo.c: 148:                         PORTCbits.RC3 = 0;
+  1372                           	bcf	status, 5	;RP0=0, select bank0
+  1373  0657  1283               	bcf	status, 6	;RP1=0, select bank0
+  1374  0658  1303               	bcf	(7),3	;volatile
+  1375  0659  1187               	goto	l64
+  1376  065A  2E5B               	line	149
+  1377                           ;pianinFeo.c: 149:                     }
+  1378                           	
+  1379                           l67:	
+  1380  065B                     	line	150
+  1381                           ;pianinFeo.c: 150:                 }
+  1382                           	
+  1383                           l64:	
+  1384  065B                     	line	144
+  1385                           ;pianinFeo.c: 144:                 while (INTCONbits.T0IF != 1) {
+  1386                           	btfss	(11),2	;volatile
+  1387  065B  1D0B               	goto	u221
+  1388  065C  2E5E               	goto	u220
+  1389  065D  2E5F               u221:
+  1390  065E                     	goto	l814
+  1391  065E  2E4D               u220:
+  1392  065F                     	goto	l818
+  1393  065F  2E60               	
+  1394                           l68:	
+  1395  0660                     	line	152
+  1396                           	
+  1397                           l818:	
+  1398  0660                     ;pianinFeo.c: 152:                 TMR0 = 93;
+  1399                           	movlw	low(05Dh)
+  1400  0660  305D               	bcf	status, 5	;RP0=0, select bank0
+  1401  0661  1283               	bcf	status, 6	;RP1=0, select bank0
+  1402  0662  1303               	movwf	(1)	;volatile
+  1403  0663  0081               	line	153
+  1404                           	
+  1405                           l820:	
+  1406  0664                     ;pianinFeo.c: 153:                 INTCONbits.T0IF = 0;
+  1407                           	bcf	(11),2	;volatile
+  1408  0664  110B               	line	155
+  1409                           	
+  1410                           l822:	
+  1411  0665                     ;pianinFeo.c: 155:                 if (j == 0) {
+  1412                           	movf	((main@j)),w
+  1413  0665  0872               iorwf	((main@j+1)),w
+  1414  0666  0473               	btfss	status,2
+  1415  0667  1D03               	goto	u231
+  1416  0668  2E6A               	goto	u230
+  1417  0669  2E6B               u231:
+  1418  066A                     	goto	l826
+  1419  066A  2E70               u230:
+  1420  066B                     	line	156
+  1421                           	
+  1422                           l824:	
+  1423  066B                     ;pianinFeo.c: 156:                     j = 1;
+  1424                           	movlw	01h
+  1425  066B  3001               	movwf	(main@j)
+  1426  066C  00F2               	movlw	0
+  1427  066D  3000               	movwf	((main@j))+1
+  1428  066E  00F3               	line	157
+  1429                           ;pianinFeo.c: 157:                 } else {
+  1430                           	goto	l828
+  1431  066F  2E73               	
+  1432                           l69:	
+  1433  0670                     	line	158
+  1434                           	
+  1435                           l826:	
+  1436  0670                     ;pianinFeo.c: 158:                     j = 0;
+  1437                           	clrf	(main@j)
+  1438  0670  01F2               	clrf	(main@j+1)
+  1439  0671  01F3               	goto	l828
+  1440  0672  2E73               	line	159
+  1441                           ;pianinFeo.c: 159:                 }
+  1442                           	
+  1443                           l70:	
+  1444  0673                     	line	160
+  1445                           	
+  1446                           l828:	
+  1447  0673                     ;pianinFeo.c: 160:             }
+  1448                           	movlw	01h
+  1449  0673  3001               	addwf	(main@i),f
+  1450  0674  07F0               	skipnc
+  1451  0675  1803               	incf	(main@i+1),f
+  1452  0676  0AF1               	movlw	0
+  1453  0677  3000               	addwf	(main@i+1),f
+  1454  0678  07F1               	
+  1455                           l830:	
+  1456  0679                     	movf	(main@i+1),w
+  1457  0679  0871               	xorlw	80h
+  1458  067A  3A80               	movwf	btemp+1
+  1459  067B  00FF               	movlw	(01h)^80h
+  1460  067C  3081               	subwf	btemp+1,w
+  1461  067D  027F               	skipz
+  1462  067E  1D03               	goto	u245
+  1463  067F  2E82               	movlw	081h
+  1464  0680  3081               	subwf	(main@i),w
+  1465  0681  0270               u245:
+  1466  0682                     
+  1467                           	skipc
+  1468  0682  1C03               	goto	u241
+  1469  0683  2E85               	goto	u240
+  1470  0684  2E86               u241:
+  1471  0685                     	goto	l64
+  1472  0685  2E5B               u240:
+  1473  0686                     	goto	l712
+  1474  0686  2D19               	
+  1475                           l63:	
+  1476  0687                     	line	168
+  1477                           ;pianinFeo.c: 168:         } else if (PORTBbits.RB0 == 0) {
+  1478                           	goto	l712
+  1479  0687  2D19               	
+  1480                           l61:	
+  1481  0688                     	btfsc	(6),0	;volatile
+  1482  0688  1806               	goto	u251
+  1483  0689  2E8B               	goto	u250
+  1484  068A  2E8C               u251:
+  1485  068B                     	goto	l72
+  1486  068B  2EE2               u250:
+  1487  068C                     	line	170
+  1488                           	
+  1489                           l832:	
+  1490  068C                     ;pianinFeo.c: 170:             OPTION_REGbits.PS2 = 0;
+  1491                           	bsf	status, 5	;RP0=1, select bank1
+  1492  068C  1683               	bcf	status, 6	;RP1=0, select bank1
+  1493  068D  1303               	bcf	(129)^080h,2	;volatile
+  1494  068E  1101               	line	171
+  1495                           ;pianinFeo.c: 171:             OPTION_REGbits.PS1 = 1;
+  1496                           	bsf	(129)^080h,1	;volatile
+  1497  068F  1481               	line	172
+  1498                           ;pianinFeo.c: 172:             OPTION_REGbits.PS0 = 1;
+  1499                           	bsf	(129)^080h,0	;volatile
+  1500  0690  1401               	line	174
+  1501                           	
+  1502                           l834:	
+  1503  0691                     ;pianinFeo.c: 174:             TMR0 = 74;
+  1504                           	movlw	low(04Ah)
+  1505  0691  304A               	bcf	status, 5	;RP0=0, select bank0
+  1506  0692  1283               	bcf	status, 6	;RP1=0, select bank0
+  1507  0693  1303               	movwf	(1)	;volatile
+  1508  0694  0081               	line	176
+  1509                           	
+  1510                           l836:	
+  1511  0695                     ;pianinFeo.c: 176:             for (i = 0; i < 345; i++) {
+  1512                           	clrf	(main@i)
+  1513  0695  01F0               	clrf	(main@i+1)
+  1514  0696  01F1               	
+  1515                           l838:	
+  1516  0697                     	movf	(main@i+1),w
+  1517  0697  0871               	xorlw	80h
+  1518  0698  3A80               	movwf	btemp+1
+  1519  0699  00FF               	movlw	(01h)^80h
+  1520  069A  3081               	subwf	btemp+1,w
+  1521  069B  027F               	skipz
+  1522  069C  1D03               	goto	u265
+  1523  069D  2EA0               	movlw	059h
+  1524  069E  3059               	subwf	(main@i),w
+  1525  069F  0270               u265:
+  1526  06A0                     
+  1527                           	skipc
+  1528  06A0  1C03               	goto	u261
+  1529  06A1  2EA3               	goto	u260
+  1530  06A2  2EA4               u261:
+  1531  06A3                     	goto	l75
+  1532  06A3  2EB5               u260:
+  1533  06A4                     	goto	l712
+  1534  06A4  2D19               	
+  1535                           l840:	
+  1536  06A5                     	goto	l712
+  1537  06A5  2D19               	
+  1538                           l73:	
+  1539  06A6                     	line	177
+  1540                           ;pianinFeo.c: 177:                 while (INTCONbits.T0IF != 1) {
+  1541                           	goto	l75
+  1542  06A6  2EB5               	
+  1543                           l76:	
+  1544  06A7                     	line	178
+  1545                           	
+  1546                           l842:	
+  1547  06A7                     ;pianinFeo.c: 178:                     if (j == 0) {
+  1548                           	movf	((main@j)),w
+  1549  06A7  0872               iorwf	((main@j+1)),w
+  1550  06A8  0473               	btfss	status,2
+  1551  06A9  1D03               	goto	u271
+  1552  06AA  2EAC               	goto	u270
+  1553  06AB  2EAD               u271:
+  1554  06AC                     	goto	l77
+  1555  06AC  2EB1               u270:
+  1556  06AD                     	line	179
+  1557                           	
+  1558                           l844:	
+  1559  06AD                     ;pianinFeo.c: 179:                         PORTCbits.RC3 = 1;
+  1560                           	bcf	status, 5	;RP0=0, select bank0
+  1561  06AD  1283               	bcf	status, 6	;RP1=0, select bank0
+  1562  06AE  1303               	bsf	(7),3	;volatile
+  1563  06AF  1587               	line	180
+  1564                           ;pianinFeo.c: 180:                     } else {
+  1565                           	goto	l75
+  1566  06B0  2EB5               	
+  1567                           l77:	
+  1568  06B1                     	line	181
+  1569                           ;pianinFeo.c: 181:                         PORTCbits.RC3 = 0;
+  1570                           	bcf	status, 5	;RP0=0, select bank0
+  1571  06B1  1283               	bcf	status, 6	;RP1=0, select bank0
+  1572  06B2  1303               	bcf	(7),3	;volatile
+  1573  06B3  1187               	goto	l75
+  1574  06B4  2EB5               	line	182
+  1575                           ;pianinFeo.c: 182:                     }
+  1576                           	
+  1577                           l78:	
+  1578  06B5                     	line	183
+  1579                           ;pianinFeo.c: 183:                 }
+  1580                           	
+  1581                           l75:	
+  1582  06B5                     	line	177
+  1583                           ;pianinFeo.c: 177:                 while (INTCONbits.T0IF != 1) {
+  1584                           	btfss	(11),2	;volatile
+  1585  06B5  1D0B               	goto	u281
+  1586  06B6  2EB8               	goto	u280
+  1587  06B7  2EB9               u281:
+  1588  06B8                     	goto	l842
+  1589  06B8  2EA7               u280:
+  1590  06B9                     	goto	l846
+  1591  06B9  2EBA               	
+  1592                           l79:	
+  1593  06BA                     	line	185
+  1594                           	
+  1595                           l846:	
+  1596  06BA                     ;pianinFeo.c: 185:                 TMR0 = 74;
+  1597                           	movlw	low(04Ah)
+  1598  06BA  304A               	bcf	status, 5	;RP0=0, select bank0
+  1599  06BB  1283               	bcf	status, 6	;RP1=0, select bank0
+  1600  06BC  1303               	movwf	(1)	;volatile
+  1601  06BD  0081               	line	186
+  1602                           	
+  1603                           l848:	
+  1604  06BE                     ;pianinFeo.c: 186:                 INTCONbits.T0IF = 0;
+  1605                           	bcf	(11),2	;volatile
+  1606  06BE  110B               	line	188
+  1607                           	
+  1608                           l850:	
+  1609  06BF                     ;pianinFeo.c: 188:                 if (j == 0) {
+  1610                           	movf	((main@j)),w
+  1611  06BF  0872               iorwf	((main@j+1)),w
+  1612  06C0  0473               	btfss	status,2
+  1613  06C1  1D03               	goto	u291
+  1614  06C2  2EC4               	goto	u290
+  1615  06C3  2EC5               u291:
+  1616  06C4                     	goto	l854
+  1617  06C4  2ECA               u290:
+  1618  06C5                     	line	189
+  1619                           	
+  1620                           l852:	
+  1621  06C5                     ;pianinFeo.c: 189:                     j = 1;
+  1622                           	movlw	01h
+  1623  06C5  3001               	movwf	(main@j)
+  1624  06C6  00F2               	movlw	0
+  1625  06C7  3000               	movwf	((main@j))+1
+  1626  06C8  00F3               	line	190
+  1627                           ;pianinFeo.c: 190:                 } else {
+  1628                           	goto	l856
+  1629  06C9  2ECD               	
+  1630                           l80:	
+  1631  06CA                     	line	191
+  1632                           	
+  1633                           l854:	
+  1634  06CA                     ;pianinFeo.c: 191:                     j = 0;
+  1635                           	clrf	(main@j)
+  1636  06CA  01F2               	clrf	(main@j+1)
+  1637  06CB  01F3               	goto	l856
+  1638  06CC  2ECD               	line	192
+  1639                           ;pianinFeo.c: 192:                 }
+  1640                           	
+  1641                           l81:	
+  1642  06CD                     	line	193
+  1643                           	
+  1644                           l856:	
+  1645  06CD                     ;pianinFeo.c: 193:             }
+  1646                           	movlw	01h
+  1647  06CD  3001               	addwf	(main@i),f
+  1648  06CE  07F0               	skipnc
+  1649  06CF  1803               	incf	(main@i+1),f
+  1650  06D0  0AF1               	movlw	0
+  1651  06D1  3000               	addwf	(main@i+1),f
+  1652  06D2  07F1               	
+  1653                           l858:	
+  1654  06D3                     	movf	(main@i+1),w
+  1655  06D3  0871               	xorlw	80h
+  1656  06D4  3A80               	movwf	btemp+1
+  1657  06D5  00FF               	movlw	(01h)^80h
+  1658  06D6  3081               	subwf	btemp+1,w
+  1659  06D7  027F               	skipz
+  1660  06D8  1D03               	goto	u305
+  1661  06D9  2EDC               	movlw	059h
+  1662  06DA  3059               	subwf	(main@i),w
+  1663  06DB  0270               u305:
+  1664  06DC                     
+  1665                           	skipc
+  1666  06DC  1C03               	goto	u301
+  1667  06DD  2EDF               	goto	u300
+  1668  06DE  2EE0               u301:
+  1669  06DF                     	goto	l75
+  1670  06DF  2EB5               u300:
+  1671  06E0                     	goto	l712
+  1672  06E0  2D19               	
+  1673                           l74:	
+  1674  06E1                     	line	201
+  1675                           ;pianinFeo.c: 201:         } else if (PORTDbits.RD7 == 0) {
+  1676                           	goto	l712
+  1677  06E1  2D19               	
+  1678                           l72:	
+  1679  06E2                     	btfsc	(8),7	;volatile
+  1680  06E2  1B88               	goto	u311
+  1681  06E3  2EE5               	goto	u310
+  1682  06E4  2EE6               u311:
+  1683  06E5                     	goto	l83
+  1684  06E5  2F3C               u310:
+  1685  06E6                     	line	202
+  1686                           	
+  1687                           l860:	
+  1688  06E6                     ;pianinFeo.c: 202:             OPTION_REGbits.PS2 = 1;
+  1689                           	bsf	status, 5	;RP0=1, select bank1
+  1690  06E6  1683               	bcf	status, 6	;RP1=0, select bank1
+  1691  06E7  1303               	bsf	(129)^080h,2	;volatile
+  1692  06E8  1501               	line	203
+  1693                           ;pianinFeo.c: 203:             OPTION_REGbits.PS1 = 0;
+  1694                           	bcf	(129)^080h,1	;volatile
+  1695  06E9  1081               	line	204
+  1696                           ;pianinFeo.c: 204:             OPTION_REGbits.PS0 = 0;
+  1697                           	bcf	(129)^080h,0	;volatile
+  1698  06EA  1001               	line	206
+  1699                           	
+  1700                           l862:	
+  1701  06EB                     ;pianinFeo.c: 206:             TMR0 = 162;
+  1702                           	movlw	low(0A2h)
+  1703  06EB  30A2               	bcf	status, 5	;RP0=0, select bank0
+  1704  06EC  1283               	bcf	status, 6	;RP1=0, select bank0
+  1705  06ED  1303               	movwf	(1)	;volatile
+  1706  06EE  0081               	line	208
+  1707                           	
+  1708                           l864:	
+  1709  06EF                     ;pianinFeo.c: 208:             for (i = 0; i < 333; i++) {
+  1710                           	clrf	(main@i)
+  1711  06EF  01F0               	clrf	(main@i+1)
+  1712  06F0  01F1               	
+  1713                           l866:	
+  1714  06F1                     	movf	(main@i+1),w
+  1715  06F1  0871               	xorlw	80h
+  1716  06F2  3A80               	movwf	btemp+1
+  1717  06F3  00FF               	movlw	(01h)^80h
+  1718  06F4  3081               	subwf	btemp+1,w
+  1719  06F5  027F               	skipz
+  1720  06F6  1D03               	goto	u325
+  1721  06F7  2EFA               	movlw	04Dh
+  1722  06F8  304D               	subwf	(main@i),w
+  1723  06F9  0270               u325:
+  1724  06FA                     
+  1725                           	skipc
+  1726  06FA  1C03               	goto	u321
+  1727  06FB  2EFD               	goto	u320
+  1728  06FC  2EFE               u321:
+  1729  06FD                     	goto	l86
+  1730  06FD  2F0F               u320:
+  1731  06FE                     	goto	l712
+  1732  06FE  2D19               	
+  1733                           l868:	
+  1734  06FF                     	goto	l712
+  1735  06FF  2D19               	
+  1736                           l84:	
+  1737  0700                     	line	209
+  1738                           ;pianinFeo.c: 209:                 while (INTCONbits.T0IF != 1) {
+  1739                           	goto	l86
+  1740  0700  2F0F               	
+  1741                           l87:	
+  1742  0701                     	line	210
+  1743                           	
+  1744                           l870:	
+  1745  0701                     ;pianinFeo.c: 210:                     if (j == 0) {
+  1746                           	movf	((main@j)),w
+  1747  0701  0872               iorwf	((main@j+1)),w
+  1748  0702  0473               	btfss	status,2
+  1749  0703  1D03               	goto	u331
+  1750  0704  2F06               	goto	u330
+  1751  0705  2F07               u331:
+  1752  0706                     	goto	l88
+  1753  0706  2F0B               u330:
+  1754  0707                     	line	211
+  1755                           	
+  1756                           l872:	
+  1757  0707                     ;pianinFeo.c: 211:                         PORTCbits.RC3 = 1;
+  1758                           	bcf	status, 5	;RP0=0, select bank0
+  1759  0707  1283               	bcf	status, 6	;RP1=0, select bank0
+  1760  0708  1303               	bsf	(7),3	;volatile
+  1761  0709  1587               	line	212
+  1762                           ;pianinFeo.c: 212:                     } else {
+  1763                           	goto	l86
+  1764  070A  2F0F               	
+  1765                           l88:	
+  1766  070B                     	line	213
+  1767                           ;pianinFeo.c: 213:                         PORTCbits.RC3 = 0;
+  1768                           	bcf	status, 5	;RP0=0, select bank0
+  1769  070B  1283               	bcf	status, 6	;RP1=0, select bank0
+  1770  070C  1303               	bcf	(7),3	;volatile
+  1771  070D  1187               	goto	l86
+  1772  070E  2F0F               	line	214
+  1773                           ;pianinFeo.c: 214:                     }
+  1774                           	
+  1775                           l89:	
+  1776  070F                     	line	215
+  1777                           ;pianinFeo.c: 215:                 }
+  1778                           	
+  1779                           l86:	
+  1780  070F                     	line	209
+  1781                           ;pianinFeo.c: 209:                 while (INTCONbits.T0IF != 1) {
+  1782                           	btfss	(11),2	;volatile
+  1783  070F  1D0B               	goto	u341
+  1784  0710  2F12               	goto	u340
+  1785  0711  2F13               u341:
+  1786  0712                     	goto	l870
+  1787  0712  2F01               u340:
+  1788  0713                     	goto	l874
+  1789  0713  2F14               	
+  1790                           l90:	
+  1791  0714                     	line	217
+  1792                           	
+  1793                           l874:	
+  1794  0714                     ;pianinFeo.c: 217:                 TMR0 = 162;
+  1795                           	movlw	low(0A2h)
+  1796  0714  30A2               	bcf	status, 5	;RP0=0, select bank0
+  1797  0715  1283               	bcf	status, 6	;RP1=0, select bank0
+  1798  0716  1303               	movwf	(1)	;volatile
+  1799  0717  0081               	line	218
+  1800                           	
+  1801                           l876:	
+  1802  0718                     ;pianinFeo.c: 218:                 INTCONbits.T0IF = 0;
+  1803                           	bcf	(11),2	;volatile
+  1804  0718  110B               	line	220
+  1805                           	
+  1806                           l878:	
+  1807  0719                     ;pianinFeo.c: 220:                 if (j == 0) {
+  1808                           	movf	((main@j)),w
+  1809  0719  0872               iorwf	((main@j+1)),w
+  1810  071A  0473               	btfss	status,2
+  1811  071B  1D03               	goto	u351
+  1812  071C  2F1E               	goto	u350
+  1813  071D  2F1F               u351:
+  1814  071E                     	goto	l882
+  1815  071E  2F24               u350:
+  1816  071F                     	line	221
+  1817                           	
+  1818                           l880:	
+  1819  071F                     ;pianinFeo.c: 221:                     j = 1;
+  1820                           	movlw	01h
+  1821  071F  3001               	movwf	(main@j)
+  1822  0720  00F2               	movlw	0
+  1823  0721  3000               	movwf	((main@j))+1
+  1824  0722  00F3               	line	222
+  1825                           ;pianinFeo.c: 222:                 } else {
+  1826                           	goto	l884
+  1827  0723  2F27               	
+  1828                           l91:	
+  1829  0724                     	line	223
+  1830                           	
+  1831                           l882:	
+  1832  0724                     ;pianinFeo.c: 223:                     j = 0;
+  1833                           	clrf	(main@j)
+  1834  0724  01F2               	clrf	(main@j+1)
+  1835  0725  01F3               	goto	l884
+  1836  0726  2F27               	line	224
+  1837                           ;pianinFeo.c: 224:                 }
+  1838                           	
+  1839                           l92:	
+  1840  0727                     	line	225
+  1841                           	
+  1842                           l884:	
+  1843  0727                     ;pianinFeo.c: 225:             }
+  1844                           	movlw	01h
+  1845  0727  3001               	addwf	(main@i),f
+  1846  0728  07F0               	skipnc
+  1847  0729  1803               	incf	(main@i+1),f
+  1848  072A  0AF1               	movlw	0
+  1849  072B  3000               	addwf	(main@i+1),f
+  1850  072C  07F1               	
+  1851                           l886:	
+  1852  072D                     	movf	(main@i+1),w
+  1853  072D  0871               	xorlw	80h
+  1854  072E  3A80               	movwf	btemp+1
+  1855  072F  00FF               	movlw	(01h)^80h
+  1856  0730  3081               	subwf	btemp+1,w
+  1857  0731  027F               	skipz
+  1858  0732  1D03               	goto	u365
+  1859  0733  2F36               	movlw	04Dh
+  1860  0734  304D               	subwf	(main@i),w
+  1861  0735  0270               u365:
+  1862  0736                     
+  1863                           	skipc
+  1864  0736  1C03               	goto	u361
+  1865  0737  2F39               	goto	u360
+  1866  0738  2F3A               u361:
+  1867  0739                     	goto	l86
+  1868  0739  2F0F               u360:
+  1869  073A                     	goto	l712
+  1870  073A  2D19               	
+  1871                           l85:	
+  1872  073B                     	line	233
+  1873                           ;pianinFeo.c: 233:         } else if (PORTDbits.RD6 == 0) {
+  1874                           	goto	l712
+  1875  073B  2D19               	
+  1876                           l83:	
+  1877  073C                     	btfsc	(8),6	;volatile
+  1878  073C  1B08               	goto	u371
+  1879  073D  2F3F               	goto	u370
+  1880  073E  2F40               u371:
+  1881  073F                     	goto	l94
+  1882  073F  2F96               u370:
+  1883  0740                     	line	234
+  1884                           	
+  1885                           l888:	
+  1886  0740                     ;pianinFeo.c: 234:             OPTION_REGbits.PS2 = 0;
+  1887                           	bsf	status, 5	;RP0=1, select bank1
+  1888  0740  1683               	bcf	status, 6	;RP1=0, select bank1
+  1889  0741  1303               	bcf	(129)^080h,2	;volatile
+  1890  0742  1101               	line	235
+  1891                           ;pianinFeo.c: 235:             OPTION_REGbits.PS1 = 1;
+  1892                           	bsf	(129)^080h,1	;volatile
+  1893  0743  1481               	line	236
+  1894                           ;pianinFeo.c: 236:             OPTION_REGbits.PS0 = 1;
+  1895                           	bsf	(129)^080h,0	;volatile
+  1896  0744  1401               	line	238
+  1897                           	
+  1898                           l890:	
+  1899  0745                     ;pianinFeo.c: 238:             TMR0 = 43;
+  1900                           	movlw	low(02Bh)
+  1901  0745  302B               	bcf	status, 5	;RP0=0, select bank0
+  1902  0746  1283               	bcf	status, 6	;RP1=0, select bank0
+  1903  0747  1303               	movwf	(1)	;volatile
+  1904  0748  0081               	line	240
+  1905                           	
+  1906                           l892:	
+  1907  0749                     ;pianinFeo.c: 240:             for (i = 0; i < 294; i++) {
+  1908                           	clrf	(main@i)
+  1909  0749  01F0               	clrf	(main@i+1)
+  1910  074A  01F1               	
+  1911                           l894:	
+  1912  074B                     	movf	(main@i+1),w
+  1913  074B  0871               	xorlw	80h
+  1914  074C  3A80               	movwf	btemp+1
+  1915  074D  00FF               	movlw	(01h)^80h
+  1916  074E  3081               	subwf	btemp+1,w
+  1917  074F  027F               	skipz
+  1918  0750  1D03               	goto	u385
+  1919  0751  2F54               	movlw	026h
+  1920  0752  3026               	subwf	(main@i),w
+  1921  0753  0270               u385:
+  1922  0754                     
+  1923                           	skipc
+  1924  0754  1C03               	goto	u381
+  1925  0755  2F57               	goto	u380
+  1926  0756  2F58               u381:
+  1927  0757                     	goto	l97
+  1928  0757  2F69               u380:
+  1929  0758                     	goto	l712
+  1930  0758  2D19               	
+  1931                           l896:	
+  1932  0759                     	goto	l712
+  1933  0759  2D19               	
+  1934                           l95:	
+  1935  075A                     	line	241
+  1936                           ;pianinFeo.c: 241:                 while (INTCONbits.T0IF != 1) {
+  1937                           	goto	l97
+  1938  075A  2F69               	
+  1939                           l98:	
+  1940  075B                     	line	242
+  1941                           	
+  1942                           l898:	
+  1943  075B                     ;pianinFeo.c: 242:                     if (j == 0) {
+  1944                           	movf	((main@j)),w
+  1945  075B  0872               iorwf	((main@j+1)),w
+  1946  075C  0473               	btfss	status,2
+  1947  075D  1D03               	goto	u391
+  1948  075E  2F60               	goto	u390
+  1949  075F  2F61               u391:
+  1950  0760                     	goto	l99
+  1951  0760  2F65               u390:
+  1952  0761                     	line	243
+  1953                           	
+  1954                           l900:	
+  1955  0761                     ;pianinFeo.c: 243:                         PORTCbits.RC3 = 1;
+  1956                           	bcf	status, 5	;RP0=0, select bank0
+  1957  0761  1283               	bcf	status, 6	;RP1=0, select bank0
+  1958  0762  1303               	bsf	(7),3	;volatile
+  1959  0763  1587               	line	244
+  1960                           ;pianinFeo.c: 244:                     } else {
+  1961                           	goto	l97
+  1962  0764  2F69               	
+  1963                           l99:	
+  1964  0765                     	line	245
+  1965                           ;pianinFeo.c: 245:                         PORTCbits.RC3 = 0;
+  1966                           	bcf	status, 5	;RP0=0, select bank0
+  1967  0765  1283               	bcf	status, 6	;RP1=0, select bank0
+  1968  0766  1303               	bcf	(7),3	;volatile
+  1969  0767  1187               	goto	l97
+  1970  0768  2F69               	line	246
+  1971                           ;pianinFeo.c: 246:                     }
+  1972                           	
+  1973                           l100:	
+  1974  0769                     	line	247
+  1975                           ;pianinFeo.c: 247:                 }
+  1976                           	
+  1977                           l97:	
+  1978  0769                     	line	241
+  1979                           ;pianinFeo.c: 241:                 while (INTCONbits.T0IF != 1) {
+  1980                           	btfss	(11),2	;volatile
+  1981  0769  1D0B               	goto	u401
+  1982  076A  2F6C               	goto	u400
+  1983  076B  2F6D               u401:
+  1984  076C                     	goto	l898
+  1985  076C  2F5B               u400:
+  1986  076D                     	goto	l902
+  1987  076D  2F6E               	
+  1988                           l101:	
+  1989  076E                     	line	249
+  1990                           	
+  1991                           l902:	
+  1992  076E                     ;pianinFeo.c: 249:                 TMR0 = 43;
+  1993                           	movlw	low(02Bh)
+  1994  076E  302B               	bcf	status, 5	;RP0=0, select bank0
+  1995  076F  1283               	bcf	status, 6	;RP1=0, select bank0
+  1996  0770  1303               	movwf	(1)	;volatile
+  1997  0771  0081               	line	250
+  1998                           	
+  1999                           l904:	
+  2000  0772                     ;pianinFeo.c: 250:                 INTCONbits.T0IF = 0;
+  2001                           	bcf	(11),2	;volatile
+  2002  0772  110B               	line	252
+  2003                           	
+  2004                           l906:	
+  2005  0773                     ;pianinFeo.c: 252:                 if (j == 0) {
+  2006                           	movf	((main@j)),w
+  2007  0773  0872               iorwf	((main@j+1)),w
+  2008  0774  0473               	btfss	status,2
+  2009  0775  1D03               	goto	u411
+  2010  0776  2F78               	goto	u410
+  2011  0777  2F79               u411:
+  2012  0778                     	goto	l910
+  2013  0778  2F7E               u410:
+  2014  0779                     	line	253
+  2015                           	
+  2016                           l908:	
+  2017  0779                     ;pianinFeo.c: 253:                     j = 1;
+  2018                           	movlw	01h
+  2019  0779  3001               	movwf	(main@j)
+  2020  077A  00F2               	movlw	0
+  2021  077B  3000               	movwf	((main@j))+1
+  2022  077C  00F3               	line	254
+  2023                           ;pianinFeo.c: 254:                 } else {
+  2024                           	goto	l912
+  2025  077D  2F81               	
+  2026                           l102:	
+  2027  077E                     	line	255
+  2028                           	
+  2029                           l910:	
+  2030  077E                     ;pianinFeo.c: 255:                     j = 0;
+  2031                           	clrf	(main@j)
+  2032  077E  01F2               	clrf	(main@j+1)
+  2033  077F  01F3               	goto	l912
+  2034  0780  2F81               	line	256
+  2035                           ;pianinFeo.c: 256:                 }
+  2036                           	
+  2037                           l103:	
+  2038  0781                     	line	257
+  2039                           	
+  2040                           l912:	
+  2041  0781                     ;pianinFeo.c: 257:             }
+  2042                           	movlw	01h
+  2043  0781  3001               	addwf	(main@i),f
+  2044  0782  07F0               	skipnc
+  2045  0783  1803               	incf	(main@i+1),f
+  2046  0784  0AF1               	movlw	0
+  2047  0785  3000               	addwf	(main@i+1),f
+  2048  0786  07F1               	
+  2049                           l914:	
+  2050  0787                     	movf	(main@i+1),w
+  2051  0787  0871               	xorlw	80h
+  2052  0788  3A80               	movwf	btemp+1
+  2053  0789  00FF               	movlw	(01h)^80h
+  2054  078A  3081               	subwf	btemp+1,w
+  2055  078B  027F               	skipz
+  2056  078C  1D03               	goto	u425
+  2057  078D  2F90               	movlw	026h
+  2058  078E  3026               	subwf	(main@i),w
+  2059  078F  0270               u425:
+  2060  0790                     
+  2061                           	skipc
+  2062  0790  1C03               	goto	u421
+  2063  0791  2F93               	goto	u420
+  2064  0792  2F94               u421:
+  2065  0793                     	goto	l97
+  2066  0793  2F69               u420:
+  2067  0794                     	goto	l712
+  2068  0794  2D19               	
+  2069                           l96:	
+  2070  0795                     	line	265
+  2071                           ;pianinFeo.c: 265:         } else if (PORTDbits.RD5 == 0) {
+  2072                           	goto	l712
+  2073  0795  2D19               	
+  2074                           l94:	
+  2075  0796                     	btfsc	(8),5	;volatile
+  2076  0796  1A88               	goto	u431
+  2077  0797  2F99               	goto	u430
+  2078  0798  2F9A               u431:
+  2079  0799                     	goto	l712
+  2080  0799  2D19               u430:
+  2081  079A                     	line	266
+  2082                           	
+  2083                           l916:	
+  2084  079A                     ;pianinFeo.c: 266:             OPTION_REGbits.PS2 = 0;
+  2085                           	bsf	status, 5	;RP0=1, select bank1
+  2086  079A  1683               	bcf	status, 6	;RP1=0, select bank1
+  2087  079B  1303               	bcf	(129)^080h,2	;volatile
+  2088  079C  1101               	line	267
+  2089                           ;pianinFeo.c: 267:             OPTION_REGbits.PS1 = 1;
+  2090                           	bsf	(129)^080h,1	;volatile
+  2091  079D  1481               	line	268
+  2092                           ;pianinFeo.c: 268:             OPTION_REGbits.PS0 = 1;
+  2093                           	bsf	(129)^080h,0	;volatile
+  2094  079E  1401               	line	270
+  2095                           	
+  2096                           l918:	
+  2097  079F                     ;pianinFeo.c: 270:             TMR0 = 18;
+  2098                           	movlw	low(012h)
+  2099  079F  3012               	bcf	status, 5	;RP0=0, select bank0
+  2100  07A0  1283               	bcf	status, 6	;RP1=0, select bank0
+  2101  07A1  1303               	movwf	(1)	;volatile
+  2102  07A2  0081               	line	272
+  2103                           	
+  2104                           l920:	
+  2105  07A3                     ;pianinFeo.c: 272:             for (i = 0; i < 263; i++) {
+  2106                           	clrf	(main@i)
+  2107  07A3  01F0               	clrf	(main@i+1)
+  2108  07A4  01F1               	
+  2109                           l922:	
+  2110  07A5                     	movf	(main@i+1),w
+  2111  07A5  0871               	xorlw	80h
+  2112  07A6  3A80               	movwf	btemp+1
+  2113  07A7  00FF               	movlw	(01h)^80h
+  2114  07A8  3081               	subwf	btemp+1,w
+  2115  07A9  027F               	skipz
+  2116  07AA  1D03               	goto	u445
+  2117  07AB  2FAE               	movlw	07h
+  2118  07AC  3007               	subwf	(main@i),w
+  2119  07AD  0270               u445:
+  2120  07AE                     
+  2121                           	skipc
+  2122  07AE  1C03               	goto	u441
+  2123  07AF  2FB1               	goto	u440
+  2124  07B0  2FB2               u441:
+  2125  07B1                     	goto	l108
+  2126  07B1  2FC3               u440:
+  2127  07B2                     	goto	l712
+  2128  07B2  2D19               	
+  2129                           l924:	
+  2130  07B3                     	goto	l712
+  2131  07B3  2D19               	
+  2132                           l106:	
+  2133  07B4                     	line	273
+  2134                           ;pianinFeo.c: 273:                 while (INTCONbits.T0IF != 1) {
+  2135                           	goto	l108
+  2136  07B4  2FC3               	
+  2137                           l109:	
+  2138  07B5                     	line	274
+  2139                           	
+  2140                           l926:	
+  2141  07B5                     ;pianinFeo.c: 274:                     if (j == 0) {
+  2142                           	movf	((main@j)),w
+  2143  07B5  0872               iorwf	((main@j+1)),w
+  2144  07B6  0473               	btfss	status,2
+  2145  07B7  1D03               	goto	u451
+  2146  07B8  2FBA               	goto	u450
+  2147  07B9  2FBB               u451:
+  2148  07BA                     	goto	l110
+  2149  07BA  2FBF               u450:
+  2150  07BB                     	line	275
+  2151                           	
+  2152                           l928:	
+  2153  07BB                     ;pianinFeo.c: 275:                         PORTCbits.RC3 = 1;
+  2154                           	bcf	status, 5	;RP0=0, select bank0
+  2155  07BB  1283               	bcf	status, 6	;RP1=0, select bank0
+  2156  07BC  1303               	bsf	(7),3	;volatile
+  2157  07BD  1587               	line	276
+  2158                           ;pianinFeo.c: 276:                     } else {
+  2159                           	goto	l108
+  2160  07BE  2FC3               	
+  2161                           l110:	
+  2162  07BF                     	line	277
+  2163                           ;pianinFeo.c: 277:                         PORTCbits.RC3 = 0;
+  2164                           	bcf	status, 5	;RP0=0, select bank0
+  2165  07BF  1283               	bcf	status, 6	;RP1=0, select bank0
+  2166  07C0  1303               	bcf	(7),3	;volatile
+  2167  07C1  1187               	goto	l108
+  2168  07C2  2FC3               	line	278
+  2169                           ;pianinFeo.c: 278:                     }
+  2170                           	
+  2171                           l111:	
+  2172  07C3                     	line	279
+  2173                           ;pianinFeo.c: 279:                 }
+  2174                           	
+  2175                           l108:	
+  2176  07C3                     	line	273
+  2177                           ;pianinFeo.c: 273:                 while (INTCONbits.T0IF != 1) {
+  2178                           	btfss	(11),2	;volatile
+  2179  07C3  1D0B               	goto	u461
+  2180  07C4  2FC6               	goto	u460
+  2181  07C5  2FC7               u461:
+  2182  07C6                     	goto	l926
+  2183  07C6  2FB5               u460:
+  2184  07C7                     	goto	l930
+  2185  07C7  2FC8               	
+  2186                           l112:	
+  2187  07C8                     	line	281
+  2188                           	
+  2189                           l930:	
+  2190  07C8                     ;pianinFeo.c: 281:                 TMR0 = 18;
+  2191                           	movlw	low(012h)
+  2192  07C8  3012               	bcf	status, 5	;RP0=0, select bank0
+  2193  07C9  1283               	bcf	status, 6	;RP1=0, select bank0
+  2194  07CA  1303               	movwf	(1)	;volatile
+  2195  07CB  0081               	line	282
+  2196                           	
+  2197                           l932:	
+  2198  07CC                     ;pianinFeo.c: 282:                 INTCONbits.T0IF = 0;
+  2199                           	bcf	(11),2	;volatile
+  2200  07CC  110B               	line	284
+  2201                           	
+  2202                           l934:	
+  2203  07CD                     ;pianinFeo.c: 284:                 if (j == 0) {
+  2204                           	movf	((main@j)),w
+  2205  07CD  0872               iorwf	((main@j+1)),w
+  2206  07CE  0473               	btfss	status,2
+  2207  07CF  1D03               	goto	u471
+  2208  07D0  2FD2               	goto	u470
+  2209  07D1  2FD3               u471:
+  2210  07D2                     	goto	l938
+  2211  07D2  2FD8               u470:
+  2212  07D3                     	line	285
+  2213                           	
+  2214                           l936:	
+  2215  07D3                     ;pianinFeo.c: 285:                     j = 1;
+  2216                           	movlw	01h
+  2217  07D3  3001               	movwf	(main@j)
+  2218  07D4  00F2               	movlw	0
+  2219  07D5  3000               	movwf	((main@j))+1
+  2220  07D6  00F3               	line	286
+  2221                           ;pianinFeo.c: 286:                 } else {
+  2222                           	goto	l940
+  2223  07D7  2FDB               	
+  2224                           l113:	
+  2225  07D8                     	line	287
+  2226                           	
+  2227                           l938:	
+  2228  07D8                     ;pianinFeo.c: 287:                     j = 0;
+  2229                           	clrf	(main@j)
+  2230  07D8  01F2               	clrf	(main@j+1)
+  2231  07D9  01F3               	goto	l940
+  2232  07DA  2FDB               	line	288
+  2233                           ;pianinFeo.c: 288:                 }
+  2234                           	
+  2235                           l114:	
+  2236  07DB                     	line	289
+  2237                           	
+  2238                           l940:	
+  2239  07DB                     ;pianinFeo.c: 289:             }
+  2240                           	movlw	01h
+  2241  07DB  3001               	addwf	(main@i),f
+  2242  07DC  07F0               	skipnc
+  2243  07DD  1803               	incf	(main@i+1),f
+  2244  07DE  0AF1               	movlw	0
+  2245  07DF  3000               	addwf	(main@i+1),f
+  2246  07E0  07F1               	
+  2247                           l942:	
+  2248  07E1                     	movf	(main@i+1),w
+  2249  07E1  0871               	xorlw	80h
+  2250  07E2  3A80               	movwf	btemp+1
+  2251  07E3  00FF               	movlw	(01h)^80h
+  2252  07E4  3081               	subwf	btemp+1,w
+  2253  07E5  027F               	skipz
+  2254  07E6  1D03               	goto	u485
+  2255  07E7  2FEA               	movlw	07h
+  2256  07E8  3007               	subwf	(main@i),w
+  2257  07E9  0270               u485:
+  2258  07EA                     
+  2259                           	skipc
+  2260  07EA  1C03               	goto	u481
+  2261  07EB  2FED               	goto	u480
+  2262  07EC  2FEE               u481:
+  2263  07ED                     	goto	l108
+  2264  07ED  2FC3               u480:
+  2265  07EE                     	goto	l712
+  2266  07EE  2D19               	
+  2267                           l107:	
+  2268  07EF                     	goto	l712
+  2269  07EF  2D19               	line	297
+  2270                           ;pianinFeo.c: 297:         }
+  2271                           	
+  2272                           l105:	
+  2273  07F0                     	goto	l712
+  2274  07F0  2D19               	
+  2275                           l104:	
+  2276  07F1                     	goto	l712
+  2277  07F1  2D19               	
+  2278                           l93:	
+  2279  07F2                     	goto	l712
+  2280  07F2  2D19               	
+  2281                           l82:	
+  2282  07F3                     	goto	l712
+  2283  07F3  2D19               	
+  2284                           l71:	
+  2285  07F4                     	goto	l712
+  2286  07F4  2D19               	
+  2287                           l60:	
+  2288  07F5                     	goto	l712
+  2289  07F5  2D19               	
+  2290                           l49:	
+  2291  07F6                     	goto	l712
+  2292  07F6  2D19               	
+  2293                           l38:	
+  2294  07F7                     	goto	l712
+  2295  07F7  2D19               	line	298
+  2296                           ;pianinFeo.c: 298:     }
+  2297                           	
+  2298                           l115:	
+  2299  07F8                     	goto	l712
+  2300  07F8  2D19               	
+  2301                           l116:	
+  2302  07F9                     	line	299
+  2303                           	
+  2304                           l117:	
+  2305  07F9                     	global	start
+  2306                           	ljmp	start
+  2307  07F9  120A  118A  2800   	opt stack 0
+  2308                           GLOBAL	__end_of_main
+  2309                           	__end_of_main:
+  2310  07FC                     	signat	_main,89
+  2311                           global	___latbits
+  2312                           ___latbits	equ	2
+  2313  0002                     	global	btemp
+  2314                           	btemp set 07Eh
+  2315  007E                     
+  2316                           	DABS	1,126,2	;btemp
+  2317                           	global	wtemp0
+  2318                           	wtemp0 set btemp+0
+  2319  007E                     	end
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      4       4
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 4     4      0     480
+                                              0 COMMON     4     4      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 0
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      4       4       1       28.6%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       0      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
+Symbol Table                                                                                   Tue Dec 11 22:34:33 2018
+
+                     l30 0579                       l31 054D                       l40 0598  
+                     l32 053F                       l41 05D3                       l33 0549  
+                     l50 062E                       l42 05A7                       l34 054D  
+                     l51 05F2                       l43 0599                       l35 0552  
+                     l27 0519                       l60 07F5                       l52 062D  
+                     l44 05A3                       l36 0562                       l28 057A  
+                     l61 0688                       l53 0601                       l45 05A7  
+                     l37 0565                       l29 053E                       l38 07F7  
+                     l70 0673                       l62 064C                       l54 05F3  
+                     l46 05AC                       l71 07F4                       l63 0687  
+                     l55 05FD                       l47 05BC                       l39 05D4  
+                     l80 06CA                       l72 06E2                       l64 065B  
+                     l56 0601                       l48 05BF                       l49 07F6  
+                     l81 06CD                       l73 06A6                       l65 064D  
+                     l57 0606                       l82 07F3                       l90 0714  
+                     l74 06E1                       l66 0657                       l58 0616  
+                     l91 0724                       l83 073C                       l75 06B5  
+                     l67 065B                       l59 0619                       l92 0727  
+                     l84 0700                       l76 06A7                       l68 0660  
+                     l93 07F2                       l85 073B                       l77 06B1  
+                     l69 0670                       l94 0796                       l86 070F  
+                     l78 06B5                       l95 075A                       l87 0701  
+                     l79 06BA                       l96 0795                       l88 070B  
+                     l97 0769                       l89 070F                       l98 075B  
+                     l99 0765                       u10 0524                       u11 0523  
+                     u20 053C                       u21 053B                       u30 0545  
+                     u31 0544                       u40 0551                       u41 0550  
+                     u25 0538                       u50 055D                       u51 055C  
+                     u60 0578                       u61 0577                       u70 057E  
+                     u71 057D                       u80 0596                       u81 0595  
+                     u65 0574                       u90 059F                       u91 059E  
+                     u85 0592                      l100 0769                      l101 076E  
+                    l110 07BF                      l102 077E                      l111 07C3  
+                    l103 0781                      l104 07F1                      l112 07C8  
+                    l105 07F0                      l113 07D8                      l114 07DB  
+                    l106 07B4                      l115 07F8                      l107 07EF  
+                    l116 07F9                      l108 07C3                      l117 07F9  
+                    l109 07B5                      l700 050C                      l710 0516  
+                    l702 050D                      l800 0619                      l720 0524  
+                    l712 0519                      l704 0511                      l810 063D  
+                    l802 061F                      l730 053F                      l722 0529  
+                    l714 051C                      l706 0513                      l900 0761  
+                    l820 0664                      l812 064B                      l804 0632  
+                    l740 055D                      l732 0545                      l724 052D  
+                    l716 051D                      l708 0514                      l910 077E  
+                    l902 076E                      l830 0679                      l822 0665  
+                    l814 064D                      l806 0637                      l750 0583  
+                    l742 0562                      l734 0552                      l726 052F  
+                    l718 051E                      l920 07A3                      l912 0781  
+                    l904 0772                      l840 06A5                      l832 068C  
+                    l824 066B                      l816 0653                      l808 063B  
+                    l760 059F                      l752 0587                      l744 0565  
+                    l736 0556                      l728 053D                      l930 07C8  
+                    l922 07A5                      l914 0787                      l906 0773  
+                    l850 06BF                      l842 06A7                      l834 0691  
+                    l826 0670                      l818 0660                      l770 05BC  
+                    l762 05AC                      l754 0589                      l746 056B  
+                    l738 0557                      l690 0502                      l940 07DB  
+                    l932 07CC                      l924 07B3                      l916 079A  
+                    l908 0779                      l860 06E6                      l852 06C5  
+                    l844 06AD                      l836 0695                      l828 0673  
+                    l780 05E1                      l772 05BF                      l764 05B0  
+                    l756 0597                      l748 057E                      l692 0506  
+                    l942 07E1                      l934 07CD                      l926 07B5  
+                    l918 079F                      l870 0701                      l862 06EB  
+                    l854 06CA                      l846 06BA                      l838 0697  
+                    l790 0606                      l782 05E3                      l774 05C5  
+                    l766 05B1                      l758 0599                      l694 0509  
+                    l936 07D3                      l928 07BB                      l880 071F  
+                    l872 0707                      l864 06EF                      l856 06CD  
+                    l848 06BE                      l792 060A                      l784 05F1  
+                    l776 05D8                      l768 05B7                      l696 050A  
+                    l938 07D8                      l890 0745                      l882 0724  
+                    l874 0714                      l866 06F1                      l858 06D3  
+                    l794 060B                      l786 05F3                      l778 05DD  
+                    l698 050B                      l892 0749                      l884 0727  
+                    l876 0718                      l868 06FF                      l796 0611  
+                    l788 05F9                      l894 074B                      l886 072D  
+                    l878 0719                      l798 0616                      l896 0759  
+                    l888 0740                      l898 075B                      u100 05AB  
+                    u101 05AA                      u110 05B7                      u111 05B6  
+                    u200 064A                      u120 05D2                      u201 0649  
+                    u121 05D1                      u210 0653                      u130 05D8  
+                    u211 0652                      u131 05D7                      u300 06E0  
+                    u220 065F                      u140 05F0                      u301 06DF  
+                    u221 065E                      u205 0646                      u141 05EF  
+                    u125 05CE                      u310 06E6                      u230 066B  
+                    u150 05F9                      u311 06E5                      u231 066A  
+                    u151 05F8                      u400 076D                      u320 06FE  
+                    u240 0686                      u160 0605                      u401 076C  
+                    u321 06FD                      u305 06DC                      u241 0685  
+                    u161 0604                      u145 05EC                      u410 0779  
+                    u330 0707                      u250 068C                      u170 0611  
+                    u411 0778                      u331 0706                      u251 068B  
+                    u171 0610                      u420 0794                      u340 0713  
+                    u260 06A4                      u180 062C                      u421 0793  
+                    u341 0712                      u325 06FA                      u261 06A3  
+                    u245 0682                      u181 062B                      u430 079A  
+                    u350 071F                      u270 06AD                      u190 0632  
+                    u431 0799                      u351 071E                      u271 06AC  
+                    u191 0631                      u440 07B2                      u360 073A  
+                    u280 06B9                      u441 07B1                      u425 0790  
+                    u361 0739                      u281 06B8                      u265 06A0  
+                    u185 0628                      u450 07BB                      u370 0740  
+                    u290 06C5                      u451 07BA                      u371 073F  
+                    u291 06C4                      u460 07C7                      u380 0758  
+                    u461 07C6                      u445 07AE                      u381 0757  
+                    u365 0736                      u470 07D3                      u390 0761  
+                    u471 07D2                      u391 0760                      u480 07EE  
+                    u481 07ED                      u385 0754                      u485 07EA  
+           __CFG_FOSC$XT 0000                     _TMR0 0001                     _WPUB 0095  
+                   _main 0502                     btemp 007E                     start 0000  
+                  ?_main 0070            __CFG_WDTE$OFF 0000                    _TRISB 0086  
+                  _TRISC 0087                    _TRISD 0088                    main@i 0070  
+                  main@j 0072                    status 0003                    wtemp0 007E  
+        __initialization 07FC             __end_of_main 07FC                   ??_main 0070  
+__end_of__initialization 07FC           __pcstackCOMMON 0070           _OPTION_REGbits 0081  
+             __pmaintext 0502     end_of_initialization 07FC                _PORTBbits 0006  
+              _PORTCbits 0007                _PORTDbits 0008      start_initialization 07FC  
+              ___latbits 0002               _ANSELHbits 0189            __size_of_main 02FA  
+             _INTCONbits 000B  

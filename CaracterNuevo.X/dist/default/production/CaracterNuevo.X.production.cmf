@@ -1,0 +1,457 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$dist/default/production/CaracterNuevo.X.production.o
+cinit CODE 0 7E1 7E1 1F 2
+text1 CODE 0 557 557 32 2
+text2 CODE 0 60A 60A 4A 2
+text3 CODE 0 5C1 5C1 49 2
+text4 CODE 0 526 526 31 2
+maintext CODE 0 654 654 18D 2
+cstackCOMMON COMMON 1 70 70 B 1
+cstackBANK0 BANK0 1 20 20 44 1
+inittext CODE 0 513 513 13 2
+idataBANK0 CODE 0 50B 50B 8 2
+idataBANK1 CODE 0 589 589 38 2
+dataBANK0 BANK0 1 64 64 8 1
+dataBANK1 BANK1 1 A0 A0 38 1
+$/tmp/xcXhln0QP.o
+end_init CODE 0 0 0 3 2
+config CONFIG 0 2007 2007 1 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 6C-6F 1
+RAM D8-EF 1
+RAM 110-16F 1
+RAM 190-1EF 1
+BANK0 6C-6F 1
+BANK1 D8-EF 1
+BANK2 110-16F 1
+BANK3 190-1EF 1
+CONST 3-50A 2
+CONST 800-1FFF 2
+ENTRY 3-50A 2
+ENTRY 800-1FFF 2
+IDLOC 2000-2003 2
+STACK 110-16F 1
+CODE 3-50A 2
+CODE 800-1FFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-10F 1
+SFR3 180-18F 1
+COMMON 7B-7D 1
+CONFIG 2008-2008 2
+EEDATA 2100-21FF 2
+STRCODE 3-50A 2
+STRCODE 800-1FFF 2
+STRING 3-50A 2
+STRING 800-1FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production/CaracterNuevo.X.production.o
+7E1 cinit CODE >535:/tmp/xcX47PiOX
+7E1 cinit CODE >538:/tmp/xcX47PiOX
+7E1 cinit CODE >623:/tmp/xcX47PiOX
+7E2 cinit CODE >624:/tmp/xcX47PiOX
+7E3 cinit CODE >625:/tmp/xcX47PiOX
+7E4 cinit CODE >626:/tmp/xcX47PiOX
+7E5 cinit CODE >627:/tmp/xcX47PiOX
+7E6 cinit CODE >628:/tmp/xcX47PiOX
+7E7 cinit CODE >629:/tmp/xcX47PiOX
+7E8 cinit CODE >630:/tmp/xcX47PiOX
+7E9 cinit CODE >631:/tmp/xcX47PiOX
+7EA cinit CODE >632:/tmp/xcX47PiOX
+7EF cinit CODE >636:/tmp/xcX47PiOX
+7F0 cinit CODE >637:/tmp/xcX47PiOX
+7F1 cinit CODE >638:/tmp/xcX47PiOX
+7F2 cinit CODE >639:/tmp/xcX47PiOX
+7F3 cinit CODE >640:/tmp/xcX47PiOX
+7F4 cinit CODE >641:/tmp/xcX47PiOX
+7F5 cinit CODE >642:/tmp/xcX47PiOX
+7F6 cinit CODE >643:/tmp/xcX47PiOX
+7F7 cinit CODE >644:/tmp/xcX47PiOX
+7FC cinit CODE >650:/tmp/xcX47PiOX
+7FC cinit CODE >652:/tmp/xcX47PiOX
+7FD cinit CODE >653:/tmp/xcX47PiOX
+526 text4 CODE >153:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+526 text4 CODE >155:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+529 text4 CODE >156:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+52B text4 CODE >157:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+52C text4 CODE >158:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+52F text4 CODE >159:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+52F text4 CODE >160:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+530 text4 CODE >161:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+532 text4 CODE >162:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+53A text4 CODE >163:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+53B text4 CODE >164:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+53D text4 CODE >165:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+543 text4 CODE >166:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+544 text4 CODE >167:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+548 text4 CODE >168:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+54C text4 CODE >169:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+54D text4 CODE >170:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+54F text4 CODE >171:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+550 text4 CODE >172:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+552 text4 CODE >173:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+556 text4 CODE >174:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5C1 text3 CODE >186:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5C2 text3 CODE >188:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5C5 text3 CODE >189:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5C7 text3 CODE >190:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5C8 text3 CODE >191:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5CB text3 CODE >192:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5CB text3 CODE >193:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5CC text3 CODE >194:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5CE text3 CODE >195:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5D6 text3 CODE >196:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5D7 text3 CODE >197:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5D9 text3 CODE >198:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5DA text3 CODE >199:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5DC text3 CODE >200:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5DD text3 CODE >201:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5DF text3 CODE >202:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5E5 text3 CODE >203:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5E6 text3 CODE >204:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5EA text3 CODE >205:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5EE text3 CODE >206:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5F1 text3 CODE >207:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5F4 text3 CODE >208:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+5FF text3 CODE >209:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+602 text3 CODE >210:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+605 text3 CODE >211:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+609 text3 CODE >212:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+60A text2 CODE >214:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+60B text2 CODE >216:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+60E text2 CODE >217:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+610 text2 CODE >218:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+611 text2 CODE >219:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+614 text2 CODE >220:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+614 text2 CODE >221:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+615 text2 CODE >222:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+617 text2 CODE >223:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+61F text2 CODE >224:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+620 text2 CODE >225:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+622 text2 CODE >226:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+623 text2 CODE >227:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+625 text2 CODE >228:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+626 text2 CODE >229:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+628 text2 CODE >230:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+62E text2 CODE >236:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+62F text2 CODE >237:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+630 text2 CODE >238:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+634 text2 CODE >239:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+638 text2 CODE >240:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+63B text2 CODE >241:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+63E text2 CODE >242:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+649 text2 CODE >243:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+64C text2 CODE >244:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+64F text2 CODE >245:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+653 text2 CODE >246:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+557 text1 CODE >176:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+558 text1 CODE >180:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+568 text1 CODE >181:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+571 text1 CODE >182:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+57D text1 CODE >183:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+588 text1 CODE >184:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+654 maintext CODE >23:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+654 maintext CODE >24:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+66B maintext CODE >36:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+680 maintext CODE >47:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+695 maintext CODE >58:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+6AA maintext CODE >69:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+6BF maintext CODE >80:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+6D4 maintext CODE >92:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+6E9 maintext CODE >104:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+6FE maintext CODE >117:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+702 maintext CODE >118:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+704 maintext CODE >119:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+707 maintext CODE >120:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+70C maintext CODE >121:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+712 maintext CODE >122:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+718 maintext CODE >123:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+71E maintext CODE >124:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+725 maintext CODE >125:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+72D maintext CODE >126:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+739 maintext CODE >127:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+745 maintext CODE >128:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+751 maintext CODE >129:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+75D maintext CODE >130:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+769 maintext CODE >131:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+775 maintext CODE >132:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+77C maintext CODE >133:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+77C maintext CODE >134:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+782 maintext CODE >135:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+788 maintext CODE >136:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+78E maintext CODE >137:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+794 maintext CODE >138:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+79A maintext CODE >139:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7A0 maintext CODE >140:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7A6 maintext CODE >141:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7AC maintext CODE >142:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7B2 maintext CODE >143:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7B8 maintext CODE >144:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7BE maintext CODE >145:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7C4 maintext CODE >146:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7CA maintext CODE >147:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7D0 maintext CODE >148:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7D6 maintext CODE >149:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7DD maintext CODE >150:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+7DE maintext CODE >151:/home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+513 inittext CODE >597:/tmp/xcX47PiOX
+513 inittext CODE >598:/tmp/xcX47PiOX
+514 inittext CODE >599:/tmp/xcX47PiOX
+515 inittext CODE >600:/tmp/xcX47PiOX
+516 inittext CODE >601:/tmp/xcX47PiOX
+517 inittext CODE >608:/tmp/xcX47PiOX
+517 inittext CODE >609:/tmp/xcX47PiOX
+51C inittext CODE >610:/tmp/xcX47PiOX
+51D inittext CODE >611:/tmp/xcX47PiOX
+51E inittext CODE >612:/tmp/xcX47PiOX
+51F inittext CODE >613:/tmp/xcX47PiOX
+520 inittext CODE >614:/tmp/xcX47PiOX
+521 inittext CODE >615:/tmp/xcX47PiOX
+522 inittext CODE >616:/tmp/xcX47PiOX
+523 inittext CODE >617:/tmp/xcX47PiOX
+524 inittext CODE >618:/tmp/xcX47PiOX
+525 inittext CODE >619:/tmp/xcX47PiOX
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 2 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
+__LdataBANK1 0 0 ABS 0 dataBANK1 -
+__Hspace_0 2008 0 ABS 0 - -
+__Hspace_1 D8 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__CFG_IESO$OFF 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
+__HidataBANK1 0 0 ABS 0 idataBANK1 -
+crearCaracter@pattern 7A 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+configurarLCD@t 74 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+comando@command 74 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__Hstrings 0 0 ABS 0 strings -
+__end_of_escribirDato CA8 0 CODE 0 text2 dist/default/production/CaracterNuevo.X.production.o
+___sp 0 0 STACK 2 stack /tmp/xcXhln0QP.o
+_main CA8 0 CODE 0 maintext dist/default/production/CaracterNuevo.X.production.o
+btemp 7E 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+start 0 0 CODE 0 init /tmp/xcXhln0QP.o
+__size_of_main 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
+__LidataBANK1 0 0 ABS 0 idataBANK1 -
+__Hpowerup 0 0 CODE 0 powerup -
+comando@t 75 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXhln0QP.o
+wtemp0 7E 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__size_of_configurarLCD 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+__end_of_configurarLCD AAE 0 CODE 0 text4 dist/default/production/CaracterNuevo.X.production.o
+__Lmaintext 0 0 ABS 0 maintext -
+__CFG_FOSC$INTRC_CLKOUT 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__CFG_FCMEN$OFF 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+start_initialization FC2 0 CODE 0 cinit dist/default/production/CaracterNuevo.X.production.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXhln0QP.o
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 ABS 0 bank3 -
+__Hcinit 1000 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__size_of_comando 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 4010 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 ABS 0 bank3 -
+__Lcinit FC2 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__Linittext 0 0 ABS 0 inittext -
+_PORTEbits 9 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+escribirDato@t 75 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+__S0 2008 0 ABS 0 - -
+__S1 D8 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+crearCaracter@address 77 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+escribirDato@estado 72 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__Lintentry 0 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXhln0QP.o
+__pdataBANK0 64 0 BANK0 1 dataBANK0 dist/default/production/CaracterNuevo.X.production.o
+__pdataBANK1 A0 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+escribirDato@data 74 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__end_of_comando C14 0 CODE 0 text3 dist/default/production/CaracterNuevo.X.production.o
+_crearCaracter AAE 0 CODE 0 text1 dist/default/production/CaracterNuevo.X.production.o
+__pmaintext CA8 0 CODE 0 maintext dist/default/production/CaracterNuevo.X.production.o
+comando@estado 72 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 400E 0 CONFIG 0 config -
+__CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Hinittext 0 0 ABS 0 inittext -
+main@F1330 64 0 BANK0 1 dataBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@F1332 D0 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1334 C8 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1336 C0 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1338 B8 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1340 B0 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1342 A8 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+main@F1344 A0 0 BANK1 1 dataBANK1 dist/default/production/CaracterNuevo.X.production.o
+stackhi 0 0 ABS 0 - /tmp/xcXhln0QP.o
+stacklo 0 0 ABS 0 - /tmp/xcXhln0QP.o
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+init_fetch0 A26 0 CODE 0 inittext dist/default/production/CaracterNuevo.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__Lend_init 0 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization FF8 0 CODE 0 cinit dist/default/production/CaracterNuevo.X.production.o
+__Hintentry 0 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 0 0 CODE 0 reset_vec -
+__ptext1 AAE 0 CODE 0 text1 dist/default/production/CaracterNuevo.X.production.o
+__ptext2 C14 0 CODE 0 text2 dist/default/production/CaracterNuevo.X.production.o
+__ptext3 B82 0 CODE 0 text3 dist/default/production/CaracterNuevo.X.production.o
+__ptext4 A4C 0 CODE 0 text4 dist/default/production/CaracterNuevo.X.production.o
+configurarLCD@estado 72 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__size_of_crearCaracter 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__end_of__initialization FF8 0 CODE 0 cinit dist/default/production/CaracterNuevo.X.production.o
+__Lfunctab 0 0 ENTRY 0 functab -
+__pidataBANK0 A16 0 CODE 0 idataBANK0 dist/default/production/CaracterNuevo.X.production.o
+__pidataBANK1 B12 0 CODE 0 idataBANK1 dist/default/production/CaracterNuevo.X.production.o
+__Lclrtext 0 0 ABS 0 clrtext -
+__CFG_PWRTE$ON 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+crearCaracter@i 79 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production/CaracterNuevo.X.production.o
+__end_of_crearCaracter B12 0 CODE 0 text1 dist/default/production/CaracterNuevo.X.production.o
+_escribirDato C14 0 CODE 0 text2 dist/default/production/CaracterNuevo.X.production.o
+__Hend_init 6 0 CODE 0 end_init -
+init_ram0 A2E 0 CODE 0 inittext dist/default/production/CaracterNuevo.X.production.o
+__end_of_main FC2 0 CODE 0 maintext dist/default/production/CaracterNuevo.X.production.o
+_ANSEL 188 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+_PORTD 8 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+_TRISD 88 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+_TRISE 89 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+__HdataBANK1 0 0 ABS 0 dataBANK1 -
+main@pattern1 24 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern2 2C 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern3 34 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern4 3C 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern5 44 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern6 4C 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern7 54 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+main@pattern8 5C 0 BANK0 1 cstackBANK0 dist/default/production/CaracterNuevo.X.production.o
+_configurarLCD A4C 0 CODE 0 text4 dist/default/production/CaracterNuevo.X.production.o
+__initialization FC2 0 CODE 0 cinit dist/default/production/CaracterNuevo.X.production.o
+_comando B82 0 CODE 0 text3 dist/default/production/CaracterNuevo.X.production.o
+__size_of_escribirDato 0 0 ABS 0 - dist/default/production/CaracterNuevo.X.production.o
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 7E1 FC2 1F 2
+text1 0 557 AAE 32 2
+text2 0 60A C14 4A 2
+text3 0 5C1 B82 49 2
+text4 0 526 A4C 31 2
+maintext 0 654 CA8 18D 2
+cstackCOMMON 1 70 70 B 1
+cstackBANK0 1 20 20 4C 1
+inittext 0 513 A26 13 2
+reset_vec 0 0 0 3 2
+idataBANK0 0 50B A16 8 2
+idataBANK1 0 589 B12 38 2
+dataBANK1 1 A0 A0 38 1
+config 0 2007 400E 1 2

@@ -1,0 +1,278 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$dist/default/production/UsartHolaMundo.X.production.o
+cinit CODE 0 7EE 7EE 12 2
+maintext CODE 0 7A9 7A9 45 2
+cstackCOMMON COMMON 1 70 70 4 1
+cstackBANK0 BANK0 1 20 20 2D 1
+inittext CODE 0 76A 76A 13 2
+idataBANK1 CODE 0 77D 77D 2C 2
+dataBANK1 BANK1 1 A0 A0 2C 1
+$/tmp/xcXFMt2xk.o
+end_init CODE 0 0 0 3 2
+config CONFIG 0 2007 2007 1 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 4D-6F 1
+RAM CC-EF 1
+RAM 110-16F 1
+RAM 190-1EF 1
+BANK0 4D-6F 1
+BANK1 CC-EF 1
+BANK2 110-16F 1
+BANK3 190-1EF 1
+CONST 3-769 2
+CONST 800-1FFF 2
+ENTRY 3-769 2
+ENTRY 800-1FFF 2
+IDLOC 2000-2003 2
+STACK 110-16F 1
+CODE 3-769 2
+CODE 800-1FFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-10F 1
+SFR3 180-18F 1
+COMMON 74-7D 1
+CONFIG 2008-2008 2
+EEDATA 2100-21FF 2
+STRCODE 3-769 2
+STRCODE 800-1FFF 2
+STRING 3-769 2
+STRING 800-1FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production/UsartHolaMundo.X.production.o
+7EE cinit CODE >472:/tmp/xcXpluFQC
+7EE cinit CODE >475:/tmp/xcXpluFQC
+7EE cinit CODE >516:/tmp/xcXpluFQC
+7EF cinit CODE >517:/tmp/xcXpluFQC
+7F0 cinit CODE >518:/tmp/xcXpluFQC
+7F1 cinit CODE >519:/tmp/xcXpluFQC
+7F2 cinit CODE >520:/tmp/xcXpluFQC
+7F3 cinit CODE >521:/tmp/xcXpluFQC
+7F4 cinit CODE >522:/tmp/xcXpluFQC
+7F5 cinit CODE >523:/tmp/xcXpluFQC
+7F6 cinit CODE >524:/tmp/xcXpluFQC
+7F7 cinit CODE >525:/tmp/xcXpluFQC
+7FC cinit CODE >531:/tmp/xcXpluFQC
+7FC cinit CODE >533:/tmp/xcXpluFQC
+7FD cinit CODE >534:/tmp/xcXpluFQC
+7A9 maintext CODE >12:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7A9 maintext CODE >13:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7BE maintext CODE >18:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C2 maintext CODE >21:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C3 maintext CODE >22:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C4 maintext CODE >23:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C7 maintext CODE >24:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C9 maintext CODE >27:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7C9 maintext CODE >28:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7D2 maintext CODE >29:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7D8 maintext CODE >31:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7DE maintext CODE >36:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7EA maintext CODE >37:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+7EB maintext CODE >38:/home/david/MPLABXProjects/UsartHolaMundo.X/holaMundoUsart.c
+76A inittext CODE >490:/tmp/xcXpluFQC
+76A inittext CODE >491:/tmp/xcXpluFQC
+76B inittext CODE >492:/tmp/xcXpluFQC
+76C inittext CODE >493:/tmp/xcXpluFQC
+76D inittext CODE >494:/tmp/xcXpluFQC
+76E inittext CODE >501:/tmp/xcXpluFQC
+76E inittext CODE >502:/tmp/xcXpluFQC
+773 inittext CODE >503:/tmp/xcXpluFQC
+774 inittext CODE >504:/tmp/xcXpluFQC
+775 inittext CODE >505:/tmp/xcXpluFQC
+776 inittext CODE >506:/tmp/xcXpluFQC
+777 inittext CODE >507:/tmp/xcXpluFQC
+778 inittext CODE >508:/tmp/xcXpluFQC
+779 inittext CODE >509:/tmp/xcXpluFQC
+77A inittext CODE >510:/tmp/xcXpluFQC
+77B inittext CODE >511:/tmp/xcXpluFQC
+77C inittext CODE >512:/tmp/xcXpluFQC
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 2 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__LdataBANK1 0 0 ABS 0 dataBANK1 -
+__Hspace_0 2008 0 ABS 0 - -
+__Hspace_1 CC 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__HidataBANK1 0 0 ABS 0 idataBANK1 -
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+main@i 4C 0 BANK0 1 cstackBANK0 dist/default/production/UsartHolaMundo.X.production.o
+__Hstrings 0 0 ABS 0 strings -
+___sp 0 0 STACK 2 stack /tmp/xcXFMt2xk.o
+_main F52 0 CODE 0 maintext dist/default/production/UsartHolaMundo.X.production.o
+btemp 7E 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+start 0 0 CODE 0 init /tmp/xcXFMt2xk.o
+__size_of_main 0 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__LidataBANK1 0 0 ABS 0 idataBANK1 -
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+intlevel1 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+intlevel2 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+intlevel3 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+intlevel4 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+intlevel5 0 0 ENTRY 0 functab /tmp/xcXFMt2xk.o
+wtemp0 7E 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+__Lmaintext 0 0 ABS 0 maintext -
+__CFG_FOSC$INTRC_CLKOUT 0 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+start_initialization FDC 0 CODE 0 cinit dist/default/production/UsartHolaMundo.X.production.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production/UsartHolaMundo.X.production.o
+___int_sp 0 0 STACK 2 stack /tmp/xcXFMt2xk.o
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 ABS 0 bank3 -
+__Hcinit 1000 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 4010 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 ABS 0 bank3 -
+__Lcinit FDC 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__Linittext 0 0 ABS 0 inittext -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+__S0 2008 0 ABS 0 - -
+__S1 CC 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__Lintentry 0 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec /tmp/xcXFMt2xk.o
+__pdataBANK1 A0 0 BANK1 1 dataBANK1 dist/default/production/UsartHolaMundo.X.production.o
+_RCSTAbits 18 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__pmaintext F52 0 CODE 0 maintext dist/default/production/UsartHolaMundo.X.production.o
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 400E 0 CONFIG 0 config -
+__CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__Hinittext 0 0 ABS 0 inittext -
+main@F1265 A0 0 BANK1 1 dataBANK1 dist/default/production/UsartHolaMundo.X.production.o
+stackhi 0 0 ABS 0 - /tmp/xcXFMt2xk.o
+stacklo 0 0 ABS 0 - /tmp/xcXFMt2xk.o
+main@cadena 20 0 BANK0 1 cstackBANK0 dist/default/production/UsartHolaMundo.X.production.o
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+init_fetch0 ED4 0 CODE 0 inittext dist/default/production/UsartHolaMundo.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+_PIR1bits C 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__Lend_init 0 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization FF8 0 CODE 0 cinit dist/default/production/UsartHolaMundo.X.production.o
+__Hintentry 0 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 0 0 CODE 0 reset_vec -
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__end_of__initialization FF8 0 CODE 0 cinit dist/default/production/UsartHolaMundo.X.production.o
+__Lfunctab 0 0 ENTRY 0 functab -
+__pidataBANK1 EFA 0 CODE 0 idataBANK1 dist/default/production/UsartHolaMundo.X.production.o
+__Lclrtext 0 0 ABS 0 clrtext -
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production/UsartHolaMundo.X.production.o
+_TXSTAbits 98 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__Hend_init 6 0 CODE 0 end_init -
+init_ram0 EDC 0 CODE 0 inittext dist/default/production/UsartHolaMundo.X.production.o
+__end_of_main FDC 0 CODE 0 maintext dist/default/production/UsartHolaMundo.X.production.o
+_SPBRG 99 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+_TXREG 19 0 ABS 0 - dist/default/production/UsartHolaMundo.X.production.o
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+__HdataBANK1 0 0 ABS 0 dataBANK1 -
+__initialization FDC 0 CODE 0 cinit dist/default/production/UsartHolaMundo.X.production.o
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 7EE FDC 12 2
+maintext 0 7A9 F52 45 2
+cstackCOMMON 1 70 70 4 1
+cstackBANK0 1 20 20 2D 1
+inittext 0 76A ED4 13 2
+reset_vec 0 0 0 3 2
+idataBANK1 0 77D EFA 2C 2
+dataBANK1 1 A0 A0 2C 1
+config 0 2007 400E 1 2

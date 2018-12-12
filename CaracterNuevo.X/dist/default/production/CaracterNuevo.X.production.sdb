@@ -1,0 +1,123 @@
+[p LITE_MODE AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 6 ]
+"10 /opt/microchip/xc8/v2.00/pic/sources/c90/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 /opt/microchip/xc8/v2.00/pic/sources/c90/common/Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 /opt/microchip/xc8/v2.00/pic/sources/c90/pic/__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"23 /home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+[v _main main `(i  1 e 2 0 ]
+"153
+[v _configurarLCD configurarLCD `(v  1 e 1 0 ]
+"176
+[v _crearCaracter crearCaracter `(v  1 e 1 0 ]
+"186
+[v _comando comando `(v  1 e 1 0 ]
+"214
+[v _escribirDato escribirDato `(v  1 e 1 0 ]
+"352 /opt/microchip/xc8/v2.00/pic/include/pic16f887.h
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S45 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"427
+[u S50 . 1 `S45 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES50  1 e 1 @9 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+"3387
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"23 /home/david/MPLABXProjects/CaracterNuevo.X/caracterNuevo.c
+[v _main main `(i  1 e 2 0 ]
+{
+"104
+[v main@pattern8 pattern8 `[8]uc  1 a 8 60 ]
+"92
+[v main@pattern7 pattern7 `[8]uc  1 a 8 52 ]
+"80
+[v main@pattern6 pattern6 `[8]uc  1 a 8 44 ]
+"69
+[v main@pattern5 pattern5 `[8]uc  1 a 8 36 ]
+"58
+[v main@pattern4 pattern4 `[8]uc  1 a 8 28 ]
+"47
+[v main@pattern3 pattern3 `[8]uc  1 a 8 20 ]
+"36
+[v main@pattern2 pattern2 `[8]uc  1 a 8 12 ]
+"24
+[v main@pattern1 pattern1 `[8]uc  1 a 8 4 ]
+"23
+[v main@F1330 F1330 `[8]uc  1 s 8 F1330 ]
+"24
+[v main@F1332 F1332 `[8]uc  1 s 8 F1332 ]
+"36
+[v main@F1334 F1334 `[8]uc  1 s 8 F1334 ]
+"47
+[v main@F1336 F1336 `[8]uc  1 s 8 F1336 ]
+"58
+[v main@F1338 F1338 `[8]uc  1 s 8 F1338 ]
+"69
+[v main@F1340 F1340 `[8]uc  1 s 8 F1340 ]
+"80
+[v main@F1342 F1342 `[8]uc  1 s 8 F1342 ]
+"92
+[v main@F1344 F1344 `[8]uc  1 s 8 F1344 ]
+"151
+} 0
+"176
+[v _crearCaracter crearCaracter `(v  1 e 1 0 ]
+{
+[v crearCaracter@pattern pattern `*.4uc  1 a 1 wreg ]
+"177
+[v crearCaracter@i i `uc  1 a 1 9 ]
+"176
+[v crearCaracter@pattern pattern `*.4uc  1 a 1 wreg ]
+[v crearCaracter@address address `uc  1 p 1 7 ]
+"180
+[v crearCaracter@pattern pattern `*.4uc  1 a 1 10 ]
+"184
+} 0
+"214
+[v _escribirDato escribirDato `(v  1 e 1 0 ]
+{
+[v escribirDato@data data `uc  1 a 1 wreg ]
+"215
+[v escribirDato@t t `i  1 a 2 5 ]
+[v escribirDato@estado estado `i  1 a 2 2 ]
+"214
+[v escribirDato@data data `uc  1 a 1 wreg ]
+"216
+[v escribirDato@data data `uc  1 a 1 4 ]
+"246
+} 0
+"186
+[v _comando comando `(v  1 e 1 0 ]
+{
+[v comando@command command `uc  1 a 1 wreg ]
+"187
+[v comando@t t `i  1 a 2 5 ]
+[v comando@estado estado `i  1 a 2 2 ]
+"186
+[v comando@command command `uc  1 a 1 wreg ]
+"188
+[v comando@command command `uc  1 a 1 4 ]
+"212
+} 0
+"153
+[v _configurarLCD configurarLCD `(v  1 e 1 0 ]
+{
+"154
+[v configurarLCD@t t `i  1 a 2 4 ]
+[v configurarLCD@estado estado `i  1 a 2 2 ]
+"174
+} 0

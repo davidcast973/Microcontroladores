@@ -1,0 +1,2412 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
+                                                                                               Wed Nov 28 23:29:32 2018
+
+Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
+     1  0000                     
+      + 0000                     
+     2                           ; Version 2.00
+     3                           ; Generated 27/05/2018 GMT
+     4                           
+     5                           ; 
+     6                           ; Copyright © 2018, Microchip Technology Inc. and its subsidiaries ("Microchip")
+     7                           ; All rights reserved.
+     8                           ; 
+     9                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+                                 ip").
+    10                           ; 
+    11                           ; Redistribution and use in source and binary forms, with or without modification, are
+    12                           ; permitted provided that the following conditions are met:
+    13                           ; 
+    14                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+                                 t of
+    15                           ;        conditions and the following disclaimer.
+    16                           ; 
+    17                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+                                 list
+    18                           ;        of conditions and the following disclaimer in the documentation and/or other
+    19                           ;        materials provided with the distribution.
+    20                           ; 
+    21                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+                                 is
+    22                           ;        software without specific prior written permission.
+    23                           ; 
+    24                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+
+    25                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+                                 OR
+    26                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+                                 T,
+    27                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+                                 
+    28                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+                                 
+    29                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+                                 RICT
+    30                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+                                 SE OF
+    31                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    32                           ; 
+    33                           
+    34                           
+    35                           ; 
+    36                           ; Code-generator required, PIC16F887 Definitions
+    37                           ; 
+    38  0004                     fsr0 equ 04h
+    39  0004                     indf equ 00h
+    40  0000                     indf0 equ 00h
+    41  0000                     pc equ 02h
+    42  0002                     pcl equ 02h
+    43  0002                     pclath equ 0Ah
+    44  000A                     status equ 03h
+    45  0003                     
+     2                           opt pagewidth 120
+     3  0000                     byte0	macro	val
+     4                           	(getbyte(val,0))
+     5                           endm
+     6  0000                     byte1	macro	val
+     7                           	(getbyte(val,1))
+     8                           endm
+     9  0000                     byte2	macro	val
+    10                           	(getbyte(val,2))
+    11                           endm
+    12  0000                     byte3	macro	val
+    13                           	(getbyte(val,3))
+    14                           endm
+    15  0000                     byte4	macro	val
+    16                           	(getbyte(val,4))
+    17                           endm
+    18  0000                     byte5	macro	val
+    19                           	(getbyte(val,5))
+    20                           endm
+    21  0000                     byte6	macro	val
+    22                           	(getbyte(val,6))
+    23                           endm
+    24  0000                     byte7	macro	val
+    25                           	(getbyte(val,7))
+    26                           endm
+    27  0000                     getword	macro	val,pos
+    28                           	(((val) >> (8 * pos)) and 0xffff)
+    29                           endm
+    30  0000                     word0	macro	val
+    31                           	(getword(val,0))
+    32                           endm
+    33  0000                     word1	macro	val
+    34                           	(getword(val,2))
+    35                           endm
+    36  0000                     word2	macro	val
+    37                           	(getword(val,4))
+    38                           endm
+    39  0000                     word3	macro	val
+    40                           	(getword(val,6))
+    41                           endm
+    42  0000                     gettword	macro	val,pos
+    43                           	(((val) >> (8 * pos)) and 0xffffff)
+    44                           endm
+    45  0000                     tword0	macro	val
+    46                           	(gettword(val,0))
+    47                           endm
+    48  0000                     tword1	macro	val
+    49                           	(gettword(val,3))
+    50                           endm
+    51  0000                     tword2	macro	val
+    52                           	(gettword(val,6))
+    53                           endm
+    54  0000                     getdword	macro	val,pos
+    55                           	(((val) >> (8 * pos)) and 0xffffffff)
+    56                           endm
+    57  0000                     dword0	macro	val
+    58                           	(getdword(val,0))
+    59                           endm
+    60  0000                     dword1	macro	val
+    61                           	(getdword(val,4))
+    62                           endm
+    63  0000                     clrc	macro
+    64                           	bcf	3,0
+    65                           	endm
+    66  0000                     clrz	macro
+    67                           	bcf	3,2
+    68                           	endm
+    69  0000                     setc	macro
+    70                           	bsf	3,0
+    71                           	endm
+    72  0000                     setz	macro
+    73                           	bsf	3,2
+    74                           	endm
+    75  0000                     skipc	macro
+    76                           	btfss	3,0
+    77                           	endm
+    78  0000                     skipz	macro
+    79                           	btfss	3,2
+    80                           	endm
+    81  0000                     skipnc	macro
+    82                           	btfsc	3,0
+    83                           	endm
+    84  0000                     skipnz	macro
+    85                           	btfsc	3,2
+    86                           	endm
+    87  0000                     # 54 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    88                           INDF equ 00h ;# 
+    89  0000                     # 61 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    90                           TMR0 equ 01h ;# 
+    91  0001                     # 68 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    92                           PCL equ 02h ;# 
+    93  0002                     # 75 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    94                           STATUS equ 03h ;# 
+    95  0003                     # 161 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    96                           FSR equ 04h ;# 
+    97  0004                     # 168 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+    98                           PORTA equ 05h ;# 
+    99  0005                     # 230 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   100                           PORTB equ 06h ;# 
+   101  0006                     # 292 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   102                           PORTC equ 07h ;# 
+   103  0007                     # 354 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   104                           PORTD equ 08h ;# 
+   105  0008                     # 416 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   106                           PORTE equ 09h ;# 
+   107  0009                     # 454 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   108                           PCLATH equ 0Ah ;# 
+   109  000A                     # 461 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   110                           INTCON equ 0Bh ;# 
+   111  000B                     # 539 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   112                           PIR1 equ 0Ch ;# 
+   113  000C                     # 595 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   114                           PIR2 equ 0Dh ;# 
+   115  000D                     # 652 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   116                           TMR1 equ 0Eh ;# 
+   117  000E                     # 659 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   118                           TMR1L equ 0Eh ;# 
+   119  000E                     # 666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   120                           TMR1H equ 0Fh ;# 
+   121  000F                     # 673 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   122                           T1CON equ 010h ;# 
+   123  0010                     # 767 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   124                           TMR2 equ 011h ;# 
+   125  0011                     # 774 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   126                           T2CON equ 012h ;# 
+   127  0012                     # 845 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   128                           SSPBUF equ 013h ;# 
+   129  0013                     # 852 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   130                           SSPCON equ 014h ;# 
+   131  0014                     # 922 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   132                           CCPR1 equ 015h ;# 
+   133  0015                     # 929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   134                           CCPR1L equ 015h ;# 
+   135  0015                     # 936 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   136                           CCPR1H equ 016h ;# 
+   137  0016                     # 943 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   138                           CCP1CON equ 017h ;# 
+   139  0017                     # 1040 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   140                           RCSTA equ 018h ;# 
+   141  0018                     # 1135 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   142                           TXREG equ 019h ;# 
+   143  0019                     # 1142 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   144                           RCREG equ 01Ah ;# 
+   145  001A                     # 1149 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   146                           CCPR2 equ 01Bh ;# 
+   147  001B                     # 1156 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   148                           CCPR2L equ 01Bh ;# 
+   149  001B                     # 1163 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   150                           CCPR2H equ 01Ch ;# 
+   151  001C                     # 1170 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   152                           CCP2CON equ 01Dh ;# 
+   153  001D                     # 1240 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   154                           ADRESH equ 01Eh ;# 
+   155  001E                     # 1247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   156                           ADCON0 equ 01Fh ;# 
+   157  001F                     # 1348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   158                           OPTION_REG equ 081h ;# 
+   159  0081                     # 1418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   160                           TRISA equ 085h ;# 
+   161  0085                     # 1480 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   162                           TRISB equ 086h ;# 
+   163  0086                     # 1542 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   164                           TRISC equ 087h ;# 
+   165  0087                     # 1604 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   166                           TRISD equ 088h ;# 
+   167  0088                     # 1666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   168                           TRISE equ 089h ;# 
+   169  0089                     # 1704 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   170                           PIE1 equ 08Ch ;# 
+   171  008C                     # 1760 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   172                           PIE2 equ 08Dh ;# 
+   173  008D                     # 1817 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   174                           PCON equ 08Eh ;# 
+   175  008E                     # 1864 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   176                           OSCCON equ 08Fh ;# 
+   177  008F                     # 1929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   178                           OSCTUNE equ 090h ;# 
+   179  0090                     # 1981 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   180                           SSPCON2 equ 091h ;# 
+   181  0091                     # 2043 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   182                           PR2 equ 092h ;# 
+   183  0092                     # 2050 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   184                           SSPADD equ 093h ;# 
+   185  0093                     # 2057 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   186                           SSPMSK equ 093h ;# 
+   187  0093                     # 2062 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   188                           MSK equ 093h ;# 
+   189  0093                     # 2179 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   190                           SSPSTAT equ 094h ;# 
+   191  0094                     # 2348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   192                           WPUB equ 095h ;# 
+   193  0095                     # 2418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   194                           IOCB equ 096h ;# 
+   195  0096                     # 2488 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   196                           VRCON equ 097h ;# 
+   197  0097                     # 2558 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   198                           TXSTA equ 098h ;# 
+   199  0098                     # 2644 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   200                           SPBRG equ 099h ;# 
+   201  0099                     # 2706 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   202                           SPBRGH equ 09Ah ;# 
+   203  009A                     # 2776 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   204                           PWM1CON equ 09Bh ;# 
+   205  009B                     # 2846 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   206                           ECCPAS equ 09Ch ;# 
+   207  009C                     # 2928 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   208                           PSTRCON equ 09Dh ;# 
+   209  009D                     # 2972 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   210                           ADRESL equ 09Eh ;# 
+   211  009E                     # 2979 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   212                           ADCON1 equ 09Fh ;# 
+   213  009F                     # 3013 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   214                           WDTCON equ 0105h ;# 
+   215  0105                     # 3066 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   216                           CM1CON0 equ 0107h ;# 
+   217  0107                     # 3131 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   218                           CM2CON0 equ 0108h ;# 
+   219  0108                     # 3196 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   220                           CM2CON1 equ 0109h ;# 
+   221  0109                     # 3247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   222                           EEDATA equ 010Ch ;# 
+   223  010C                     # 3252 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   224                           EEDAT equ 010Ch ;# 
+   225  010C                     # 3259 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   226                           EEADR equ 010Dh ;# 
+   227  010D                     # 3266 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   228                           EEDATH equ 010Eh ;# 
+   229  010E                     # 3273 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   230                           EEADRH equ 010Fh ;# 
+   231  010F                     # 3280 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   232                           SRCON equ 0185h ;# 
+   233  0185                     # 3337 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   234                           BAUDCTL equ 0187h ;# 
+   235  0187                     # 3389 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   236                           ANSEL equ 0188h ;# 
+   237  0188                     # 3451 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   238                           ANSELH equ 0189h ;# 
+   239  0189                     # 3501 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   240                           EECON1 equ 018Ch ;# 
+   241  018C                     # 3546 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   242                           EECON2 equ 018Dh ;# 
+   243  018D                     # 54 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   244                           INDF equ 00h ;# 
+   245  0000                     # 61 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   246                           TMR0 equ 01h ;# 
+   247  0001                     # 68 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   248                           PCL equ 02h ;# 
+   249  0002                     # 75 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   250                           STATUS equ 03h ;# 
+   251  0003                     # 161 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   252                           FSR equ 04h ;# 
+   253  0004                     # 168 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   254                           PORTA equ 05h ;# 
+   255  0005                     # 230 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   256                           PORTB equ 06h ;# 
+   257  0006                     # 292 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   258                           PORTC equ 07h ;# 
+   259  0007                     # 354 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   260                           PORTD equ 08h ;# 
+   261  0008                     # 416 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   262                           PORTE equ 09h ;# 
+   263  0009                     # 454 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   264                           PCLATH equ 0Ah ;# 
+   265  000A                     # 461 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   266                           INTCON equ 0Bh ;# 
+   267  000B                     # 539 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   268                           PIR1 equ 0Ch ;# 
+   269  000C                     # 595 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   270                           PIR2 equ 0Dh ;# 
+   271  000D                     # 652 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   272                           TMR1 equ 0Eh ;# 
+   273  000E                     # 659 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   274                           TMR1L equ 0Eh ;# 
+   275  000E                     # 666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   276                           TMR1H equ 0Fh ;# 
+   277  000F                     # 673 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   278                           T1CON equ 010h ;# 
+   279  0010                     # 767 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   280                           TMR2 equ 011h ;# 
+   281  0011                     # 774 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   282                           T2CON equ 012h ;# 
+   283  0012                     # 845 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   284                           SSPBUF equ 013h ;# 
+   285  0013                     # 852 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   286                           SSPCON equ 014h ;# 
+   287  0014                     # 922 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   288                           CCPR1 equ 015h ;# 
+   289  0015                     # 929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   290                           CCPR1L equ 015h ;# 
+   291  0015                     # 936 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   292                           CCPR1H equ 016h ;# 
+   293  0016                     # 943 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   294                           CCP1CON equ 017h ;# 
+   295  0017                     # 1040 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   296                           RCSTA equ 018h ;# 
+   297  0018                     # 1135 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   298                           TXREG equ 019h ;# 
+   299  0019                     # 1142 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   300                           RCREG equ 01Ah ;# 
+   301  001A                     # 1149 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   302                           CCPR2 equ 01Bh ;# 
+   303  001B                     # 1156 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   304                           CCPR2L equ 01Bh ;# 
+   305  001B                     # 1163 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   306                           CCPR2H equ 01Ch ;# 
+   307  001C                     # 1170 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   308                           CCP2CON equ 01Dh ;# 
+   309  001D                     # 1240 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   310                           ADRESH equ 01Eh ;# 
+   311  001E                     # 1247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   312                           ADCON0 equ 01Fh ;# 
+   313  001F                     # 1348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   314                           OPTION_REG equ 081h ;# 
+   315  0081                     # 1418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   316                           TRISA equ 085h ;# 
+   317  0085                     # 1480 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   318                           TRISB equ 086h ;# 
+   319  0086                     # 1542 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   320                           TRISC equ 087h ;# 
+   321  0087                     # 1604 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   322                           TRISD equ 088h ;# 
+   323  0088                     # 1666 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   324                           TRISE equ 089h ;# 
+   325  0089                     # 1704 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   326                           PIE1 equ 08Ch ;# 
+   327  008C                     # 1760 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   328                           PIE2 equ 08Dh ;# 
+   329  008D                     # 1817 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   330                           PCON equ 08Eh ;# 
+   331  008E                     # 1864 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   332                           OSCCON equ 08Fh ;# 
+   333  008F                     # 1929 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   334                           OSCTUNE equ 090h ;# 
+   335  0090                     # 1981 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   336                           SSPCON2 equ 091h ;# 
+   337  0091                     # 2043 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   338                           PR2 equ 092h ;# 
+   339  0092                     # 2050 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   340                           SSPADD equ 093h ;# 
+   341  0093                     # 2057 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   342                           SSPMSK equ 093h ;# 
+   343  0093                     # 2062 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   344                           MSK equ 093h ;# 
+   345  0093                     # 2179 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   346                           SSPSTAT equ 094h ;# 
+   347  0094                     # 2348 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   348                           WPUB equ 095h ;# 
+   349  0095                     # 2418 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   350                           IOCB equ 096h ;# 
+   351  0096                     # 2488 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   352                           VRCON equ 097h ;# 
+   353  0097                     # 2558 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   354                           TXSTA equ 098h ;# 
+   355  0098                     # 2644 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   356                           SPBRG equ 099h ;# 
+   357  0099                     # 2706 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   358                           SPBRGH equ 09Ah ;# 
+   359  009A                     # 2776 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   360                           PWM1CON equ 09Bh ;# 
+   361  009B                     # 2846 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   362                           ECCPAS equ 09Ch ;# 
+   363  009C                     # 2928 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   364                           PSTRCON equ 09Dh ;# 
+   365  009D                     # 2972 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   366                           ADRESL equ 09Eh ;# 
+   367  009E                     # 2979 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   368                           ADCON1 equ 09Fh ;# 
+   369  009F                     # 3013 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   370                           WDTCON equ 0105h ;# 
+   371  0105                     # 3066 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   372                           CM1CON0 equ 0107h ;# 
+   373  0107                     # 3131 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   374                           CM2CON0 equ 0108h ;# 
+   375  0108                     # 3196 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   376                           CM2CON1 equ 0109h ;# 
+   377  0109                     # 3247 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   378                           EEDATA equ 010Ch ;# 
+   379  010C                     # 3252 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   380                           EEDAT equ 010Ch ;# 
+   381  010C                     # 3259 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   382                           EEADR equ 010Dh ;# 
+   383  010D                     # 3266 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   384                           EEDATH equ 010Eh ;# 
+   385  010E                     # 3273 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   386                           EEADRH equ 010Fh ;# 
+   387  010F                     # 3280 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   388                           SRCON equ 0185h ;# 
+   389  0185                     # 3337 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   390                           BAUDCTL equ 0187h ;# 
+   391  0187                     # 3389 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   392                           ANSEL equ 0188h ;# 
+   393  0188                     # 3451 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   394                           ANSELH equ 0189h ;# 
+   395  0189                     # 3501 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   396                           EECON1 equ 018Ch ;# 
+   397  018C                     # 3546 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
+   398                           EECON2 equ 018Dh ;# 
+   399  018D                     	FNCALL	_main,_comando
+   400                           	FNCALL	_main,_configurarLCD
+   401                           	FNCALL	_main,_crearCaracter
+   402                           	FNCALL	_main,_escribirDato
+   403                           	FNCALL	_crearCaracter,_comando
+   404                           	FNCALL	_crearCaracter,_escribirDato
+   405                           	FNROOT	_main
+   406                           	global	main@F1330
+   407                           	global	main@F1344
+   408                           	global	main@F1342
+   409                           	global	main@F1340
+   410                           	global	main@F1338
+   411                           	global	main@F1336
+   412                           	global	main@F1334
+   413                           	global	main@F1332
+   414                           psect	idataBANK0,class=CODE,space=0,delta=2,noexec
+   415                           global __pidataBANK0
+   416                           __pidataBANK0:
+   417  050B                     	file	"caracterNuevo.c"
+   418                           	line	23
+   419                           
+   420                           ;initializer for main@F1330
+   421                           	retlw	low(0)
+   422  050B  3400               	retlw	03h
+   423  050C  3403               	retlw	07h
+   424  050D  3407               	retlw	0Eh
+   425  050E  340E               	retlw	01Dh
+   426  050F  341D               	retlw	019h
+   427  0510  3419               	retlw	01Eh
+   428  0511  341E               	retlw	0Fh
+   429  0512  340F               psect	idataBANK1,class=CODE,space=0,delta=2,noexec
+   430                           global __pidataBANK1
+   431                           __pidataBANK1:
+   432  0589                     	line	92
+   433                           
+   434                           ;initializer for main@F1344
+   435                           	retlw	01Ch
+   436  0589  341C               	retlw	018h
+   437  058A  3418               	retlw	010h
+   438  058B  3410               	retlw	low(0)
+   439  058C  3400               	retlw	low(0)
+   440  058D  3400               	retlw	low(0)
+   441  058E  3400               	retlw	low(0)
+   442  058F  3400               	retlw	low(0)
+   443  0590  3400               	line	80
+   444                           
+   445                           ;initializer for main@F1342
+   446                           	retlw	01h
+   447  0591  3401               	retlw	03h
+   448  0592  3403               	retlw	01Fh
+   449  0593  341F               	retlw	07h
+   450  0594  3407               	retlw	0Eh
+   451  0595  340E               	retlw	01Ch
+   452  0596  341C               	retlw	018h
+   453  0597  3418               	retlw	010h
+   454  0598  3410               	line	69
+   455                           
+   456                           ;initializer for main@F1340
+   457                           	retlw	low(0)
+   458  0599  3400               	retlw	016h
+   459  059A  3416               	retlw	01Fh
+   460  059B  341F               	retlw	01Ch
+   461  059C  341C               	retlw	0Eh
+   462  059D  340E               	retlw	07h
+   463  059E  3407               	retlw	03h
+   464  059F  3403               	retlw	01h
+   465  05A0  3401               	line	58
+   466                           
+   467                           ;initializer for main@F1338
+   468                           	retlw	07h
+   469  05A1  3407               	retlw	03h
+   470  05A2  3403               	retlw	01h
+   471  05A3  3401               	retlw	low(0)
+   472  05A4  3400               	retlw	low(0)
+   473  05A5  3400               	retlw	low(0)
+   474  05A6  3400               	retlw	low(0)
+   475  05A7  3400               	retlw	low(0)
+   476  05A8  3400               	line	47
+   477                           
+   478                           ;initializer for main@F1336
+   479                           	retlw	low(0)
+   480  05A9  3400               	retlw	018h
+   481  05AA  3418               	retlw	01Eh
+   482  05AB  341E               	retlw	01Eh
+   483  05AC  341E               	retlw	017h
+   484  05AD  3417               	retlw	03h
+   485  05AE  3403               	retlw	07h
+   486  05AF  3407               	retlw	017h
+   487  05B0  3417               	line	36
+   488                           
+   489                           ;initializer for main@F1334
+   490                           	retlw	low(0)
+   491  05B1  3400               	retlw	01Fh
+   492  05B2  341F               	retlw	01Fh
+   493  05B3  341F               	retlw	06h
+   494  05B4  3406               	retlw	03h
+   495  05B5  3403               	retlw	low(0)
+   496  05B6  3400               	retlw	01Fh
+   497  05B7  341F               	retlw	01Fh
+   498  05B8  341F               	line	24
+   499                           
+   500                           ;initializer for main@F1332
+   501                           	retlw	low(0)
+   502  05B9  3400               	retlw	01Fh
+   503  05BA  341F               	retlw	01Fh
+   504  05BB  341F               	retlw	018h
+   505  05BC  3418               	retlw	010h
+   506  05BD  3410               	retlw	010h
+   507  05BE  3410               	retlw	01Fh
+   508  05BF  341F               	retlw	01Fh
+   509  05C0  341F               	global	_PORTD
+   510                           _PORTD	set	0x8
+   511  0008                     	global	_PORTEbits
+   512                           _PORTEbits	set	0x9
+   513  0009                     	global	_TRISE
+   514                           _TRISE	set	0x89
+   515  0089                     	global	_TRISD
+   516                           _TRISD	set	0x88
+   517  0088                     	global	_ANSEL
+   518                           _ANSEL	set	0x188
+   519  0188                     ; #config settings
+   520                           global __CFG_FOSC$INTRC_CLKOUT
+   521                           __CFG_FOSC$INTRC_CLKOUT equ 0x0
+   522  0000                     global __CFG_WDTE$OFF
+   523                           __CFG_WDTE$OFF equ 0x0
+   524  0000                     global __CFG_PWRTE$ON
+   525                           __CFG_PWRTE$ON equ 0x0
+   526  0000                     global __CFG_IESO$OFF
+   527                           __CFG_IESO$OFF equ 0x0
+   528  0000                     global __CFG_FCMEN$OFF
+   529                           __CFG_FCMEN$OFF equ 0x0
+   530  0000                     	file	"/tmp/xcX47PiOX"
+   531                           	line	#
+   532                           psect cinit,class=CODE,delta=2
+   533                           global start_initialization
+   534                           start_initialization:
+   535  07E1                     
+   536                           global __initialization
+   537                           __initialization:
+   538  07E1                     psect	dataBANK0,class=BANK0,space=1,noexec
+   539                           global __pdataBANK0
+   540                           __pdataBANK0:
+   541  0064                     	file	"caracterNuevo.c"
+   542                           	line	23
+   543                           main@F1330:
+   544  0064                            ds      8
+   545  0064                     
+   546                           psect	dataBANK1,class=BANK1,space=1,noexec
+   547                           global __pdataBANK1
+   548                           __pdataBANK1:
+   549  00A0                     	file	"caracterNuevo.c"
+   550                           	line	92
+   551                           main@F1344:
+   552  00A0                            ds      8
+   553  00A0                     
+   554                           psect	dataBANK1
+   555                           	file	"caracterNuevo.c"
+   556                           	line	80
+   557                           main@F1342:
+   558  00A8                            ds      8
+   559  00A8                     
+   560                           psect	dataBANK1
+   561                           	file	"caracterNuevo.c"
+   562                           	line	69
+   563                           main@F1340:
+   564  00B0                            ds      8
+   565  00B0                     
+   566                           psect	dataBANK1
+   567                           	file	"caracterNuevo.c"
+   568                           	line	58
+   569                           main@F1338:
+   570  00B8                            ds      8
+   571  00B8                     
+   572                           psect	dataBANK1
+   573                           	file	"caracterNuevo.c"
+   574                           	line	47
+   575                           main@F1336:
+   576  00C0                            ds      8
+   577  00C0                     
+   578                           psect	dataBANK1
+   579                           	file	"caracterNuevo.c"
+   580                           	line	36
+   581                           main@F1334:
+   582  00C8                            ds      8
+   583  00C8                     
+   584                           psect	dataBANK1
+   585                           	file	"caracterNuevo.c"
+   586                           	line	24
+   587                           main@F1332:
+   588  00D0                            ds      8
+   589  00D0                     
+   590                           	file	"/tmp/xcX47PiOX"
+   591                           	line	#
+   592                           global btemp
+   593                           psect inittext,class=CODE,delta=2
+   594                           global init_fetch0,btemp
+   595                           ;	Called with low address in FSR and high address in W
+   596                           init_fetch0:
+   597  0513                     	movf btemp,w
+   598  0513  087E               	movwf pclath
+   599  0514  008A               	movf btemp+1,w
+   600  0515  087F               	movwf pc
+   601  0516  0082               global init_ram0
+   602                           ;Called with:
+   603                           ;	high address of idata address in btemp 
+   604                           ;	low address of idata address in btemp+1 
+   605                           ;	low address of data in FSR
+   606                           ;	high address + 1 of data in btemp-1
+   607                           init_ram0:
+   608  0517                     	fcall init_fetch0
+   609  0517  120A  118A  2513  120A  118A  	movwf indf,f
+   610  051C  0080               	incf fsr,f
+   611  051D  0A84               	movf fsr,w
+   612  051E  0804               	xorwf btemp-1,w
+   613  051F  067D               	btfsc status,2
+   614  0520  1903               	retlw 0
+   615  0521  3400               	incf btemp+1,f
+   616  0522  0AFF               	btfsc status,2
+   617  0523  1903               	incf btemp,f
+   618  0524  0AFE               	goto init_ram0
+   619  0525  2D17               ; Initialize objects allocated to BANK1
+   620                           psect cinit,class=CODE,delta=2,merge=1
+   621                           global init_ram0, __pidataBANK1
+   622                           	bcf	status, 7	;select IRP bank0
+   623  07E1  1383               	movlw low(__pdataBANK1+56)
+   624  07E2  30D8               	movwf btemp-1,f
+   625  07E3  00FD               	movlw high(__pidataBANK1)
+   626  07E4  3005               	movwf btemp,f
+   627  07E5  00FE               	movlw low(__pidataBANK1)
+   628  07E6  3089               	movwf btemp+1,f
+   629  07E7  00FF               	movlw low(__pdataBANK1)
+   630  07E8  30A0               	movwf fsr,f
+   631  07E9  0084               	fcall init_ram0
+   632  07EA  120A  118A  2517  120A  118A  ; Initialize objects allocated to BANK0
+   633                           psect cinit,class=CODE,delta=2,merge=1
+   634                           global init_ram0, __pidataBANK0
+   635                           	movlw low(__pdataBANK0+8)
+   636  07EF  306C               	movwf btemp-1,f
+   637  07F0  00FD               	movlw high(__pidataBANK0)
+   638  07F1  3005               	movwf btemp,f
+   639  07F2  00FE               	movlw low(__pidataBANK0)
+   640  07F3  300B               	movwf btemp+1,f
+   641  07F4  00FF               	movlw low(__pdataBANK0)
+   642  07F5  3064               	movwf fsr,f
+   643  07F6  0084               	fcall init_ram0
+   644  07F7  120A  118A  2517  120A  118A  psect cinit,class=CODE,delta=2,merge=1
+   645                           global end_of_initialization,__end_of__initialization
+   646                           
+   647                           ;End of C runtime variable initialization code
+   648                           
+   649                           end_of_initialization:
+   650  07FC                     __end_of__initialization:
+   651  07FC                     clrf status
+   652  07FC  0183               ljmp _main	;jump to C main() function
+   653  07FD  120A  118A  2E54   psect	cstackCOMMON,class=COMMON,space=1,noexec
+   654                           global __pcstackCOMMON
+   655                           __pcstackCOMMON:
+   656  0070                     ?_configurarLCD:	; 1 bytes @ 0x0
+   657  0070                     ??_configurarLCD:	; 1 bytes @ 0x0
+   658  0070                     ?_comando:	; 1 bytes @ 0x0
+   659  0070                     ??_comando:	; 1 bytes @ 0x0
+   660  0070                     ?_escribirDato:	; 1 bytes @ 0x0
+   661  0070                     ??_escribirDato:	; 1 bytes @ 0x0
+   662  0070                     ?_main:	; 2 bytes @ 0x0
+   663  0070                     	ds	2
+   664  0070                     	global	configurarLCD@estado
+   665                           configurarLCD@estado:	; 2 bytes @ 0x2
+   666  0072                     	global	comando@estado
+   667                           comando@estado:	; 2 bytes @ 0x2
+   668  0072                     	global	escribirDato@estado
+   669                           escribirDato@estado:	; 2 bytes @ 0x2
+   670  0072                     	ds	2
+   671  0072                     	global	comando@command
+   672                           comando@command:	; 1 bytes @ 0x4
+   673  0074                     	global	escribirDato@data
+   674                           escribirDato@data:	; 1 bytes @ 0x4
+   675  0074                     	global	configurarLCD@t
+   676                           configurarLCD@t:	; 2 bytes @ 0x4
+   677  0074                     	ds	1
+   678  0074                     	global	comando@t
+   679                           comando@t:	; 2 bytes @ 0x5
+   680  0075                     	global	escribirDato@t
+   681                           escribirDato@t:	; 2 bytes @ 0x5
+   682  0075                     	ds	2
+   683  0075                     ?_crearCaracter:	; 1 bytes @ 0x7
+   684  0077                     	global	crearCaracter@address
+   685                           crearCaracter@address:	; 1 bytes @ 0x7
+   686  0077                     	ds	1
+   687  0077                     ??_crearCaracter:	; 1 bytes @ 0x8
+   688  0078                     	ds	1
+   689  0078                     	global	crearCaracter@i
+   690                           crearCaracter@i:	; 1 bytes @ 0x9
+   691  0079                     	ds	1
+   692  0079                     	global	crearCaracter@pattern
+   693                           crearCaracter@pattern:	; 1 bytes @ 0xA
+   694  007A                     	ds	1
+   695  007A                     psect	cstackBANK0,class=BANK0,space=1,noexec
+   696                           global __pcstackBANK0
+   697                           __pcstackBANK0:
+   698  0020                     ??_main:	; 1 bytes @ 0x0
+   699  0020                     	ds	4
+   700  0020                     	global	main@pattern1
+   701                           main@pattern1:	; 8 bytes @ 0x4
+   702  0024                     	ds	8
+   703  0024                     	global	main@pattern2
+   704                           main@pattern2:	; 8 bytes @ 0xC
+   705  002C                     	ds	8
+   706  002C                     	global	main@pattern3
+   707                           main@pattern3:	; 8 bytes @ 0x14
+   708  0034                     	ds	8
+   709  0034                     	global	main@pattern4
+   710                           main@pattern4:	; 8 bytes @ 0x1C
+   711  003C                     	ds	8
+   712  003C                     	global	main@pattern5
+   713                           main@pattern5:	; 8 bytes @ 0x24
+   714  0044                     	ds	8
+   715  0044                     	global	main@pattern6
+   716                           main@pattern6:	; 8 bytes @ 0x2C
+   717  004C                     	ds	8
+   718  004C                     	global	main@pattern7
+   719                           main@pattern7:	; 8 bytes @ 0x34
+   720  0054                     	ds	8
+   721  0054                     	global	main@pattern8
+   722                           main@pattern8:	; 8 bytes @ 0x3C
+   723  005C                     	ds	8
+   724  005C                     ;!
+   725                           ;!Data Sizes:
+   726                           ;!    Strings     0
+   727                           ;!    Constant    0
+   728                           ;!    Data        64
+   729                           ;!    BSS         0
+   730                           ;!    Persistent  0
+   731                           ;!    Stack       0
+   732                           ;!
+   733                           ;!Auto Spaces:
+   734                           ;!    Space          Size  Autos    Used
+   735                           ;!    COMMON           14     11      11
+   736                           ;!    BANK0            80     68      76
+   737                           ;!    BANK1            80      0      56
+   738                           ;!    BANK3            96      0       0
+   739                           ;!    BANK2            96      0       0
+   740                           
+   741                           ;!
+   742                           ;!Pointer List with Targets:
+   743                           ;!
+   744                           ;!    crearCaracter@pattern	PTR unsigned char  size(1) Largest target is 8
+   745                           ;!		 -> main@pattern8(BANK0[8]), main@pattern7(BANK0[8]), main@pattern6(BANK0[8]), main@
+                                 pattern5(BANK0[8]), 
+   746                           ;!		 -> main@pattern4(BANK0[8]), main@pattern3(BANK0[8]), main@pattern2(BANK0[8]), main@
+                                 pattern1(BANK0[8]), 
+   747                           ;!
+   748                           
+   749                           
+   750                           ;!
+   751                           ;!Critical Paths under _main in COMMON
+   752                           ;!
+   753                           ;!    _main->_crearCaracter
+   754                           ;!    _crearCaracter->_comando
+   755                           ;!    _crearCaracter->_escribirDato
+   756                           ;!
+   757                           ;!Critical Paths under _main in BANK0
+   758                           ;!
+   759                           ;!    None.
+   760                           ;!
+   761                           ;!Critical Paths under _main in BANK1
+   762                           ;!
+   763                           ;!    None.
+   764                           ;!
+   765                           ;!Critical Paths under _main in BANK3
+   766                           ;!
+   767                           ;!    None.
+   768                           ;!
+   769                           ;!Critical Paths under _main in BANK2
+   770                           ;!
+   771                           ;!    None.
+   772                           
+   773 ;;
+   774 ;;Main: autosize = 0, tempsize = 4, incstack = 0, save=0
+   775 ;;
+   776                           
+   777                           ;!
+   778                           ;!Call Graph Tables:
+   779                           ;!
+   780                           ;! ---------------------------------------------------------------------------------
+   781                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   782                           ;! ---------------------------------------------------------------------------------
+   783                           ;! (0) _main                                                68    68      0    1513
+   784                           ;!                                              0 BANK0     68    68      0
+   785                           ;!                            _comando
+   786                           ;!                      _configurarLCD
+   787                           ;!                      _crearCaracter
+   788                           ;!                       _escribirDato
+   789                           ;! ---------------------------------------------------------------------------------
+   790                           ;! (1) _crearCaracter                                        4     3      1    1138
+   791                           ;!                                              7 COMMON     4     3      1
+   792                           ;!                            _comando
+   793                           ;!                       _escribirDato
+   794                           ;! ---------------------------------------------------------------------------------
+   795                           ;! (1) _escribirDato                                         7     7      0      77
+   796                           ;!                                              0 COMMON     7     7      0
+   797                           ;! ---------------------------------------------------------------------------------
+   798                           ;! (2) _comando                                              7     7      0      77
+   799                           ;!                                              0 COMMON     7     7      0
+   800                           ;! ---------------------------------------------------------------------------------
+   801                           ;! (1) _configurarLCD                                        6     6      0      29
+   802                           ;!                                              0 COMMON     6     6      0
+   803                           ;! ---------------------------------------------------------------------------------
+   804                           ;! Estimated maximum stack depth 2
+   805                           ;! ---------------------------------------------------------------------------------
+   806                           ;!
+   807                           ;! Call Graph Graphs:
+   808                           ;!
+   809                           ;! _main (ROOT)
+   810                           ;!   _comando
+   811                           ;!   _configurarLCD
+   812                           ;!   _crearCaracter
+   813                           ;!     _comando
+   814                           ;!     _escribirDato
+   815                           ;!   _escribirDato
+   816                           ;!
+   817                           
+   818                           ;! Address spaces:
+   819                           
+   820                           ;!Name               Size   Autos  Total    Cost      Usage
+   821                           ;!BANK3               60      0       0       9        0.0%
+   822                           ;!BITBANK3            60      0       0       8        0.0%
+   823                           ;!SFR3                 0      0       0       4        0.0%
+   824                           ;!BITSFR3              0      0       0       4        0.0%
+   825                           ;!BANK2               60      0       0      11        0.0%
+   826                           ;!BITBANK2            60      0       0      10        0.0%
+   827                           ;!SFR2                 0      0       0       5        0.0%
+   828                           ;!BITSFR2              0      0       0       5        0.0%
+   829                           ;!BANK1               50      0      38       7       70.0%
+   830                           ;!BITBANK1            50      0       0       6        0.0%
+   831                           ;!SFR1                 0      0       0       2        0.0%
+   832                           ;!BITSFR1              0      0       0       2        0.0%
+   833                           ;!BANK0               50     44      4C       5       95.0%
+   834                           ;!BITBANK0            50      0       0       4        0.0%
+   835                           ;!SFR0                 0      0       0       1        0.0%
+   836                           ;!BITSFR0              0      0       0       1        0.0%
+   837                           ;!COMMON               E      B       B       1       78.6%
+   838                           ;!BITCOMMON            E      0       0       0        0.0%
+   839                           ;!CODE                 0      0       0       0        0.0%
+   840                           ;!DATA                 0      0      8F      12        0.0%
+   841                           ;!ABS                  0      0      8F       3        0.0%
+   842                           ;!NULL                 0      0       0       0        0.0%
+   843                           ;!STACK                0      0       0       2        0.0%
+   844                           ;!EEDATA             100      0       0       0        0.0%
+   845                           
+   846                           	global	_main
+   847                           
+   848 ;; *************** function _main *****************
+   849 ;; Defined at:
+   850 ;;		line 23 in file "caracterNuevo.c"
+   851 ;; Parameters:    Size  Location     Type
+   852 ;;		None
+   853 ;; Auto vars:     Size  Location     Type
+   854 ;;  pattern8        8   60[BANK0 ] unsigned char [8]
+   855 ;;  pattern7        8   52[BANK0 ] unsigned char [8]
+   856 ;;  pattern6        8   44[BANK0 ] unsigned char [8]
+   857 ;;  pattern5        8   36[BANK0 ] unsigned char [8]
+   858 ;;  pattern4        8   28[BANK0 ] unsigned char [8]
+   859 ;;  pattern3        8   20[BANK0 ] unsigned char [8]
+   860 ;;  pattern2        8   12[BANK0 ] unsigned char [8]
+   861 ;;  pattern1        8    4[BANK0 ] unsigned char [8]
+   862 ;; Return value:  Size  Location     Type
+   863 ;;                  2   22[None  ] int 
+   864 ;; Registers used:
+   865 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   866 ;; Tracked objects:
+   867 ;;		On entry : B00/0
+   868 ;;		On exit  : 0/0
+   869 ;;		Unchanged: 0/0
+   870 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   871 ;;      Params:         0       0       0       0       0
+   872 ;;      Locals:         0      64       0       0       0
+   873 ;;      Temps:          0       4       0       0       0
+   874 ;;      Totals:         0      68       0       0       0
+   875 ;;Total ram usage:       68 bytes
+   876 ;; Hardware stack levels required when called:    2
+   877 ;; This function calls:
+   878 ;;		_comando
+   879 ;;		_configurarLCD
+   880 ;;		_crearCaracter
+   881 ;;		_escribirDato
+   882 ;; This function is called by:
+   883 ;;		Startup code after reset
+   884 ;; This function uses a non-reentrant model
+   885 ;;
+   886                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
+   887                           	file	"caracterNuevo.c"
+   888                           	line	23
+   889                           global __pmaintext
+   890                           __pmaintext:	;psect for function _main
+   891  0654                     psect	maintext
+   892                           	file	"caracterNuevo.c"
+   893                           	line	23
+   894                           	global	__size_of_main
+   895                           	__size_of_main	equ	__end_of_main-_main
+   896  018D                     	
+   897                           _main:	
+   898  0654                     ;incstack = 0
+   899                           	opt	stack 6
+   900                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   901                           	line	24
+   902                           	
+   903                           l965:	
+   904  0654                     	movlw	(main@pattern1)&0ffh
+   905  0654  3024               	movwf	fsr0
+   906  0655  0084               	movlw	low(main@F1330)
+   907  0656  3064               	bcf	status, 5	;RP0=0, select bank0
+   908  0657  1283               	bcf	status, 6	;RP1=0, select bank0
+   909  0658  1303               	movwf	(??_main+0)+0
+   910  0659  00A0               	movf	fsr0,w
+   911  065A  0804               	movwf	((??_main+0)+0+1)
+   912  065B  00A1               	movlw	8
+   913  065C  3008               	movwf	((??_main+0)+0+2)
+   914  065D  00A2               u250:
+   915  065E                     	movf	(??_main+0)+0,w
+   916  065E  0820               	movwf	fsr0
+   917  065F  0084               	bcf	status, 7	;select IRP bank0
+   918  0660  1383               	
+   919                           	movf	indf,w
+   920  0661  0800               	movwf	((??_main+0)+0+3)
+   921  0662  00A3               	incf	(??_main+0)+0,f
+   922  0663  0AA0               	movf	((??_main+0)+0+1),w
+   923  0664  0821               	movwf	fsr0
+   924  0665  0084               	
+   925                           	movf	((??_main+0)+0+3),w
+   926  0666  0823               	movwf	indf
+   927  0667  0080               	incf	((??_main+0)+0+1),f
+   928  0668  0AA1               	decfsz	((??_main+0)+0+2),f
+   929  0669  0BA2               	goto	u250
+   930  066A  2E5E               	
+   931                           	line	36
+   932                           ;caracterNuevo.c: 36:     unsigned char pattern2[] = {0x00, 0x1F, 0x1F, 0x18, 0x10, 0x10
+                                 , 0x1F, 0x1F};
+   933                           	movlw	(main@pattern2)&0ffh
+   934  066B  302C               	movwf	fsr0
+   935  066C  0084               	movlw	low(main@F1332)
+   936  066D  30D0               	movwf	(??_main+0)+0
+   937  066E  00A0               	movf	fsr0,w
+   938  066F  0804               	movwf	((??_main+0)+0+1)
+   939  0670  00A1               	movlw	8
+   940  0671  3008               	movwf	((??_main+0)+0+2)
+   941  0672  00A2               u260:
+   942  0673                     	movf	(??_main+0)+0,w
+   943  0673  0820               	movwf	fsr0
+   944  0674  0084               	bcf	status, 7	;select IRP bank1
+   945  0675  1383               	
+   946                           	movf	indf,w
+   947  0676  0800               	movwf	((??_main+0)+0+3)
+   948  0677  00A3               	incf	(??_main+0)+0,f
+   949  0678  0AA0               	movf	((??_main+0)+0+1),w
+   950  0679  0821               	movwf	fsr0
+   951  067A  0084               	
+   952                           	movf	((??_main+0)+0+3),w
+   953  067B  0823               	movwf	indf
+   954  067C  0080               	incf	((??_main+0)+0+1),f
+   955  067D  0AA1               	decfsz	((??_main+0)+0+2),f
+   956  067E  0BA2               	goto	u260
+   957  067F  2E73               	
+   958                           	line	47
+   959                           ;caracterNuevo.c: 47:     unsigned char pattern3[] = {0x00, 0x1F, 0x1F, 0x06, 0x03, 0x00
+                                 , 0x1F, 0x1F};
+   960                           	movlw	(main@pattern3)&0ffh
+   961  0680  3034               	movwf	fsr0
+   962  0681  0084               	movlw	low(main@F1334)
+   963  0682  30C8               	movwf	(??_main+0)+0
+   964  0683  00A0               	movf	fsr0,w
+   965  0684  0804               	movwf	((??_main+0)+0+1)
+   966  0685  00A1               	movlw	8
+   967  0686  3008               	movwf	((??_main+0)+0+2)
+   968  0687  00A2               u270:
+   969  0688                     	movf	(??_main+0)+0,w
+   970  0688  0820               	movwf	fsr0
+   971  0689  0084               	bcf	status, 7	;select IRP bank1
+   972  068A  1383               	
+   973                           	movf	indf,w
+   974  068B  0800               	movwf	((??_main+0)+0+3)
+   975  068C  00A3               	incf	(??_main+0)+0,f
+   976  068D  0AA0               	movf	((??_main+0)+0+1),w
+   977  068E  0821               	movwf	fsr0
+   978  068F  0084               	
+   979                           	movf	((??_main+0)+0+3),w
+   980  0690  0823               	movwf	indf
+   981  0691  0080               	incf	((??_main+0)+0+1),f
+   982  0692  0AA1               	decfsz	((??_main+0)+0+2),f
+   983  0693  0BA2               	goto	u270
+   984  0694  2E88               	
+   985                           	line	58
+   986                           ;caracterNuevo.c: 58:     unsigned char pattern4[] = {0x00, 0x18, 0x1E, 0x1E, 0x17, 0x03
+                                 , 0x07, 0x17};
+   987                           	movlw	(main@pattern4)&0ffh
+   988  0695  303C               	movwf	fsr0
+   989  0696  0084               	movlw	low(main@F1336)
+   990  0697  30C0               	movwf	(??_main+0)+0
+   991  0698  00A0               	movf	fsr0,w
+   992  0699  0804               	movwf	((??_main+0)+0+1)
+   993  069A  00A1               	movlw	8
+   994  069B  3008               	movwf	((??_main+0)+0+2)
+   995  069C  00A2               u280:
+   996  069D                     	movf	(??_main+0)+0,w
+   997  069D  0820               	movwf	fsr0
+   998  069E  0084               	bcf	status, 7	;select IRP bank1
+   999  069F  1383               	
+  1000                           	movf	indf,w
+  1001  06A0  0800               	movwf	((??_main+0)+0+3)
+  1002  06A1  00A3               	incf	(??_main+0)+0,f
+  1003  06A2  0AA0               	movf	((??_main+0)+0+1),w
+  1004  06A3  0821               	movwf	fsr0
+  1005  06A4  0084               	
+  1006                           	movf	((??_main+0)+0+3),w
+  1007  06A5  0823               	movwf	indf
+  1008  06A6  0080               	incf	((??_main+0)+0+1),f
+  1009  06A7  0AA1               	decfsz	((??_main+0)+0+2),f
+  1010  06A8  0BA2               	goto	u280
+  1011  06A9  2E9D               	
+  1012                           	line	69
+  1013                           ;caracterNuevo.c: 69:     unsigned char pattern5[] = {0x07, 0x03, 0x01, 0x00, 0x00, 0x00
+                                 , 0x00, 0x00};
+  1014                           	movlw	(main@pattern5)&0ffh
+  1015  06AA  3044               	movwf	fsr0
+  1016  06AB  0084               	movlw	low(main@F1338)
+  1017  06AC  30B8               	movwf	(??_main+0)+0
+  1018  06AD  00A0               	movf	fsr0,w
+  1019  06AE  0804               	movwf	((??_main+0)+0+1)
+  1020  06AF  00A1               	movlw	8
+  1021  06B0  3008               	movwf	((??_main+0)+0+2)
+  1022  06B1  00A2               u290:
+  1023  06B2                     	movf	(??_main+0)+0,w
+  1024  06B2  0820               	movwf	fsr0
+  1025  06B3  0084               	bcf	status, 7	;select IRP bank1
+  1026  06B4  1383               	
+  1027                           	movf	indf,w
+  1028  06B5  0800               	movwf	((??_main+0)+0+3)
+  1029  06B6  00A3               	incf	(??_main+0)+0,f
+  1030  06B7  0AA0               	movf	((??_main+0)+0+1),w
+  1031  06B8  0821               	movwf	fsr0
+  1032  06B9  0084               	
+  1033                           	movf	((??_main+0)+0+3),w
+  1034  06BA  0823               	movwf	indf
+  1035  06BB  0080               	incf	((??_main+0)+0+1),f
+  1036  06BC  0AA1               	decfsz	((??_main+0)+0+2),f
+  1037  06BD  0BA2               	goto	u290
+  1038  06BE  2EB2               	
+  1039                           	line	80
+  1040                           ;caracterNuevo.c: 80:     unsigned char pattern6[] = {0x00, 0x16, 0x1F, 0x1C, 0x0E, 0x07
+                                 , 0x03, 0x01};
+  1041                           	movlw	(main@pattern6)&0ffh
+  1042  06BF  304C               	movwf	fsr0
+  1043  06C0  0084               	movlw	low(main@F1340)
+  1044  06C1  30B0               	movwf	(??_main+0)+0
+  1045  06C2  00A0               	movf	fsr0,w
+  1046  06C3  0804               	movwf	((??_main+0)+0+1)
+  1047  06C4  00A1               	movlw	8
+  1048  06C5  3008               	movwf	((??_main+0)+0+2)
+  1049  06C6  00A2               u300:
+  1050  06C7                     	movf	(??_main+0)+0,w
+  1051  06C7  0820               	movwf	fsr0
+  1052  06C8  0084               	bcf	status, 7	;select IRP bank1
+  1053  06C9  1383               	
+  1054                           	movf	indf,w
+  1055  06CA  0800               	movwf	((??_main+0)+0+3)
+  1056  06CB  00A3               	incf	(??_main+0)+0,f
+  1057  06CC  0AA0               	movf	((??_main+0)+0+1),w
+  1058  06CD  0821               	movwf	fsr0
+  1059  06CE  0084               	
+  1060                           	movf	((??_main+0)+0+3),w
+  1061  06CF  0823               	movwf	indf
+  1062  06D0  0080               	incf	((??_main+0)+0+1),f
+  1063  06D1  0AA1               	decfsz	((??_main+0)+0+2),f
+  1064  06D2  0BA2               	goto	u300
+  1065  06D3  2EC7               	
+  1066                           	line	92
+  1067                           ;caracterNuevo.c: 92:     unsigned char pattern7[] = {0x01, 0x03, 0x1F, 0x07, 0x0E, 0x1C
+                                 , 0x18, 0x10};
+  1068                           	movlw	(main@pattern7)&0ffh
+  1069  06D4  3054               	movwf	fsr0
+  1070  06D5  0084               	movlw	low(main@F1342)
+  1071  06D6  30A8               	movwf	(??_main+0)+0
+  1072  06D7  00A0               	movf	fsr0,w
+  1073  06D8  0804               	movwf	((??_main+0)+0+1)
+  1074  06D9  00A1               	movlw	8
+  1075  06DA  3008               	movwf	((??_main+0)+0+2)
+  1076  06DB  00A2               u310:
+  1077  06DC                     	movf	(??_main+0)+0,w
+  1078  06DC  0820               	movwf	fsr0
+  1079  06DD  0084               	bcf	status, 7	;select IRP bank1
+  1080  06DE  1383               	
+  1081                           	movf	indf,w
+  1082  06DF  0800               	movwf	((??_main+0)+0+3)
+  1083  06E0  00A3               	incf	(??_main+0)+0,f
+  1084  06E1  0AA0               	movf	((??_main+0)+0+1),w
+  1085  06E2  0821               	movwf	fsr0
+  1086  06E3  0084               	
+  1087                           	movf	((??_main+0)+0+3),w
+  1088  06E4  0823               	movwf	indf
+  1089  06E5  0080               	incf	((??_main+0)+0+1),f
+  1090  06E6  0AA1               	decfsz	((??_main+0)+0+2),f
+  1091  06E7  0BA2               	goto	u310
+  1092  06E8  2EDC               	
+  1093                           	line	104
+  1094                           ;caracterNuevo.c: 104:     unsigned char pattern8[] = {0x1C, 0x18, 0x10, 0x00, 0x00, 0x0
+                                 0, 0x00, 0x00};
+  1095                           	movlw	(main@pattern8)&0ffh
+  1096  06E9  305C               	movwf	fsr0
+  1097  06EA  0084               	movlw	low(main@F1344)
+  1098  06EB  30A0               	movwf	(??_main+0)+0
+  1099  06EC  00A0               	movf	fsr0,w
+  1100  06ED  0804               	movwf	((??_main+0)+0+1)
+  1101  06EE  00A1               	movlw	8
+  1102  06EF  3008               	movwf	((??_main+0)+0+2)
+  1103  06F0  00A2               u320:
+  1104  06F1                     	movf	(??_main+0)+0,w
+  1105  06F1  0820               	movwf	fsr0
+  1106  06F2  0084               	bcf	status, 7	;select IRP bank1
+  1107  06F3  1383               	
+  1108                           	movf	indf,w
+  1109  06F4  0800               	movwf	((??_main+0)+0+3)
+  1110  06F5  00A3               	incf	(??_main+0)+0,f
+  1111  06F6  0AA0               	movf	((??_main+0)+0+1),w
+  1112  06F7  0821               	movwf	fsr0
+  1113  06F8  0084               	
+  1114                           	movf	((??_main+0)+0+3),w
+  1115  06F9  0823               	movwf	indf
+  1116  06FA  0080               	incf	((??_main+0)+0+1),f
+  1117  06FB  0AA1               	decfsz	((??_main+0)+0+2),f
+  1118  06FC  0BA2               	goto	u320
+  1119  06FD  2EF1               	
+  1120                           	line	117
+  1121                           	
+  1122                           l967:	
+  1123  06FE                     ;caracterNuevo.c: 117:     TRISD = 0xFF;
+  1124                           	movlw	low(0FFh)
+  1125  06FE  30FF               	bsf	status, 5	;RP0=1, select bank1
+  1126  06FF  1683               	bcf	status, 6	;RP1=0, select bank1
+  1127  0700  1303               	movwf	(136)^080h	;volatile
+  1128  0701  0088               	line	118
+  1129                           	
+  1130                           l969:	
+  1131  0702                     ;caracterNuevo.c: 118:     TRISE = 0xF8;
+  1132                           	movlw	low(0F8h)
+  1133  0702  30F8               	movwf	(137)^080h	;volatile
+  1134  0703  0089               	line	119
+  1135                           	
+  1136                           l971:	
+  1137  0704                     ;caracterNuevo.c: 119:     ANSEL = 0;
+  1138                           	bsf	status, 5	;RP0=1, select bank3
+  1139  0704  1683               	bsf	status, 6	;RP1=1, select bank3
+  1140  0705  1703               	clrf	(392)^0180h	;volatile
+  1141  0706  0188               	line	120
+  1142                           	
+  1143                           l973:	
+  1144  0707                     ;caracterNuevo.c: 120:     configurarLCD();
+  1145                           	fcall	_configurarLCD
+  1146  0707  120A  118A  2526  120A  118A  	line	121
+  1147                           	
+  1148                           l975:	
+  1149  070C                     ;caracterNuevo.c: 121:     comando(0x0C);
+  1150                           	movlw	low(0Ch)
+  1151  070C  300C               	fcall	_comando
+  1152  070D  120A  118A  25C1  120A  118A  	line	122
+  1153                           	
+  1154                           l977:	
+  1155  0712                     ;caracterNuevo.c: 122:     comando(0x28);
+  1156                           	movlw	low(028h)
+  1157  0712  3028               	fcall	_comando
+  1158  0713  120A  118A  25C1  120A  118A  	line	123
+  1159                           	
+  1160                           l979:	
+  1161  0718                     ;caracterNuevo.c: 123:     comando(0x01);
+  1162                           	movlw	low(01h)
+  1163  0718  3001               	fcall	_comando
+  1164  0719  120A  118A  25C1  120A  118A  	line	124
+  1165                           	
+  1166                           l981:	
+  1167  071E                     ;caracterNuevo.c: 124:     crearCaracter(pattern1, 0);
+  1168                           	clrf	(crearCaracter@address)
+  1169  071E  01F7               	movlw	(low(main@pattern1|((0x0)<<8)))&0ffh
+  1170  071F  3024               	fcall	_crearCaracter
+  1171  0720  120A  118A  2557  120A  118A  	line	125
+  1172                           	
+  1173                           l983:	
+  1174  0725                     ;caracterNuevo.c: 125:     crearCaracter(pattern2, 1);
+  1175                           	clrf	(crearCaracter@address)
+  1176  0725  01F7               	incf	(crearCaracter@address),f
+  1177  0726  0AF7               	movlw	(low(main@pattern2|((0x0)<<8)))&0ffh
+  1178  0727  302C               	fcall	_crearCaracter
+  1179  0728  120A  118A  2557  120A  118A  	line	126
+  1180                           	
+  1181                           l985:	
+  1182  072D                     ;caracterNuevo.c: 126:     crearCaracter(pattern3, 2);
+  1183                           	movlw	low(02h)
+  1184  072D  3002               	bcf	status, 5	;RP0=0, select bank0
+  1185  072E  1283               	bcf	status, 6	;RP1=0, select bank0
+  1186  072F  1303               	movwf	(??_main+0)+0
+  1187  0730  00A0               	movf	(??_main+0)+0,w
+  1188  0731  0820               	movwf	(crearCaracter@address)
+  1189  0732  00F7               	movlw	(low(main@pattern3|((0x0)<<8)))&0ffh
+  1190  0733  3034               	fcall	_crearCaracter
+  1191  0734  120A  118A  2557  120A  118A  	line	127
+  1192                           	
+  1193                           l987:	
+  1194  0739                     ;caracterNuevo.c: 127:     crearCaracter(pattern4, 3);
+  1195                           	movlw	low(03h)
+  1196  0739  3003               	bcf	status, 5	;RP0=0, select bank0
+  1197  073A  1283               	bcf	status, 6	;RP1=0, select bank0
+  1198  073B  1303               	movwf	(??_main+0)+0
+  1199  073C  00A0               	movf	(??_main+0)+0,w
+  1200  073D  0820               	movwf	(crearCaracter@address)
+  1201  073E  00F7               	movlw	(low(main@pattern4|((0x0)<<8)))&0ffh
+  1202  073F  303C               	fcall	_crearCaracter
+  1203  0740  120A  118A  2557  120A  118A  	line	128
+  1204                           	
+  1205                           l989:	
+  1206  0745                     ;caracterNuevo.c: 128:     crearCaracter(pattern5, 4);
+  1207                           	movlw	low(04h)
+  1208  0745  3004               	bcf	status, 5	;RP0=0, select bank0
+  1209  0746  1283               	bcf	status, 6	;RP1=0, select bank0
+  1210  0747  1303               	movwf	(??_main+0)+0
+  1211  0748  00A0               	movf	(??_main+0)+0,w
+  1212  0749  0820               	movwf	(crearCaracter@address)
+  1213  074A  00F7               	movlw	(low(main@pattern5|((0x0)<<8)))&0ffh
+  1214  074B  3044               	fcall	_crearCaracter
+  1215  074C  120A  118A  2557  120A  118A  	line	129
+  1216                           	
+  1217                           l991:	
+  1218  0751                     ;caracterNuevo.c: 129:     crearCaracter(pattern6, 5);
+  1219                           	movlw	low(05h)
+  1220  0751  3005               	bcf	status, 5	;RP0=0, select bank0
+  1221  0752  1283               	bcf	status, 6	;RP1=0, select bank0
+  1222  0753  1303               	movwf	(??_main+0)+0
+  1223  0754  00A0               	movf	(??_main+0)+0,w
+  1224  0755  0820               	movwf	(crearCaracter@address)
+  1225  0756  00F7               	movlw	(low(main@pattern6|((0x0)<<8)))&0ffh
+  1226  0757  304C               	fcall	_crearCaracter
+  1227  0758  120A  118A  2557  120A  118A  	line	130
+  1228                           	
+  1229                           l993:	
+  1230  075D                     ;caracterNuevo.c: 130:     crearCaracter(pattern7, 6);
+  1231                           	movlw	low(06h)
+  1232  075D  3006               	bcf	status, 5	;RP0=0, select bank0
+  1233  075E  1283               	bcf	status, 6	;RP1=0, select bank0
+  1234  075F  1303               	movwf	(??_main+0)+0
+  1235  0760  00A0               	movf	(??_main+0)+0,w
+  1236  0761  0820               	movwf	(crearCaracter@address)
+  1237  0762  00F7               	movlw	(low(main@pattern7|((0x0)<<8)))&0ffh
+  1238  0763  3054               	fcall	_crearCaracter
+  1239  0764  120A  118A  2557  120A  118A  	line	131
+  1240                           	
+  1241                           l995:	
+  1242  0769                     ;caracterNuevo.c: 131:     crearCaracter(pattern8, 7);
+  1243                           	movlw	low(07h)
+  1244  0769  3007               	bcf	status, 5	;RP0=0, select bank0
+  1245  076A  1283               	bcf	status, 6	;RP1=0, select bank0
+  1246  076B  1303               	movwf	(??_main+0)+0
+  1247  076C  00A0               	movf	(??_main+0)+0,w
+  1248  076D  0820               	movwf	(crearCaracter@address)
+  1249  076E  00F7               	movlw	(low(main@pattern8|((0x0)<<8)))&0ffh
+  1250  076F  305C               	fcall	_crearCaracter
+  1251  0770  120A  118A  2557  120A  118A  	line	132
+  1252                           	
+  1253                           l997:	
+  1254  0775                     ;caracterNuevo.c: 132:     comando(0x01);
+  1255                           	movlw	low(01h)
+  1256  0775  3001               	fcall	_comando
+  1257  0776  120A  118A  25C1  120A  118A  	goto	l999
+  1258  077B  2F7C               	line	133
+  1259                           ;caracterNuevo.c: 133:     while (1) {
+  1260                           	
+  1261                           l39:	
+  1262  077C                     	line	134
+  1263                           	
+  1264                           l999:	
+  1265  077C                     ;caracterNuevo.c: 134:         comando(0x86);
+  1266                           	movlw	low(086h)
+  1267  077C  3086               	fcall	_comando
+  1268  077D  120A  118A  25C1  120A  118A  	line	135
+  1269                           	
+  1270                           l1001:	
+  1271  0782                     ;caracterNuevo.c: 135:         escribirDato(0);
+  1272                           	movlw	low(0)
+  1273  0782  3000               	fcall	_escribirDato
+  1274  0783  120A  118A  260A  120A  118A  	line	136
+  1275                           	
+  1276                           l1003:	
+  1277  0788                     ;caracterNuevo.c: 136:         comando(0x87);
+  1278                           	movlw	low(087h)
+  1279  0788  3087               	fcall	_comando
+  1280  0789  120A  118A  25C1  120A  118A  	line	137
+  1281                           	
+  1282                           l1005:	
+  1283  078E                     ;caracterNuevo.c: 137:         escribirDato(1);
+  1284                           	movlw	low(01h)
+  1285  078E  3001               	fcall	_escribirDato
+  1286  078F  120A  118A  260A  120A  118A  	line	138
+  1287                           	
+  1288                           l1007:	
+  1289  0794                     ;caracterNuevo.c: 138:         comando(0x88);
+  1290                           	movlw	low(088h)
+  1291  0794  3088               	fcall	_comando
+  1292  0795  120A  118A  25C1  120A  118A  	line	139
+  1293                           	
+  1294                           l1009:	
+  1295  079A                     ;caracterNuevo.c: 139:         escribirDato(2);
+  1296                           	movlw	low(02h)
+  1297  079A  3002               	fcall	_escribirDato
+  1298  079B  120A  118A  260A  120A  118A  	line	140
+  1299                           	
+  1300                           l1011:	
+  1301  07A0                     ;caracterNuevo.c: 140:         comando(0x89);
+  1302                           	movlw	low(089h)
+  1303  07A0  3089               	fcall	_comando
+  1304  07A1  120A  118A  25C1  120A  118A  	line	141
+  1305                           	
+  1306                           l1013:	
+  1307  07A6                     ;caracterNuevo.c: 141:         escribirDato(3);
+  1308                           	movlw	low(03h)
+  1309  07A6  3003               	fcall	_escribirDato
+  1310  07A7  120A  118A  260A  120A  118A  	line	142
+  1311                           	
+  1312                           l1015:	
+  1313  07AC                     ;caracterNuevo.c: 142:         comando(0xC6);
+  1314                           	movlw	low(0C6h)
+  1315  07AC  30C6               	fcall	_comando
+  1316  07AD  120A  118A  25C1  120A  118A  	line	143
+  1317                           	
+  1318                           l1017:	
+  1319  07B2                     ;caracterNuevo.c: 143:         escribirDato(4);
+  1320                           	movlw	low(04h)
+  1321  07B2  3004               	fcall	_escribirDato
+  1322  07B3  120A  118A  260A  120A  118A  	line	144
+  1323                           	
+  1324                           l1019:	
+  1325  07B8                     ;caracterNuevo.c: 144:         comando(0xC7);
+  1326                           	movlw	low(0C7h)
+  1327  07B8  30C7               	fcall	_comando
+  1328  07B9  120A  118A  25C1  120A  118A  	line	145
+  1329                           	
+  1330                           l1021:	
+  1331  07BE                     ;caracterNuevo.c: 145:         escribirDato(5);
+  1332                           	movlw	low(05h)
+  1333  07BE  3005               	fcall	_escribirDato
+  1334  07BF  120A  118A  260A  120A  118A  	line	146
+  1335                           	
+  1336                           l1023:	
+  1337  07C4                     ;caracterNuevo.c: 146:         comando(0xC8);
+  1338                           	movlw	low(0C8h)
+  1339  07C4  30C8               	fcall	_comando
+  1340  07C5  120A  118A  25C1  120A  118A  	line	147
+  1341                           	
+  1342                           l1025:	
+  1343  07CA                     ;caracterNuevo.c: 147:         escribirDato(6);
+  1344                           	movlw	low(06h)
+  1345  07CA  3006               	fcall	_escribirDato
+  1346  07CB  120A  118A  260A  120A  118A  	line	148
+  1347                           	
+  1348                           l1027:	
+  1349  07D0                     ;caracterNuevo.c: 148:         comando(0xC9);
+  1350                           	movlw	low(0C9h)
+  1351  07D0  30C9               	fcall	_comando
+  1352  07D1  120A  118A  25C1  120A  118A  	line	149
+  1353                           	
+  1354                           l1029:	
+  1355  07D6                     ;caracterNuevo.c: 149:         escribirDato(7);
+  1356                           	movlw	low(07h)
+  1357  07D6  3007               	fcall	_escribirDato
+  1358  07D7  120A  118A  260A  120A  118A  	goto	l999
+  1359  07DC  2F7C               	line	150
+  1360                           ;caracterNuevo.c: 150:     }
+  1361                           	
+  1362                           l40:	
+  1363  07DD                     	goto	l999
+  1364  07DD  2F7C               	
+  1365                           l41:	
+  1366  07DE                     	line	151
+  1367                           	
+  1368                           l42:	
+  1369  07DE                     	global	start
+  1370                           	ljmp	start
+  1371  07DE  120A  118A  2800   	opt stack 0
+  1372                           GLOBAL	__end_of_main
+  1373                           	__end_of_main:
+  1374  07E1                     	signat	_main,90
+  1375                           	global	_crearCaracter
+  1376                           
+  1377 ;; *************** function _crearCaracter *****************
+  1378 ;; Defined at:
+  1379 ;;		line 176 in file "caracterNuevo.c"
+  1380 ;; Parameters:    Size  Location     Type
+  1381 ;;  pattern         1    wreg     PTR unsigned char 
+  1382 ;;		 -> main@pattern8(8), main@pattern7(8), main@pattern6(8), main@pattern5(8), 
+  1383 ;;		 -> main@pattern4(8), main@pattern3(8), main@pattern2(8), main@pattern1(8), 
+  1384 ;;  address         1    7[COMMON] unsigned char 
+  1385 ;; Auto vars:     Size  Location     Type
+  1386 ;;  pattern         1   10[COMMON] PTR unsigned char 
+  1387 ;;		 -> main@pattern8(8), main@pattern7(8), main@pattern6(8), main@pattern5(8), 
+  1388 ;;		 -> main@pattern4(8), main@pattern3(8), main@pattern2(8), main@pattern1(8), 
+  1389 ;;  i               1    9[COMMON] unsigned char 
+  1390 ;; Return value:  Size  Location     Type
+  1391 ;;                  1    wreg      void 
+  1392 ;; Registers used:
+  1393 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1394 ;; Tracked objects:
+  1395 ;;		On entry : 0/0
+  1396 ;;		On exit  : 0/0
+  1397 ;;		Unchanged: 0/0
+  1398 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1399 ;;      Params:         1       0       0       0       0
+  1400 ;;      Locals:         2       0       0       0       0
+  1401 ;;      Temps:          1       0       0       0       0
+  1402 ;;      Totals:         4       0       0       0       0
+  1403 ;;Total ram usage:        4 bytes
+  1404 ;; Hardware stack levels used:    1
+  1405 ;; Hardware stack levels required when called:    1
+  1406 ;; This function calls:
+  1407 ;;		_comando
+  1408 ;;		_escribirDato
+  1409 ;; This function is called by:
+  1410 ;;		_main
+  1411 ;; This function uses a non-reentrant model
+  1412 ;;
+  1413                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
+  1414                           	line	176
+  1415                           global __ptext1
+  1416                           __ptext1:	;psect for function _crearCaracter
+  1417  0557                     psect	text1
+  1418                           	file	"caracterNuevo.c"
+  1419                           	line	176
+  1420                           	global	__size_of_crearCaracter
+  1421                           	__size_of_crearCaracter	equ	__end_of_crearCaracter-_crearCaracter
+  1422  0032                     	
+  1423                           _crearCaracter:	
+  1424  0557                     ;incstack = 0
+  1425                           	opt	stack 6
+  1426                           ; Regs used in _crearCaracter: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1427                           ;crearCaracter@pattern stored from wreg
+  1428                           	movwf	(crearCaracter@pattern)
+  1429  0557  00FA               	line	180
+  1430                           	
+  1431                           l951:	
+  1432  0558                     ;caracterNuevo.c: 177:     unsigned char i;;caracterNuevo.c: 180:     comando(0x40 + (ad
+                                 dress * 8));
+  1433                           	movf	(crearCaracter@address),w
+  1434  0558  0877               	movwf	(??_crearCaracter+0)+0
+  1435  0559  00F8               	movlw	(03h)-1
+  1436  055A  3002               u225:
+  1437  055B                     	clrc
+  1438  055B  1003               	rlf	(??_crearCaracter+0)+0,f
+  1439  055C  0DF8               	addlw	-1
+  1440  055D  3EFF               	skipz
+  1441  055E  1D03               	goto	u225
+  1442  055F  2D5B               	clrc
+  1443  0560  1003               	rlf	(??_crearCaracter+0)+0,w
+  1444  0561  0D78               	addlw	040h
+  1445  0562  3E40               	fcall	_comando
+  1446  0563  120A  118A  25C1  120A  118A  	line	181
+  1447                           	
+  1448                           l953:	
+  1449  0568                     ;caracterNuevo.c: 181:     for (i = 0; i < 8; i++) {
+  1450                           	clrf	(crearCaracter@i)
+  1451  0568  01F9               	
+  1452                           l955:	
+  1453  0569                     	movlw	low(08h)
+  1454  0569  3008               	subwf	(crearCaracter@i),w
+  1455  056A  0279               	skipc
+  1456  056B  1C03               	goto	u231
+  1457  056C  2D6E               	goto	u230
+  1458  056D  2D6F               u231:
+  1459  056E                     	goto	l959
+  1460  056E  2D71               u230:
+  1461  056F                     	goto	l52
+  1462  056F  2D88               	
+  1463                           l957:	
+  1464  0570                     	goto	l52
+  1465  0570  2D88               	
+  1466                           l50:	
+  1467  0571                     	line	182
+  1468                           	
+  1469                           l959:	
+  1470  0571                     ;caracterNuevo.c: 182:         escribirDato(pattern[i]);
+  1471                           	movf	(crearCaracter@i),w
+  1472  0571  0879               	addwf	(crearCaracter@pattern),w
+  1473  0572  077A               	movwf	(??_crearCaracter+0)+0
+  1474  0573  00F8               	movf	0+(??_crearCaracter+0)+0,w
+  1475  0574  0878               	movwf	fsr0
+  1476  0575  0084               	bcf	status, 7	;select IRP bank0
+  1477  0576  1383               	movf	indf,w
+  1478  0577  0800               	fcall	_escribirDato
+  1479  0578  120A  118A  260A  120A  118A  	line	183
+  1480                           	
+  1481                           l961:	
+  1482  057D                     ;caracterNuevo.c: 183:     }
+  1483                           	movlw	low(01h)
+  1484  057D  3001               	movwf	(??_crearCaracter+0)+0
+  1485  057E  00F8               	movf	(??_crearCaracter+0)+0,w
+  1486  057F  0878               	addwf	(crearCaracter@i),f
+  1487  0580  07F9               	
+  1488                           l963:	
+  1489  0581                     	movlw	low(08h)
+  1490  0581  3008               	subwf	(crearCaracter@i),w
+  1491  0582  0279               	skipc
+  1492  0583  1C03               	goto	u241
+  1493  0584  2D86               	goto	u240
+  1494  0585  2D87               u241:
+  1495  0586                     	goto	l959
+  1496  0586  2D71               u240:
+  1497  0587                     	goto	l52
+  1498  0587  2D88               	
+  1499                           l51:	
+  1500  0588                     	line	184
+  1501                           	
+  1502                           l52:	
+  1503  0588                     	return
+  1504  0588  0008               	opt stack 0
+  1505                           GLOBAL	__end_of_crearCaracter
+  1506                           	__end_of_crearCaracter:
+  1507  0589                     	signat	_crearCaracter,8313
+  1508                           	global	_escribirDato
+  1509                           
+  1510 ;; *************** function _escribirDato *****************
+  1511 ;; Defined at:
+  1512 ;;		line 214 in file "caracterNuevo.c"
+  1513 ;; Parameters:    Size  Location     Type
+  1514 ;;  data            1    wreg     unsigned char 
+  1515 ;; Auto vars:     Size  Location     Type
+  1516 ;;  data            1    4[COMMON] unsigned char 
+  1517 ;;  t               2    5[COMMON] int 
+  1518 ;;  estado          2    2[COMMON] int 
+  1519 ;; Return value:  Size  Location     Type
+  1520 ;;                  1    wreg      void 
+  1521 ;; Registers used:
+  1522 ;;		wreg, status,2, status,0
+  1523 ;; Tracked objects:
+  1524 ;;		On entry : 0/0
+  1525 ;;		On exit  : 0/0
+  1526 ;;		Unchanged: 0/0
+  1527 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1528 ;;      Params:         0       0       0       0       0
+  1529 ;;      Locals:         5       0       0       0       0
+  1530 ;;      Temps:          2       0       0       0       0
+  1531 ;;      Totals:         7       0       0       0       0
+  1532 ;;Total ram usage:        7 bytes
+  1533 ;; Hardware stack levels used:    1
+  1534 ;; This function calls:
+  1535 ;;		Nothing
+  1536 ;; This function is called by:
+  1537 ;;		_main
+  1538 ;;		_crearCaracter
+  1539 ;; This function uses a non-reentrant model
+  1540 ;;
+  1541                           psect	text2,local,class=CODE,delta=2,merge=1,group=0
+  1542                           	line	214
+  1543                           global __ptext2
+  1544                           __ptext2:	;psect for function _escribirDato
+  1545  060A                     psect	text2
+  1546                           	file	"caracterNuevo.c"
+  1547                           	line	214
+  1548                           	global	__size_of_escribirDato
+  1549                           	__size_of_escribirDato	equ	__end_of_escribirDato-_escribirDato
+  1550  004A                     	
+  1551                           _escribirDato:	
+  1552  060A                     ;incstack = 0
+  1553                           	opt	stack 7
+  1554                           ; Regs used in _escribirDato: [wreg+status,2+status,0]
+  1555                           ;escribirDato@data stored from wreg
+  1556                           	movwf	(escribirDato@data)
+  1557  060A  00F4               	line	216
+  1558                           	
+  1559                           l879:	
+  1560  060B                     ;caracterNuevo.c: 215:     int t, estado;;caracterNuevo.c: 216:     PORTEbits.RE0 = 0;
+  1561                           	bcf	status, 5	;RP0=0, select bank0
+  1562  060B  1283               	bcf	status, 6	;RP1=0, select bank0
+  1563  060C  1303               	bcf	(9),0	;volatile
+  1564  060D  1009               	line	217
+  1565                           	
+  1566                           l881:	
+  1567  060E                     ;caracterNuevo.c: 217:     t = 0;
+  1568                           	clrf	(escribirDato@t)
+  1569  060E  01F5               	clrf	(escribirDato@t+1)
+  1570  060F  01F6               	line	218
+  1571                           	
+  1572                           l883:	
+  1573  0610                     ;caracterNuevo.c: 218:     PORTEbits.RE1 = 1;
+  1574                           	bsf	(9),1	;volatile
+  1575  0610  1489               	line	219
+  1576                           ;caracterNuevo.c: 219:     t = 0;
+  1577                           	clrf	(escribirDato@t)
+  1578  0611  01F5               	clrf	(escribirDato@t+1)
+  1579  0612  01F6               	goto	l885
+  1580  0613  2E14               	line	220
+  1581                           ;caracterNuevo.c: 220:     do {
+  1582                           	
+  1583                           l60:	
+  1584  0614                     	line	221
+  1585                           	
+  1586                           l885:	
+  1587  0614                     ;caracterNuevo.c: 221:         PORTEbits.RE2 = 1;
+  1588                           	bsf	(9),2	;volatile
+  1589  0614  1509               	line	222
+  1590                           ;caracterNuevo.c: 222:         t = 0;
+  1591                           	clrf	(escribirDato@t)
+  1592  0615  01F5               	clrf	(escribirDato@t+1)
+  1593  0616  01F6               	line	223
+  1594                           	
+  1595                           l887:	
+  1596  0617                     ;caracterNuevo.c: 223:         estado = (PORTD & 0x80);
+  1597                           	movf	(8),w	;volatile
+  1598  0617  0808               	andlw	080h
+  1599  0618  3980               	movwf	(??_escribirDato+0)+0
+  1600  0619  00F0               	clrf	(??_escribirDato+0)+0+1
+  1601  061A  01F1               	movf	0+(??_escribirDato+0)+0,w
+  1602  061B  0870               	movwf	(escribirDato@estado)
+  1603  061C  00F2               	movf	1+(??_escribirDato+0)+0,w
+  1604  061D  0871               	movwf	(escribirDato@estado+1)
+  1605  061E  00F3               	line	224
+  1606                           	
+  1607                           l889:	
+  1608  061F                     ;caracterNuevo.c: 224:         PORTEbits.RE2 = 0;
+  1609                           	bcf	(9),2	;volatile
+  1610  061F  1109               	line	225
+  1611                           	
+  1612                           l891:	
+  1613  0620                     ;caracterNuevo.c: 225:         t = 0;
+  1614                           	clrf	(escribirDato@t)
+  1615  0620  01F5               	clrf	(escribirDato@t+1)
+  1616  0621  01F6               	line	226
+  1617                           	
+  1618                           l893:	
+  1619  0622                     ;caracterNuevo.c: 226:         PORTEbits.RE2 = 1;
+  1620                           	bsf	(9),2	;volatile
+  1621  0622  1509               	line	227
+  1622                           	
+  1623                           l895:	
+  1624  0623                     ;caracterNuevo.c: 227:         t = 0;
+  1625                           	clrf	(escribirDato@t)
+  1626  0623  01F5               	clrf	(escribirDato@t+1)
+  1627  0624  01F6               	line	228
+  1628                           	
+  1629                           l897:	
+  1630  0625                     ;caracterNuevo.c: 228:         PORTEbits.RE2 = 0;
+  1631                           	bcf	(9),2	;volatile
+  1632  0625  1109               	line	229
+  1633                           	
+  1634                           l899:	
+  1635  0626                     ;caracterNuevo.c: 229:         t = 0;
+  1636                           	clrf	(escribirDato@t)
+  1637  0626  01F5               	clrf	(escribirDato@t+1)
+  1638  0627  01F6               	line	230
+  1639                           	
+  1640                           l901:	
+  1641  0628                     ;caracterNuevo.c: 230:     } while (estado != 0);
+  1642                           	movf	((escribirDato@estado)),w
+  1643  0628  0872               iorwf	((escribirDato@estado+1)),w
+  1644  0629  0473               	btfss	status,2
+  1645  062A  1D03               	goto	u191
+  1646  062B  2E2D               	goto	u190
+  1647  062C  2E2E               u191:
+  1648  062D                     	goto	l885
+  1649  062D  2E14               u190:
+  1650  062E                     	
+  1651                           l61:	
+  1652  062E                     	line	236
+  1653                           ;caracterNuevo.c: 236:     PORTEbits.RE0 = 1;
+  1654                           	bsf	(9),0	;volatile
+  1655  062E  1409               	line	237
+  1656                           ;caracterNuevo.c: 237:     PORTEbits.RE1 = 0;
+  1657                           	bcf	(9),1	;volatile
+  1658  062F  1089               	line	238
+  1659                           	
+  1660                           l903:	
+  1661  0630                     ;caracterNuevo.c: 238:     TRISD=0x0F;
+  1662                           	movlw	low(0Fh)
+  1663  0630  300F               	bsf	status, 5	;RP0=1, select bank1
+  1664  0631  1683               	bcf	status, 6	;RP1=0, select bank1
+  1665  0632  1303               	movwf	(136)^080h	;volatile
+  1666  0633  0088               	line	239
+  1667                           ;caracterNuevo.c: 239:     PORTD=data;
+  1668                           	movf	(escribirDato@data),w
+  1669  0634  0874               	bcf	status, 5	;RP0=0, select bank0
+  1670  0635  1283               	bcf	status, 6	;RP1=0, select bank0
+  1671  0636  1303               	movwf	(8)	;volatile
+  1672  0637  0088               	line	240
+  1673                           	
+  1674                           l905:	
+  1675  0638                     ;caracterNuevo.c: 240:     PORTEbits.RE2=1; t=0;
+  1676                           	bsf	(9),2	;volatile
+  1677  0638  1509               	
+  1678                           l907:	
+  1679  0639                     	clrf	(escribirDato@t)
+  1680  0639  01F5               	clrf	(escribirDato@t+1)
+  1681  063A  01F6               	line	241
+  1682                           	
+  1683                           l909:	
+  1684  063B                     ;caracterNuevo.c: 241:     PORTEbits.RE2=0; t=0;
+  1685                           	bcf	(9),2	;volatile
+  1686  063B  1109               	
+  1687                           l911:	
+  1688  063C                     	clrf	(escribirDato@t)
+  1689  063C  01F5               	clrf	(escribirDato@t+1)
+  1690  063D  01F6               	line	242
+  1691                           	
+  1692                           l913:	
+  1693  063E                     ;caracterNuevo.c: 242:     PORTD=(data<<4);
+  1694                           	movf	(escribirDato@data),w
+  1695  063E  0874               	movwf	(??_escribirDato+0)+0
+  1696  063F  00F0               	movlw	(04h)-1
+  1697  0640  3003               u205:
+  1698  0641                     	clrc
+  1699  0641  1003               	rlf	(??_escribirDato+0)+0,f
+  1700  0642  0DF0               	addlw	-1
+  1701  0643  3EFF               	skipz
+  1702  0644  1D03               	goto	u205
+  1703  0645  2E41               	clrc
+  1704  0646  1003               	rlf	(??_escribirDato+0)+0,w
+  1705  0647  0D70               	movwf	(8)	;volatile
+  1706  0648  0088               	line	243
+  1707                           	
+  1708                           l915:	
+  1709  0649                     ;caracterNuevo.c: 243:     PORTEbits.RE2=1; t=0;
+  1710                           	bsf	(9),2	;volatile
+  1711  0649  1509               	
+  1712                           l917:	
+  1713  064A                     	clrf	(escribirDato@t)
+  1714  064A  01F5               	clrf	(escribirDato@t+1)
+  1715  064B  01F6               	line	244
+  1716                           	
+  1717                           l919:	
+  1718  064C                     ;caracterNuevo.c: 244:     PORTEbits.RE2=0; t=0;
+  1719                           	bcf	(9),2	;volatile
+  1720  064C  1109               	
+  1721                           l921:	
+  1722  064D                     	clrf	(escribirDato@t)
+  1723  064D  01F5               	clrf	(escribirDato@t+1)
+  1724  064E  01F6               	line	245
+  1725                           	
+  1726                           l923:	
+  1727  064F                     ;caracterNuevo.c: 245:     TRISD=0xFF;
+  1728                           	movlw	low(0FFh)
+  1729  064F  30FF               	bsf	status, 5	;RP0=1, select bank1
+  1730  0650  1683               	bcf	status, 6	;RP1=0, select bank1
+  1731  0651  1303               	movwf	(136)^080h	;volatile
+  1732  0652  0088               	line	246
+  1733                           	
+  1734                           l62:	
+  1735  0653                     	return
+  1736  0653  0008               	opt stack 0
+  1737                           GLOBAL	__end_of_escribirDato
+  1738                           	__end_of_escribirDato:
+  1739  0654                     	signat	_escribirDato,4217
+  1740                           	global	_comando
+  1741                           
+  1742 ;; *************** function _comando *****************
+  1743 ;; Defined at:
+  1744 ;;		line 186 in file "caracterNuevo.c"
+  1745 ;; Parameters:    Size  Location     Type
+  1746 ;;  command         1    wreg     unsigned char 
+  1747 ;; Auto vars:     Size  Location     Type
+  1748 ;;  command         1    4[COMMON] unsigned char 
+  1749 ;;  t               2    5[COMMON] int 
+  1750 ;;  estado          2    2[COMMON] int 
+  1751 ;; Return value:  Size  Location     Type
+  1752 ;;                  1    wreg      void 
+  1753 ;; Registers used:
+  1754 ;;		wreg, status,2, status,0
+  1755 ;; Tracked objects:
+  1756 ;;		On entry : 0/0
+  1757 ;;		On exit  : 0/0
+  1758 ;;		Unchanged: 0/0
+  1759 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1760 ;;      Params:         0       0       0       0       0
+  1761 ;;      Locals:         5       0       0       0       0
+  1762 ;;      Temps:          2       0       0       0       0
+  1763 ;;      Totals:         7       0       0       0       0
+  1764 ;;Total ram usage:        7 bytes
+  1765 ;; Hardware stack levels used:    1
+  1766 ;; This function calls:
+  1767 ;;		Nothing
+  1768 ;; This function is called by:
+  1769 ;;		_main
+  1770 ;;		_crearCaracter
+  1771 ;; This function uses a non-reentrant model
+  1772 ;;
+  1773                           psect	text3,local,class=CODE,delta=2,merge=1,group=0
+  1774                           	line	186
+  1775                           global __ptext3
+  1776                           __ptext3:	;psect for function _comando
+  1777  05C1                     psect	text3
+  1778                           	file	"caracterNuevo.c"
+  1779                           	line	186
+  1780                           	global	__size_of_comando
+  1781                           	__size_of_comando	equ	__end_of_comando-_comando
+  1782  0049                     	
+  1783                           _comando:	
+  1784  05C1                     ;incstack = 0
+  1785                           	opt	stack 6
+  1786                           ; Regs used in _comando: [wreg+status,2+status,0]
+  1787                           ;comando@command stored from wreg
+  1788                           	movwf	(comando@command)
+  1789  05C1  00F4               	line	188
+  1790                           	
+  1791                           l833:	
+  1792  05C2                     ;caracterNuevo.c: 187:     int t, estado;;caracterNuevo.c: 188:     PORTEbits.RE0 = 0;
+  1793                           	bcf	status, 5	;RP0=0, select bank0
+  1794  05C2  1283               	bcf	status, 6	;RP1=0, select bank0
+  1795  05C3  1303               	bcf	(9),0	;volatile
+  1796  05C4  1009               	line	189
+  1797                           	
+  1798                           l835:	
+  1799  05C5                     ;caracterNuevo.c: 189:     t = 0;
+  1800                           	clrf	(comando@t)
+  1801  05C5  01F5               	clrf	(comando@t+1)
+  1802  05C6  01F6               	line	190
+  1803                           	
+  1804                           l837:	
+  1805  05C7                     ;caracterNuevo.c: 190:     PORTEbits.RE1 = 1;
+  1806                           	bsf	(9),1	;volatile
+  1807  05C7  1489               	line	191
+  1808                           ;caracterNuevo.c: 191:     t = 0;
+  1809                           	clrf	(comando@t)
+  1810  05C8  01F5               	clrf	(comando@t+1)
+  1811  05C9  01F6               	goto	l839
+  1812  05CA  2DCB               	line	192
+  1813                           ;caracterNuevo.c: 192:     do {
+  1814                           	
+  1815                           l55:	
+  1816  05CB                     	line	193
+  1817                           	
+  1818                           l839:	
+  1819  05CB                     ;caracterNuevo.c: 193:         PORTEbits.RE2 = 1;
+  1820                           	bsf	(9),2	;volatile
+  1821  05CB  1509               	line	194
+  1822                           ;caracterNuevo.c: 194:         t = 0;
+  1823                           	clrf	(comando@t)
+  1824  05CC  01F5               	clrf	(comando@t+1)
+  1825  05CD  01F6               	line	195
+  1826                           	
+  1827                           l841:	
+  1828  05CE                     ;caracterNuevo.c: 195:         estado = (PORTD & 0x80);
+  1829                           	movf	(8),w	;volatile
+  1830  05CE  0808               	andlw	080h
+  1831  05CF  3980               	movwf	(??_comando+0)+0
+  1832  05D0  00F0               	clrf	(??_comando+0)+0+1
+  1833  05D1  01F1               	movf	0+(??_comando+0)+0,w
+  1834  05D2  0870               	movwf	(comando@estado)
+  1835  05D3  00F2               	movf	1+(??_comando+0)+0,w
+  1836  05D4  0871               	movwf	(comando@estado+1)
+  1837  05D5  00F3               	line	196
+  1838                           	
+  1839                           l843:	
+  1840  05D6                     ;caracterNuevo.c: 196:         PORTEbits.RE2 = 0;
+  1841                           	bcf	(9),2	;volatile
+  1842  05D6  1109               	line	197
+  1843                           	
+  1844                           l845:	
+  1845  05D7                     ;caracterNuevo.c: 197:         t = 0;
+  1846                           	clrf	(comando@t)
+  1847  05D7  01F5               	clrf	(comando@t+1)
+  1848  05D8  01F6               	line	198
+  1849                           	
+  1850                           l847:	
+  1851  05D9                     ;caracterNuevo.c: 198:         PORTEbits.RE2 = 1;
+  1852                           	bsf	(9),2	;volatile
+  1853  05D9  1509               	line	199
+  1854                           	
+  1855                           l849:	
+  1856  05DA                     ;caracterNuevo.c: 199:         t = 0;
+  1857                           	clrf	(comando@t)
+  1858  05DA  01F5               	clrf	(comando@t+1)
+  1859  05DB  01F6               	line	200
+  1860                           	
+  1861                           l851:	
+  1862  05DC                     ;caracterNuevo.c: 200:         PORTEbits.RE2 = 0;
+  1863                           	bcf	(9),2	;volatile
+  1864  05DC  1109               	line	201
+  1865                           	
+  1866                           l853:	
+  1867  05DD                     ;caracterNuevo.c: 201:         t = 0;
+  1868                           	clrf	(comando@t)
+  1869  05DD  01F5               	clrf	(comando@t+1)
+  1870  05DE  01F6               	line	202
+  1871                           	
+  1872                           l855:	
+  1873  05DF                     ;caracterNuevo.c: 202:     } while (estado != 0);
+  1874                           	movf	((comando@estado)),w
+  1875  05DF  0872               iorwf	((comando@estado+1)),w
+  1876  05E0  0473               	btfss	status,2
+  1877  05E1  1D03               	goto	u171
+  1878  05E2  2DE4               	goto	u170
+  1879  05E3  2DE5               u171:
+  1880  05E4                     	goto	l839
+  1881  05E4  2DCB               u170:
+  1882  05E5                     	
+  1883                           l56:	
+  1884  05E5                     	line	203
+  1885                           ;caracterNuevo.c: 203:     PORTEbits.RE1 = 0;
+  1886                           	bcf	(9),1	;volatile
+  1887  05E5  1089               	line	204
+  1888                           	
+  1889                           l857:	
+  1890  05E6                     ;caracterNuevo.c: 204:     TRISD=0x0F;
+  1891                           	movlw	low(0Fh)
+  1892  05E6  300F               	bsf	status, 5	;RP0=1, select bank1
+  1893  05E7  1683               	bcf	status, 6	;RP1=0, select bank1
+  1894  05E8  1303               	movwf	(136)^080h	;volatile
+  1895  05E9  0088               	line	205
+  1896                           ;caracterNuevo.c: 205:     PORTD=command;
+  1897                           	movf	(comando@command),w
+  1898  05EA  0874               	bcf	status, 5	;RP0=0, select bank0
+  1899  05EB  1283               	bcf	status, 6	;RP1=0, select bank0
+  1900  05EC  1303               	movwf	(8)	;volatile
+  1901  05ED  0088               	line	206
+  1902                           	
+  1903                           l859:	
+  1904  05EE                     ;caracterNuevo.c: 206:     PORTEbits.RE2=1; t=0;
+  1905                           	bsf	(9),2	;volatile
+  1906  05EE  1509               	
+  1907                           l861:	
+  1908  05EF                     	clrf	(comando@t)
+  1909  05EF  01F5               	clrf	(comando@t+1)
+  1910  05F0  01F6               	line	207
+  1911                           	
+  1912                           l863:	
+  1913  05F1                     ;caracterNuevo.c: 207:     PORTEbits.RE2=0; t=0;
+  1914                           	bcf	(9),2	;volatile
+  1915  05F1  1109               	
+  1916                           l865:	
+  1917  05F2                     	clrf	(comando@t)
+  1918  05F2  01F5               	clrf	(comando@t+1)
+  1919  05F3  01F6               	line	208
+  1920                           	
+  1921                           l867:	
+  1922  05F4                     ;caracterNuevo.c: 208:     PORTD=(command<<4);
+  1923                           	movf	(comando@command),w
+  1924  05F4  0874               	movwf	(??_comando+0)+0
+  1925  05F5  00F0               	movlw	(04h)-1
+  1926  05F6  3003               u185:
+  1927  05F7                     	clrc
+  1928  05F7  1003               	rlf	(??_comando+0)+0,f
+  1929  05F8  0DF0               	addlw	-1
+  1930  05F9  3EFF               	skipz
+  1931  05FA  1D03               	goto	u185
+  1932  05FB  2DF7               	clrc
+  1933  05FC  1003               	rlf	(??_comando+0)+0,w
+  1934  05FD  0D70               	movwf	(8)	;volatile
+  1935  05FE  0088               	line	209
+  1936                           	
+  1937                           l869:	
+  1938  05FF                     ;caracterNuevo.c: 209:     PORTEbits.RE2=1; t=0;
+  1939                           	bsf	(9),2	;volatile
+  1940  05FF  1509               	
+  1941                           l871:	
+  1942  0600                     	clrf	(comando@t)
+  1943  0600  01F5               	clrf	(comando@t+1)
+  1944  0601  01F6               	line	210
+  1945                           	
+  1946                           l873:	
+  1947  0602                     ;caracterNuevo.c: 210:     PORTEbits.RE2=0; t=0;
+  1948                           	bcf	(9),2	;volatile
+  1949  0602  1109               	
+  1950                           l875:	
+  1951  0603                     	clrf	(comando@t)
+  1952  0603  01F5               	clrf	(comando@t+1)
+  1953  0604  01F6               	line	211
+  1954                           	
+  1955                           l877:	
+  1956  0605                     ;caracterNuevo.c: 211:     TRISD=0xFF;
+  1957                           	movlw	low(0FFh)
+  1958  0605  30FF               	bsf	status, 5	;RP0=1, select bank1
+  1959  0606  1683               	bcf	status, 6	;RP1=0, select bank1
+  1960  0607  1303               	movwf	(136)^080h	;volatile
+  1961  0608  0088               	line	212
+  1962                           	
+  1963                           l57:	
+  1964  0609                     	return
+  1965  0609  0008               	opt stack 0
+  1966                           GLOBAL	__end_of_comando
+  1967                           	__end_of_comando:
+  1968  060A                     	signat	_comando,4217
+  1969                           	global	_configurarLCD
+  1970                           
+  1971 ;; *************** function _configurarLCD *****************
+  1972 ;; Defined at:
+  1973 ;;		line 153 in file "caracterNuevo.c"
+  1974 ;; Parameters:    Size  Location     Type
+  1975 ;;		None
+  1976 ;; Auto vars:     Size  Location     Type
+  1977 ;;  t               2    4[COMMON] int 
+  1978 ;;  estado          2    2[COMMON] int 
+  1979 ;; Return value:  Size  Location     Type
+  1980 ;;                  1    wreg      void 
+  1981 ;; Registers used:
+  1982 ;;		wreg, status,2, status,0
+  1983 ;; Tracked objects:
+  1984 ;;		On entry : 0/0
+  1985 ;;		On exit  : 0/0
+  1986 ;;		Unchanged: 0/0
+  1987 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1988 ;;      Params:         0       0       0       0       0
+  1989 ;;      Locals:         4       0       0       0       0
+  1990 ;;      Temps:          2       0       0       0       0
+  1991 ;;      Totals:         6       0       0       0       0
+  1992 ;;Total ram usage:        6 bytes
+  1993 ;; Hardware stack levels used:    1
+  1994 ;; This function calls:
+  1995 ;;		Nothing
+  1996 ;; This function is called by:
+  1997 ;;		_main
+  1998 ;; This function uses a non-reentrant model
+  1999 ;;
+  2000                           psect	text4,local,class=CODE,delta=2,merge=1,group=0
+  2001                           	line	153
+  2002                           global __ptext4
+  2003                           __ptext4:	;psect for function _configurarLCD
+  2004  0526                     psect	text4
+  2005                           	file	"caracterNuevo.c"
+  2006                           	line	153
+  2007                           	global	__size_of_configurarLCD
+  2008                           	__size_of_configurarLCD	equ	__end_of_configurarLCD-_configurarLCD
+  2009  0031                     	
+  2010                           _configurarLCD:	
+  2011  0526                     ;incstack = 0
+  2012                           	opt	stack 7
+  2013                           ; Regs used in _configurarLCD: [wreg+status,2+status,0]
+  2014                           	line	155
+  2015                           	
+  2016                           l925:	
+  2017  0526                     ;caracterNuevo.c: 154:     int t, estado;;caracterNuevo.c: 155:     PORTEbits.RE0 = 0;
+  2018                           	bcf	status, 5	;RP0=0, select bank0
+  2019  0526  1283               	bcf	status, 6	;RP1=0, select bank0
+  2020  0527  1303               	bcf	(9),0	;volatile
+  2021  0528  1009               	line	156
+  2022                           	
+  2023                           l927:	
+  2024  0529                     ;caracterNuevo.c: 156:     t = 0;
+  2025                           	clrf	(configurarLCD@t)
+  2026  0529  01F4               	clrf	(configurarLCD@t+1)
+  2027  052A  01F5               	line	157
+  2028                           	
+  2029                           l929:	
+  2030  052B                     ;caracterNuevo.c: 157:     PORTEbits.RE1 = 1;
+  2031                           	bsf	(9),1	;volatile
+  2032  052B  1489               	line	158
+  2033                           ;caracterNuevo.c: 158:     t = 0;
+  2034                           	clrf	(configurarLCD@t)
+  2035  052C  01F4               	clrf	(configurarLCD@t+1)
+  2036  052D  01F5               	goto	l931
+  2037  052E  2D2F               	line	159
+  2038                           ;caracterNuevo.c: 159:     do {
+  2039                           	
+  2040                           l45:	
+  2041  052F                     	line	160
+  2042                           	
+  2043                           l931:	
+  2044  052F                     ;caracterNuevo.c: 160:         PORTEbits.RE2 = 1;
+  2045                           	bsf	(9),2	;volatile
+  2046  052F  1509               	line	161
+  2047                           ;caracterNuevo.c: 161:         t = 0;
+  2048                           	clrf	(configurarLCD@t)
+  2049  0530  01F4               	clrf	(configurarLCD@t+1)
+  2050  0531  01F5               	line	162
+  2051                           	
+  2052                           l933:	
+  2053  0532                     ;caracterNuevo.c: 162:         estado = (PORTD & 0x80);
+  2054                           	movf	(8),w	;volatile
+  2055  0532  0808               	andlw	080h
+  2056  0533  3980               	movwf	(??_configurarLCD+0)+0
+  2057  0534  00F0               	clrf	(??_configurarLCD+0)+0+1
+  2058  0535  01F1               	movf	0+(??_configurarLCD+0)+0,w
+  2059  0536  0870               	movwf	(configurarLCD@estado)
+  2060  0537  00F2               	movf	1+(??_configurarLCD+0)+0,w
+  2061  0538  0871               	movwf	(configurarLCD@estado+1)
+  2062  0539  00F3               	line	163
+  2063                           	
+  2064                           l935:	
+  2065  053A                     ;caracterNuevo.c: 163:         PORTEbits.RE2 = 0;
+  2066                           	bcf	(9),2	;volatile
+  2067  053A  1109               	line	164
+  2068                           	
+  2069                           l937:	
+  2070  053B                     ;caracterNuevo.c: 164:         t = 0;
+  2071                           	clrf	(configurarLCD@t)
+  2072  053B  01F4               	clrf	(configurarLCD@t+1)
+  2073  053C  01F5               	line	165
+  2074                           	
+  2075                           l939:	
+  2076  053D                     ;caracterNuevo.c: 165:     } while (estado != 0);
+  2077                           	movf	((configurarLCD@estado)),w
+  2078  053D  0872               iorwf	((configurarLCD@estado+1)),w
+  2079  053E  0473               	btfss	status,2
+  2080  053F  1D03               	goto	u211
+  2081  0540  2D42               	goto	u210
+  2082  0541  2D43               u211:
+  2083  0542                     	goto	l931
+  2084  0542  2D2F               u210:
+  2085  0543                     	
+  2086                           l46:	
+  2087  0543                     	line	166
+  2088                           ;caracterNuevo.c: 166:     PORTEbits.RE1 = 0;
+  2089                           	bcf	(9),1	;volatile
+  2090  0543  1089               	line	167
+  2091                           	
+  2092                           l941:	
+  2093  0544                     ;caracterNuevo.c: 167:     TRISD = 0x0F;
+  2094                           	movlw	low(0Fh)
+  2095  0544  300F               	bsf	status, 5	;RP0=1, select bank1
+  2096  0545  1683               	bcf	status, 6	;RP1=0, select bank1
+  2097  0546  1303               	movwf	(136)^080h	;volatile
+  2098  0547  0088               	line	168
+  2099                           ;caracterNuevo.c: 168:     PORTD=0x20;
+  2100                           	movlw	low(020h)
+  2101  0548  3020               	bcf	status, 5	;RP0=0, select bank0
+  2102  0549  1283               	bcf	status, 6	;RP1=0, select bank0
+  2103  054A  1303               	movwf	(8)	;volatile
+  2104  054B  0088               	line	169
+  2105                           	
+  2106                           l943:	
+  2107  054C                     ;caracterNuevo.c: 169:     PORTEbits.RE2 = 1;
+  2108                           	bsf	(9),2	;volatile
+  2109  054C  1509               	line	170
+  2110                           	
+  2111                           l945:	
+  2112  054D                     ;caracterNuevo.c: 170:     t = 0;
+  2113                           	clrf	(configurarLCD@t)
+  2114  054D  01F4               	clrf	(configurarLCD@t+1)
+  2115  054E  01F5               	line	171
+  2116                           	
+  2117                           l947:	
+  2118  054F                     ;caracterNuevo.c: 171:     PORTEbits.RE2 = 0;
+  2119                           	bcf	(9),2	;volatile
+  2120  054F  1109               	line	172
+  2121                           	
+  2122                           l949:	
+  2123  0550                     ;caracterNuevo.c: 172:     t = 0;
+  2124                           	clrf	(configurarLCD@t)
+  2125  0550  01F4               	clrf	(configurarLCD@t+1)
+  2126  0551  01F5               	line	173
+  2127                           ;caracterNuevo.c: 173:     TRISD = 0xFF;
+  2128                           	movlw	low(0FFh)
+  2129  0552  30FF               	bsf	status, 5	;RP0=1, select bank1
+  2130  0553  1683               	bcf	status, 6	;RP1=0, select bank1
+  2131  0554  1303               	movwf	(136)^080h	;volatile
+  2132  0555  0088               	line	174
+  2133                           	
+  2134                           l47:	
+  2135  0556                     	return
+  2136  0556  0008               	opt stack 0
+  2137                           GLOBAL	__end_of_configurarLCD
+  2138                           	__end_of_configurarLCD:
+  2139  0557                     	signat	_configurarLCD,89
+  2140                           global	___latbits
+  2141                           ___latbits	equ	2
+  2142  0002                     	global	btemp
+  2143                           	btemp set 07Eh
+  2144  007E                     
+  2145                           	DABS	1,126,2	;btemp
+  2146                           	global	wtemp0
+  2147                           	wtemp0 set btemp+0
+  2148  007E                     	end
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        64
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     11      11
+    BANK0            80     68      76
+    BANK1            80      0      56
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    crearCaracter@pattern	PTR unsigned char  size(1) Largest target is 8
+		 -> main@pattern8(BANK0[8]), main@pattern7(BANK0[8]), main@pattern6(BANK0[8]), main@pattern5(BANK0[8]), 
+		 -> main@pattern4(BANK0[8]), main@pattern3(BANK0[8]), main@pattern2(BANK0[8]), main@pattern1(BANK0[8]), 
+
+
+Critical Paths under _main in COMMON
+
+    _main->_crearCaracter
+    _crearCaracter->_comando
+    _crearCaracter->_escribirDato
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                68    68      0    1513
+                                              0 BANK0     68    68      0
+                            _comando
+                      _configurarLCD
+                      _crearCaracter
+                       _escribirDato
+ ---------------------------------------------------------------------------------
+ (1) _crearCaracter                                        4     3      1    1138
+                                              7 COMMON     4     3      1
+                            _comando
+                       _escribirDato
+ ---------------------------------------------------------------------------------
+ (1) _escribirDato                                         7     7      0      77
+                                              0 COMMON     7     7      0
+ ---------------------------------------------------------------------------------
+ (2) _comando                                              7     7      0      77
+                                              0 COMMON     7     7      0
+ ---------------------------------------------------------------------------------
+ (1) _configurarLCD                                        6     6      0      29
+                                              0 COMMON     6     6      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _comando
+   _configurarLCD
+   _crearCaracter
+     _comando
+     _escribirDato
+   _escribirDato
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BANK3               60      0       0       9        0.0%
+BITBANK3            60      0       0       8        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               60      0       0      11        0.0%
+BITBANK2            60      0       0      10        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0      38       7       70.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50     44      4C       5       95.0%
+BITBANK0            50      0       0       4        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      B       B       1       78.6%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      8F      12        0.0%
+ABS                  0      0      8F       3        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
+Symbol Table                                                                                   Wed Nov 28 23:29:32 2018
+
+   crearCaracter@address 0077                        pc 0002                       l40 07DD  
+                     l41 07DE                       l50 0571                       l42 07DE  
+                     l51 0588                       l60 0614                       l52 0588  
+                     l45 052F                       l61 062E                       l46 0543  
+                     l62 0653                       l47 0556                       l55 05CB  
+                     l39 077C                       l56 05E5                       l57 0609  
+         ?_configurarLCD 0070                       fsr 0004                      l901 0628  
+                    l911 063C                      l903 0630                      l841 05CE  
+                    l833 05C2                      l921 064D                      l913 063E  
+                    l905 0638                      l931 052F                      l851 05DC  
+                    l843 05D6                      l835 05C5                      l923 064F  
+                    l915 0649                      l907 0639                      l941 0544  
+                    l933 0532                      l925 0526                      l861 05EF  
+                    l853 05DD                      l845 05D7                      l837 05C7  
+                    l917 064A                      l909 063B                      l943 054C  
+                    l935 053A                      l927 0529                      l871 0600  
+                    l863 05F1                      l855 05DF                      l847 05D9  
+                    l839 05CB                      l919 064C                      l951 0558  
+                    l945 054D                      l937 053B                      l929 052B  
+                    l873 0602                      l865 05F2                      l857 05E6  
+                    l849 05DA                      l881 060E                      l961 057D  
+                    l953 0568                      l947 054F                      l939 053D  
+                    l875 0603                      l867 05F4                      l859 05EE  
+                    l891 0620                      l883 0610                      l963 0581  
+                    l955 0569                      l971 0704                      l949 0550  
+                    l877 0605                      l869 05FF                      l893 0622  
+                    l885 0614                      l957 0570                      l981 071E  
+                    l973 0707                      l965 0654                      l895 0623  
+                    l887 0617                      l879 060B                      l959 0571  
+                    l991 0751                      l983 0725                      l975 070C  
+                    l967 06FE                      l897 0625                      l889 061F  
+                    l993 075D                      l985 072D                      l977 0712  
+                    l969 0702                      l899 0626                      l995 0769  
+                    l987 0739                      l979 0718                      l997 0775  
+                    l989 0745                      l999 077C                      u210 0543  
+                    u211 0542     crearCaracter@pattern 007A                      u300 06C7  
+                    u205 0641                      u230 056F                      u310 06DC  
+                    u231 056E                      u240 0587                      u320 06F1  
+                    u241 0586                      u225 055B                      u170 05E5  
+                    u250 065E                      u171 05E4                      u260 0673  
+                    u190 062E                      u270 0688                      u191 062D  
+                    u280 069D                      u185 05F7                      u290 06B2  
+          comando@estado 0072                      fsr0 0004                      indf 0000  
+                   l1001 0782                     l1011 07A0                     l1003 0788  
+                   l1021 07BE                     l1013 07A6                     l1005 078E  
+                   l1023 07C4                     l1015 07AC                     l1007 0794  
+                   l1025 07CA                     l1017 07B2                     l1009 079A  
+                   l1027 07D0                     l1019 07B8                     l1029 07D6  
+         comando@command 0074                     _main 0654                     btemp 007E  
+                   start 0000            __CFG_IESO$OFF 0000            ?_escribirDato 0070  
+                  ?_main 0070            __CFG_WDTE$OFF 0000                    _ANSEL 0188  
+                  _PORTD 0008                    _TRISD 0088                    _TRISE 0089  
+          __CFG_PWRTE$ON 0000           __CFG_FCMEN$OFF 0000          __end_of_comando 060A  
+           main@pattern1 0024             main@pattern2 002C             main@pattern3 0034  
+           main@pattern4 003C             main@pattern5 0044             main@pattern6 004C  
+           main@pattern7 0054             main@pattern8 005C                    pclath 000A  
+                  status 0003                    wtemp0 007E          __initialization 07E1  
+        ??_configurarLCD 0070             __end_of_main 07E1           ??_escribirDato 0070  
+                 ??_main 0020                ??_comando 0070  __end_of__initialization 07FC  
+         __pcstackCOMMON 0070             __pidataBANK0 050B             __pidataBANK1 0589  
+   __end_of_escribirDato 0654    __end_of_crearCaracter 0589               __pmaintext 0654  
+         configurarLCD@t 0074       escribirDato@estado 0072                  __ptext1 0557  
+                __ptext2 060A                  __ptext3 05C1                  __ptext4 0526  
+                _comando 05C1     end_of_initialization 07FC    __end_of_configurarLCD 0557  
+          escribirDato@t 0075                _PORTEbits 0009    __size_of_escribirDato 004A  
+           _escribirDato 060A      start_initialization 07E1               init_fetch0 0513  
+            __pdataBANK0 0064              __pdataBANK1 00A0                ___latbits 0002  
+          __pcstackBANK0 0020   __CFG_FOSC$INTRC_CLKOUT 0000      configurarLCD@estado 0072  
+               ?_comando 0070   __size_of_crearCaracter 0032           crearCaracter@i 0079  
+              main@F1330 0064                main@F1332 00D0                main@F1340 00B0  
+              main@F1334 00C8                main@F1342 00A8                main@F1336 00C0  
+              main@F1344 00A0                main@F1338 00B8            _crearCaracter 0557  
+       __size_of_comando 0049   __size_of_configurarLCD 0031         escribirDato@data 0074  
+          __size_of_main 018D           ?_crearCaracter 0077                 comando@t 0075  
+               init_ram0 0517            _configurarLCD 0526          ??_crearCaracter 0078  
