@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Mon Dec 10 23:29:42 2018
+                                                                                               Wed Dec 12 20:58:47 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -458,835 +458,1910 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    396                           EECON1 equ 018Ch ;# 
    397  018C                     # 3546 "/opt/microchip/xc8/v2.00/pic/include/pic16f887.h"
    398                           EECON2 equ 018Dh ;# 
-   399  018D                     	FNCALL	_main,_sound
-   400                           	FNROOT	_main
-   401                           	global	_INTCONbits
-   402                           _INTCONbits	set	0xB
-   403  000B                     	global	_PORTCbits
-   404                           _PORTCbits	set	0x7
-   405  0007                     	global	_TMR0
-   406                           _TMR0	set	0x1
-   407  0001                     	global	_PORTD
-   408                           _PORTD	set	0x8
-   409  0008                     	global	_PORTB
-   410                           _PORTB	set	0x6
-   411  0006                     	global	_WPUB
-   412                           _WPUB	set	0x95
-   413  0095                     	global	_TRISC
-   414                           _TRISC	set	0x87
-   415  0087                     	global	_OPTION_REGbits
-   416                           _OPTION_REGbits	set	0x81
-   417  0081                     	global	_TRISD
-   418                           _TRISD	set	0x88
-   419  0088                     	global	_TRISB
-   420                           _TRISB	set	0x86
-   421  0086                     	global	_ANSELH
-   422                           _ANSELH	set	0x189
-   423  0189                     ; #config settings
-   424                           global __CFG_FOSC$HS
-   425                           __CFG_FOSC$HS equ 0x0
-   426  0000                     global __CFG_WDTE$OFF
-   427                           __CFG_WDTE$OFF equ 0x0
-   428  0000                     	file	"/tmp/xcXRBC3yq"
-   429                           	line	#
-   430                           psect cinit,class=CODE,delta=2
-   431                           global start_initialization
-   432                           start_initialization:
-   433  07FC                     
-   434                           global __initialization
-   435                           __initialization:
-   436  07FC                     psect cinit,class=CODE,delta=2,merge=1
-   437                           global end_of_initialization,__end_of__initialization
-   438                           
-   439                           ;End of C runtime variable initialization code
-   440                           
-   441                           end_of_initialization:
-   442  07FC                     __end_of__initialization:
-   443  07FC                     clrf status
-   444  07FC  0183               ljmp _main	;jump to C main() function
-   445  07FD  120A  118A  2F17   psect	cstackCOMMON,class=COMMON,space=1,noexec
-   446                           global __pcstackCOMMON
-   447                           __pcstackCOMMON:
-   448  0070                     ?_sound:	; 1 bytes @ 0x0
-   449  0070                     ?_main:	; 1 bytes @ 0x0
-   450  0070                     	global	sound@numTMR0
-   451                           sound@numTMR0:	; 2 bytes @ 0x0
-   452  0070                     	ds	2
-   453  0070                     	global	sound@numComplementoTMR0
-   454                           sound@numComplementoTMR0:	; 2 bytes @ 0x2
-   455  0072                     	ds	2
-   456  0072                     ??_sound:	; 1 bytes @ 0x4
-   457  0074                     	ds	1
-   458  0074                     	global	sound@i
-   459                           sound@i:	; 2 bytes @ 0x5
-   460  0075                     	ds	2
-   461  0075                     	global	sound@j
-   462                           sound@j:	; 2 bytes @ 0x7
-   463  0077                     	ds	2
-   464  0077                     ??_main:	; 1 bytes @ 0x9
-   465  0079                     	ds	2
-   466  0079                     ;!
-   467                           ;!Data Sizes:
-   468                           ;!    Strings     0
-   469                           ;!    Constant    0
-   470                           ;!    Data        0
-   471                           ;!    BSS         0
-   472                           ;!    Persistent  0
-   473                           ;!    Stack       0
+   399  018D                     	FNROOT	_main
+   400                           	global	_PORTDbits
+   401                           _PORTDbits	set	0x8
+   402  0008                     	global	_INTCONbits
+   403                           _INTCONbits	set	0xB
+   404  000B                     	global	_PORTCbits
+   405                           _PORTCbits	set	0x7
+   406  0007                     	global	_TMR0
+   407                           _TMR0	set	0x1
+   408  0001                     	global	_PORTBbits
+   409                           _PORTBbits	set	0x6
+   410  0006                     	global	_WPUB
+   411                           _WPUB	set	0x95
+   412  0095                     	global	_TRISC
+   413                           _TRISC	set	0x87
+   414  0087                     	global	_OPTION_REGbits
+   415                           _OPTION_REGbits	set	0x81
+   416  0081                     	global	_TRISD
+   417                           _TRISD	set	0x88
+   418  0088                     	global	_TRISB
+   419                           _TRISB	set	0x86
+   420  0086                     	global	_ANSELHbits
+   421                           _ANSELHbits	set	0x189
+   422  0189                     ; #config settings
+   423                           global __CFG_FOSC$XT
+   424                           __CFG_FOSC$XT equ 0x0
+   425  0000                     global __CFG_WDTE$OFF
+   426                           __CFG_WDTE$OFF equ 0x0
+   427  0000                     	file	"/tmp/xcXAUJukN"
+   428                           	line	#
+   429                           psect cinit,class=CODE,delta=2
+   430                           global start_initialization
+   431                           start_initialization:
+   432  07FC                     
+   433                           global __initialization
+   434                           __initialization:
+   435  07FC                     psect cinit,class=CODE,delta=2,merge=1
+   436                           global end_of_initialization,__end_of__initialization
+   437                           
+   438                           ;End of C runtime variable initialization code
+   439                           
+   440                           end_of_initialization:
+   441  07FC                     __end_of__initialization:
+   442  07FC                     clrf status
+   443  07FC  0183               ljmp _main	;jump to C main() function
+   444  07FD  120A  118A  2D02   psect	cstackCOMMON,class=COMMON,space=1,noexec
+   445                           global __pcstackCOMMON
+   446                           __pcstackCOMMON:
+   447  0070                     ?_main:	; 1 bytes @ 0x0
+   448  0070                     ??_main:	; 1 bytes @ 0x0
+   449  0070                     	global	main@j
+   450                           main@j:	; 2 bytes @ 0x0
+   451  0070                     	ds	2
+   452  0070                     	global	main@i
+   453                           main@i:	; 2 bytes @ 0x2
+   454  0072                     	ds	2
+   455  0072                     ;!
+   456                           ;!Data Sizes:
+   457                           ;!    Strings     0
+   458                           ;!    Constant    0
+   459                           ;!    Data        0
+   460                           ;!    BSS         0
+   461                           ;!    Persistent  0
+   462                           ;!    Stack       0
+   463                           ;!
+   464                           ;!Auto Spaces:
+   465                           ;!    Space          Size  Autos    Used
+   466                           ;!    COMMON           14      4       4
+   467                           ;!    BANK0            80      0       0
+   468                           ;!    BANK1            80      0       0
+   469                           ;!    BANK3            96      0       0
+   470                           ;!    BANK2            96      0       0
+   471                           
+   472                           ;!
+   473                           ;!Pointer List with Targets:
    474                           ;!
-   475                           ;!Auto Spaces:
-   476                           ;!    Space          Size  Autos    Used
-   477                           ;!    COMMON           14     11      11
-   478                           ;!    BANK0            80      0       0
-   479                           ;!    BANK1            80      0       0
-   480                           ;!    BANK3            96      0       0
-   481                           ;!    BANK2            96      0       0
-   482                           
-   483                           ;!
-   484                           ;!Pointer List with Targets:
-   485                           ;!
-   486                           ;!    None.
-   487                           
-   488                           
-   489                           ;!
-   490                           ;!Critical Paths under _main in COMMON
-   491                           ;!
-   492                           ;!    _main->_sound
-   493                           ;!
-   494                           ;!Critical Paths under _main in BANK0
-   495                           ;!
-   496                           ;!    None.
-   497                           ;!
-   498                           ;!Critical Paths under _main in BANK1
-   499                           ;!
-   500                           ;!    None.
-   501                           ;!
-   502                           ;!Critical Paths under _main in BANK3
+   475                           ;!    None.
+   476                           
+   477                           
+   478                           ;!
+   479                           ;!Critical Paths under _main in COMMON
+   480                           ;!
+   481                           ;!    None.
+   482                           ;!
+   483                           ;!Critical Paths under _main in BANK0
+   484                           ;!
+   485                           ;!    None.
+   486                           ;!
+   487                           ;!Critical Paths under _main in BANK1
+   488                           ;!
+   489                           ;!    None.
+   490                           ;!
+   491                           ;!Critical Paths under _main in BANK3
+   492                           ;!
+   493                           ;!    None.
+   494                           ;!
+   495                           ;!Critical Paths under _main in BANK2
+   496                           ;!
+   497                           ;!    None.
+   498                           
+   499 ;;
+   500 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   501 ;;
+   502                           
    503                           ;!
-   504                           ;!    None.
+   504                           ;!Call Graph Tables:
    505                           ;!
-   506                           ;!Critical Paths under _main in BANK2
-   507                           ;!
-   508                           ;!    None.
-   509                           
-   510 ;;
-   511 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
-   512 ;;
-   513                           
+   506                           ;! ---------------------------------------------------------------------------------
+   507                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   508                           ;! ---------------------------------------------------------------------------------
+   509                           ;! (0) _main                                                 4     4      0     480
+   510                           ;!                                              0 COMMON     4     4      0
+   511                           ;! ---------------------------------------------------------------------------------
+   512                           ;! Estimated maximum stack depth 0
+   513                           ;! ---------------------------------------------------------------------------------
    514                           ;!
-   515                           ;!Call Graph Tables:
+   515                           ;! Call Graph Graphs:
    516                           ;!
-   517                           ;! ---------------------------------------------------------------------------------
-   518                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
-   519                           ;! ---------------------------------------------------------------------------------
-   520                           ;! (0) _main                                                 2     2      0    1808
-   521                           ;!                                              9 COMMON     2     2      0
-   522                           ;!                              _sound
-   523                           ;! ---------------------------------------------------------------------------------
-   524                           ;! (1) _sound                                                9     5      4    1808
-   525                           ;!                                              0 COMMON     9     5      4
-   526                           ;! ---------------------------------------------------------------------------------
-   527                           ;! Estimated maximum stack depth 1
-   528                           ;! ---------------------------------------------------------------------------------
-   529                           ;!
-   530                           ;! Call Graph Graphs:
-   531                           ;!
-   532                           ;! _main (ROOT)
-   533                           ;!   _sound
-   534                           ;!
-   535                           
-   536                           ;! Address spaces:
-   537                           
-   538                           ;!Name               Size   Autos  Total    Cost      Usage
-   539                           ;!BITCOMMON            E      0       0       0        0.0%
-   540                           ;!EEDATA             100      0       0       0        0.0%
-   541                           ;!NULL                 0      0       0       0        0.0%
-   542                           ;!CODE                 0      0       0       0        0.0%
-   543                           ;!COMMON               E      B       B       1       78.6%
-   544                           ;!BITSFR0              0      0       0       1        0.0%
-   545                           ;!SFR0                 0      0       0       1        0.0%
-   546                           ;!BITSFR1              0      0       0       2        0.0%
-   547                           ;!SFR1                 0      0       0       2        0.0%
-   548                           ;!STACK                0      0       0       2        0.0%
-   549                           ;!ABS                  0      0       0       3        0.0%
-   550                           ;!BITBANK0            50      0       0       4        0.0%
-   551                           ;!BITSFR3              0      0       0       4        0.0%
-   552                           ;!SFR3                 0      0       0       4        0.0%
-   553                           ;!BANK0               50      0       0       5        0.0%
-   554                           ;!BITSFR2              0      0       0       5        0.0%
-   555                           ;!SFR2                 0      0       0       5        0.0%
-   556                           ;!BITBANK1            50      0       0       6        0.0%
-   557                           ;!BANK1               50      0       0       7        0.0%
-   558                           ;!BITBANK3            60      0       0       8        0.0%
-   559                           ;!BANK3               60      0       0       9        0.0%
-   560                           ;!BITBANK2            60      0       0      10        0.0%
-   561                           ;!BANK2               60      0       0      11        0.0%
-   562                           ;!DATA                 0      0       0      12        0.0%
-   563                           
-   564                           	global	_main
-   565                           
-   566 ;; *************** function _main *****************
-   567 ;; Defined at:
-   568 ;;		line 29 in file "pianito.c"
-   569 ;; Parameters:    Size  Location     Type
-   570 ;;		None
-   571 ;; Auto vars:     Size  Location     Type
-   572 ;;		None
-   573 ;; Return value:  Size  Location     Type
-   574 ;;                  1    wreg      void 
-   575 ;; Registers used:
-   576 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   577 ;; Tracked objects:
-   578 ;;		On entry : B00/0
-   579 ;;		On exit  : 0/0
-   580 ;;		Unchanged: 0/0
-   581 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   582 ;;      Params:         0       0       0       0       0
-   583 ;;      Locals:         0       0       0       0       0
-   584 ;;      Temps:          2       0       0       0       0
-   585 ;;      Totals:         2       0       0       0       0
-   586 ;;Total ram usage:        2 bytes
-   587 ;; Hardware stack levels required when called:    1
-   588 ;; This function calls:
-   589 ;;		_sound
-   590 ;; This function is called by:
-   591 ;;		Startup code after reset
-   592 ;; This function uses a non-reentrant model
-   593 ;;
-   594                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
-   595                           	file	"pianito.c"
-   596                           	line	29
-   597                           global __pmaintext
-   598                           __pmaintext:	;psect for function _main
-   599  0717                     psect	maintext
-   600                           	file	"pianito.c"
-   601                           	line	29
-   602                           	global	__size_of_main
-   603                           	__size_of_main	equ	__end_of_main-_main
-   604  00E5                     	
-   605                           _main:	
-   606  0717                     ;incstack = 0
-   607                           	opt	stack 7
-   608                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   609                           	line	32
-   610                           	
-   611                           l785:	
-   612  0717                     ;pianito.c: 32:                 sound(435, 112);
-   613                           	movlw	low(02h)
-   614  0717  3002               	bsf	status, 5	;RP0=1, select bank3
-   615  0718  1683               	bsf	status, 6	;RP1=1, select bank3
-   616  0719  1703               	movwf	(393)^0180h	;volatile
-   617  071A  0089               	line	34
-   618                           ;pianito.c: 34:             case 1:
-   619                           	movlw	low(0FFh)
-   620  071B  30FF               	bsf	status, 5	;RP0=1, select bank1
-   621  071C  1683               	bcf	status, 6	;RP1=0, select bank1
-   622  071D  1303               	movwf	(134)^080h	;volatile
-   623  071E  0086               	line	35
-   624                           ;pianito.c: 35:                 sound(385, 93);
-   625                           	movlw	low(0FFh)
-   626  071F  30FF               	movwf	(136)^080h	;volatile
-   627  0720  0088               	line	37
-   628                           	
-   629                           l787:	
-   630  0721                     ;pianito.c: 37:             case 0:
-   631                           	bcf	(129)^080h,7	;volatile
-   632  0721  1381               	line	39
-   633                           ;pianito.c: 39:                 break;
-   634                           	movlw	low(0F7h)
-   635  0722  30F7               	movwf	(135)^080h	;volatile
-   636  0723  0087               	line	40
-   637                           ;pianito.c: 40:             default:
-   638                           	movlw	low(0FFh)
-   639  0724  30FF               	movwf	(149)^080h	;volatile
-   640  0725  0095               	goto	l789
-   641  0726  2F27               	line	42
-   642                           ;pianito.c: 42:         }
-   643                           	
-   644                           l29:	
-   645  0727                     	line	46
-   646                           	
-   647                           l789:	
-   648  0727                     ;pianito.c: 46:                 break;
-   649                           	bsf	status, 5	;RP0=1, select bank1
-   650  0727  1683               	bcf	status, 6	;RP1=0, select bank1
-   651  0728  1303               	bcf	(129)^080h,5	;volatile
-   652  0729  1281               	line	47
+   517                           ;! _main (ROOT)
+   518                           ;!
+   519                           
+   520                           ;! Address spaces:
+   521                           
+   522                           ;!Name               Size   Autos  Total    Cost      Usage
+   523                           ;!BITCOMMON            E      0       0       0        0.0%
+   524                           ;!EEDATA             100      0       0       0        0.0%
+   525                           ;!NULL                 0      0       0       0        0.0%
+   526                           ;!CODE                 0      0       0       0        0.0%
+   527                           ;!COMMON               E      4       4       1       28.6%
+   528                           ;!BITSFR0              0      0       0       1        0.0%
+   529                           ;!SFR0                 0      0       0       1        0.0%
+   530                           ;!BITSFR1              0      0       0       2        0.0%
+   531                           ;!SFR1                 0      0       0       2        0.0%
+   532                           ;!STACK                0      0       0       2        0.0%
+   533                           ;!ABS                  0      0       0       3        0.0%
+   534                           ;!BITBANK0            50      0       0       4        0.0%
+   535                           ;!BITSFR3              0      0       0       4        0.0%
+   536                           ;!SFR3                 0      0       0       4        0.0%
+   537                           ;!BANK0               50      0       0       5        0.0%
+   538                           ;!BITSFR2              0      0       0       5        0.0%
+   539                           ;!SFR2                 0      0       0       5        0.0%
+   540                           ;!BITBANK1            50      0       0       6        0.0%
+   541                           ;!BANK1               50      0       0       7        0.0%
+   542                           ;!BITBANK3            60      0       0       8        0.0%
+   543                           ;!BANK3               60      0       0       9        0.0%
+   544                           ;!BITBANK2            60      0       0      10        0.0%
+   545                           ;!BANK2               60      0       0      11        0.0%
+   546                           ;!DATA                 0      0       0      12        0.0%
+   547                           
+   548                           	global	_main
+   549                           
+   550 ;; *************** function _main *****************
+   551 ;; Defined at:
+   552 ;;		line 29 in file "pianito.c"
+   553 ;; Parameters:    Size  Location     Type
+   554 ;;		None
+   555 ;; Auto vars:     Size  Location     Type
+   556 ;;  i               2    2[COMMON] int 
+   557 ;;  j               2    0[COMMON] int 
+   558 ;; Return value:  Size  Location     Type
+   559 ;;                  1    wreg      void 
+   560 ;; Registers used:
+   561 ;;		wreg, status,2, status,0, btemp+1
+   562 ;; Tracked objects:
+   563 ;;		On entry : B00/0
+   564 ;;		On exit  : 0/0
+   565 ;;		Unchanged: 0/0
+   566 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   567 ;;      Params:         0       0       0       0       0
+   568 ;;      Locals:         4       0       0       0       0
+   569 ;;      Temps:          0       0       0       0       0
+   570 ;;      Totals:         4       0       0       0       0
+   571 ;;Total ram usage:        4 bytes
+   572 ;; This function calls:
+   573 ;;		Nothing
+   574 ;; This function is called by:
+   575 ;;		Startup code after reset
+   576 ;; This function uses a non-reentrant model
+   577 ;;
+   578                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
+   579                           	file	"pianito.c"
+   580                           	line	29
+   581                           global __pmaintext
+   582                           __pmaintext:	;psect for function _main
+   583  0502                     psect	maintext
+   584                           	file	"pianito.c"
+   585                           	line	29
+   586                           	global	__size_of_main
+   587                           	__size_of_main	equ	__end_of_main-_main
+   588  02FA                     	
+   589                           _main:	
+   590  0502                     ;incstack = 0
+   591                           	opt	stack 8
+   592                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1]
+   593                           	line	30
+   594                           	
+   595                           l703:	
+   596  0502                     	clrf	(main@j)
+   597  0502  01F0               	clrf	(main@j+1)
+   598  0503  01F1               	clrf	(main@i)
+   599  0504  01F2               	clrf	(main@i+1)
+   600  0505  01F3               	line	34
+   601                           	
+   602                           l705:	
+   603  0506                     	bsf	status, 5	;RP0=1, select bank3
+   604  0506  1683               	bsf	status, 6	;RP1=1, select bank3
+   605  0507  1703               	bcf	(393)^0180h,5	;volatile
+   606  0508  1289               	line	35
+   607                           	
+   608                           l707:	
+   609  0509                     	bcf	(393)^0180h,4	;volatile
+   610  0509  1209               	line	36
+   611                           	
+   612                           l709:	
+   613  050A                     	bcf	(393)^0180h,3	;volatile
+   614  050A  1189               	line	37
+   615                           	
+   616                           l711:	
+   617  050B                     	bcf	(393)^0180h,2	;volatile
+   618  050B  1109               	line	38
+   619                           	
+   620                           l713:	
+   621  050C                     	bcf	(393)^0180h,0	;volatile
+   622  050C  1009               	line	40
+   623                           	
+   624                           l715:	
+   625  050D                     	movlw	low(0FFh)
+   626  050D  30FF               	bsf	status, 5	;RP0=1, select bank1
+   627  050E  1683               	bcf	status, 6	;RP1=0, select bank1
+   628  050F  1303               	movwf	(134)^080h	;volatile
+   629  0510  0086               	line	41
+   630                           	
+   631                           l717:	
+   632  0511                     	movlw	low(0FFh)
+   633  0511  30FF               	movwf	(136)^080h	;volatile
+   634  0512  0088               	line	43
+   635                           	
+   636                           l719:	
+   637  0513                     	bcf	(129)^080h,7	;volatile
+   638  0513  1381               	line	45
+   639                           	
+   640                           l721:	
+   641  0514                     	movlw	low(0F7h)
+   642  0514  30F7               	movwf	(135)^080h	;volatile
+   643  0515  0087               	line	46
+   644                           	
+   645                           l723:	
+   646  0516                     	movlw	low(0FFh)
+   647  0516  30FF               	movwf	(149)^080h	;volatile
+   648  0517  0095               	goto	l725
+   649  0518  2D19               	line	48
+   650                           	
+   651                           l27:	
+   652  0519                     	line	52
    653                           	
-   654                           l791:	
-   655  072A                     ;pianito.c: 47:             case 32:
-   656                           	bsf	(129)^080h,4	;volatile
-   657  072A  1601               	line	48
-   658                           	
-   659                           l793:	
-   660  072B                     ;pianito.c: 48:                 sound(294, 43);
-   661                           	bcf	(129)^080h,3	;volatile
-   662  072B  1181               	line	51
-   663                           ;pianito.c: 51:                 sound(263, 18);
-   664                           	goto	l807
-   665  072C  2F7F               	line	52
-   666                           ;pianito.c: 52:                 break;
+   654                           l725:	
+   655  0519                     	bsf	status, 5	;RP0=1, select bank1
+   656  0519  1683               	bcf	status, 6	;RP1=0, select bank1
+   657  051A  1303               	bcf	(129)^080h,5	;volatile
+   658  051B  1281               	line	53
+   659                           	
+   660                           l727:	
+   661  051C                     	bsf	(129)^080h,4	;volatile
+   662  051C  1601               	line	54
+   663                           	
+   664                           l729:	
+   665  051D                     	bcf	(129)^080h,3	;volatile
+   666  051D  1181               	line	89
    667                           	
-   668                           l31:	
-   669  072D                     	line	53
-   670                           	
-   671                           l795:	
-   672  072D                     ;pianito.c: 53:             case 1:
-   673                           	movlw	0Eh
-   674  072D  300E               	movwf	(sound@numTMR0)
-   675  072E  00F0               	movlw	02h
-   676  072F  3002               	movwf	((sound@numTMR0))+1
-   677  0730  00F1               	movlw	012h
-   678  0731  3012               	movwf	(sound@numComplementoTMR0)
-   679  0732  00F2               	movlw	0
-   680  0733  3000               	movwf	((sound@numComplementoTMR0))+1
-   681  0734  00F3               	fcall	_sound
-   682  0735  120A  118A  26CE  120A  118A  	line	54
-   683                           ;pianito.c: 54:                 sound(385, 93);
-   684                           	goto	l819
-   685  073A  2FDF               	line	55
-   686                           ;pianito.c: 55:                 break;
-   687                           	
-   688                           l33:	
-   689  073B                     	line	56
-   690                           	
-   691                           l797:	
-   692  073B                     ;pianito.c: 56:             default:
-   693                           	movlw	0F4h
-   694  073B  30F4               	movwf	(sound@numTMR0)
-   695  073C  00F0               	movlw	01h
-   696  073D  3001               	movwf	((sound@numTMR0))+1
-   697  073E  00F1               	movlw	082h
-   698  073F  3082               	movwf	(sound@numComplementoTMR0)
-   699  0740  00F2               	movlw	0
-   700  0741  3000               	movwf	((sound@numComplementoTMR0))+1
-   701  0742  00F3               	fcall	_sound
-   702  0743  120A  118A  26CE  120A  118A  	line	57
-   703                           ;pianito.c: 57:                 sound(0, 0);
-   704                           	goto	l819
-   705  0748  2FDF               	line	58
-   706                           ;pianito.c: 58:         }
-   707                           	
-   708                           l34:	
-   709  0749                     	line	59
-   710                           	
-   711                           l799:	
-   712  0749                     ;pianito.c: 59:     }
-   713                           	movlw	0B3h
-   714  0749  30B3               	movwf	(sound@numTMR0)
-   715  074A  00F0               	movlw	01h
-   716  074B  3001               	movwf	((sound@numTMR0))+1
-   717  074C  00F1               	movlw	070h
-   718  074D  3070               	movwf	(sound@numComplementoTMR0)
-   719  074E  00F2               	movlw	0
-   720  074F  3000               	movwf	((sound@numComplementoTMR0))+1
-   721  0750  00F3               	fcall	_sound
-   722  0751  120A  118A  26CE  120A  118A  	line	60
-   723                           ;pianito.c: 60: }
-   724                           	goto	l819
-   725  0756  2FDF               	line	61
-   726                           ;pianito.c: 61: 
-   727                           	
-   728                           l35:	
-   729  0757                     	line	62
-   730                           	
-   731                           l801:	
-   732  0757                     ;pianito.c: 62: void sound(int numTMR0, int numComplementoTMR0) {
-   733                           	movlw	081h
-   734  0757  3081               	movwf	(sound@numTMR0)
-   735  0758  00F0               	movlw	01h
-   736  0759  3001               	movwf	((sound@numTMR0))+1
-   737  075A  00F1               	movlw	05Dh
-   738  075B  305D               	movwf	(sound@numComplementoTMR0)
-   739  075C  00F2               	movlw	0
-   740  075D  3000               	movwf	((sound@numComplementoTMR0))+1
-   741  075E  00F3               	fcall	_sound
-   742  075F  120A  118A  26CE  120A  118A  	line	63
-   743                           ;pianito.c: 63:     int i, j;
-   744                           	goto	l819
-   745  0764  2FDF               	line	64
-   746                           ;pianito.c: 64: 
-   747                           	
-   748                           l36:	
-   749  0765                     	line	65
-   750                           	
-   751                           l803:	
-   752  0765                     ;pianito.c: 65:     OPTION_REGbits.PS2 = 0;
-   753                           	movlw	059h
-   754  0765  3059               	movwf	(sound@numTMR0)
-   755  0766  00F0               	movlw	01h
-   756  0767  3001               	movwf	((sound@numTMR0))+1
-   757  0768  00F1               	movlw	04Ah
-   758  0769  304A               	movwf	(sound@numComplementoTMR0)
-   759  076A  00F2               	movlw	0
-   760  076B  3000               	movwf	((sound@numComplementoTMR0))+1
-   761  076C  00F3               	fcall	_sound
-   762  076D  120A  118A  26CE  120A  118A  	line	66
-   763                           ;pianito.c: 66:     OPTION_REGbits.PS1 = 1;
-   764                           	goto	l819
-   765  0772  2FDF               	line	67
-   766                           ;pianito.c: 67:     OPTION_REGbits.PS0 = 0;
+   668                           l731:	
+   669  051E                     ;pianito.c: 89:         if (PORTBbits.RB5 == 0) {
+   670                           	bcf	status, 5	;RP0=0, select bank0
+   671  051E  1283               	bcf	status, 6	;RP1=0, select bank0
+   672  051F  1303               	btfsc	(6),5	;volatile
+   673  0520  1A86               	goto	u11
+   674  0521  2D23               	goto	u10
+   675  0522  2D24               u11:
+   676  0523                     	goto	l28
+   677  0523  2D7A               u10:
+   678  0524                     	line	92
+   679                           	
+   680                           l733:	
+   681  0524                     ;pianito.c: 92:             OPTION_REGbits.PS2 = 0;
+   682                           	bsf	status, 5	;RP0=1, select bank1
+   683  0524  1683               	bcf	status, 6	;RP1=0, select bank1
+   684  0525  1303               	bcf	(129)^080h,2	;volatile
+   685  0526  1101               	line	93
+   686                           ;pianito.c: 93:             OPTION_REGbits.PS1 = 1;
+   687                           	bsf	(129)^080h,1	;volatile
+   688  0527  1481               	line	94
+   689                           ;pianito.c: 94:             OPTION_REGbits.PS0 = 0;
+   690                           	bcf	(129)^080h,0	;volatile
+   691  0528  1001               	line	96
+   692                           	
+   693                           l735:	
+   694  0529                     ;pianito.c: 96:             TMR0 = 18;
+   695                           	movlw	low(012h)
+   696  0529  3012               	bcf	status, 5	;RP0=0, select bank0
+   697  052A  1283               	bcf	status, 6	;RP1=0, select bank0
+   698  052B  1303               	movwf	(1)	;volatile
+   699  052C  0081               	line	98
+   700                           	
+   701                           l737:	
+   702  052D                     ;pianito.c: 98:             for (i = 0; i < 526; i++) {
+   703                           	clrf	(main@i)
+   704  052D  01F2               	clrf	(main@i+1)
+   705  052E  01F3               	
+   706                           l739:	
+   707  052F                     	movf	(main@i+1),w
+   708  052F  0873               	xorlw	80h
+   709  0530  3A80               	movwf	btemp+1
+   710  0531  00FF               	movlw	(02h)^80h
+   711  0532  3082               	subwf	btemp+1,w
+   712  0533  027F               	skipz
+   713  0534  1D03               	goto	u25
+   714  0535  2D38               	movlw	0Eh
+   715  0536  300E               	subwf	(main@i),w
+   716  0537  0272               u25:
+   717  0538                     
+   718                           	skipc
+   719  0538  1C03               	goto	u21
+   720  0539  2D3B               	goto	u20
+   721  053A  2D3C               u21:
+   722  053B                     	goto	l31
+   723  053B  2D4D               u20:
+   724  053C                     	goto	l725
+   725  053C  2D19               	
+   726                           l741:	
+   727  053D                     	goto	l725
+   728  053D  2D19               	
+   729                           l29:	
+   730  053E                     	line	99
+   731                           ;pianito.c: 99:                 while (INTCONbits.T0IF != 1) {
+   732                           	goto	l31
+   733  053E  2D4D               	
+   734                           l32:	
+   735  053F                     	line	100
+   736                           	
+   737                           l743:	
+   738  053F                     ;pianito.c: 100:                     if (j == 0) {
+   739                           	movf	((main@j)),w
+   740  053F  0870               iorwf	((main@j+1)),w
+   741  0540  0471               	btfss	status,2
+   742  0541  1D03               	goto	u31
+   743  0542  2D44               	goto	u30
+   744  0543  2D45               u31:
+   745  0544                     	goto	l33
+   746  0544  2D49               u30:
+   747  0545                     	line	101
+   748                           	
+   749                           l745:	
+   750  0545                     ;pianito.c: 101:                         PORTCbits.RC3 = 1;
+   751                           	bcf	status, 5	;RP0=0, select bank0
+   752  0545  1283               	bcf	status, 6	;RP1=0, select bank0
+   753  0546  1303               	bsf	(7),3	;volatile
+   754  0547  1587               	line	102
+   755                           ;pianito.c: 102:                     } else {
+   756                           	goto	l31
+   757  0548  2D4D               	
+   758                           l33:	
+   759  0549                     	line	103
+   760                           ;pianito.c: 103:                         PORTCbits.RC3 = 0;
+   761                           	bcf	status, 5	;RP0=0, select bank0
+   762  0549  1283               	bcf	status, 6	;RP1=0, select bank0
+   763  054A  1303               	bcf	(7),3	;volatile
+   764  054B  1187               	goto	l31
+   765  054C  2D4D               	line	104
+   766                           ;pianito.c: 104:                     }
    767                           	
-   768                           l37:	
-   769  0773                     	line	68
-   770                           	
-   771                           l805:	
-   772  0773                     ;pianito.c: 68: 
-   773                           	movlw	0
-   774  0773  3000               	movwf	(sound@numTMR0)
-   775  0774  00F0               	movwf	(sound@numTMR0+1)
-   776  0775  00F1               	movlw	0
-   777  0776  3000               	movwf	(sound@numComplementoTMR0)
-   778  0777  00F2               	movwf	(sound@numComplementoTMR0+1)
-   779  0778  00F3               	fcall	_sound
-   780  0779  120A  118A  26CE  120A  118A  	line	69
-   781                           ;pianito.c: 69:     TMR0 = numComplementoTMR0;
-   782                           	goto	l819
-   783  077E  2FDF               	
-   784                           l30:	
-   785  077F                     	
-   786                           l807:	
-   787  077F                     	bcf	status, 5	;RP0=0, select bank0
-   788  077F  1283               	bcf	status, 6	;RP1=0, select bank0
-   789  0780  1303               	movf	(6),w	;volatile
-   790  0781  0806               	movwf	(??_main+0)+0
-   791  0782  00F9               	clrf	(??_main+0)+0+1
-   792  0783  01FA               	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-s
-                                 witches
-   793                           ; Switch size 1, requested type "space"
-   794                           ; Number of cases is 1, Range of values is 0 to 0
-   795                           ; switch strategies available:
-   796                           ; Name         Instructions Cycles
-   797                           ; simple_byte            4     3 (average)
-   798                           ; direct_byte           11     8 (fixed)
-   799                           ; jumptable            260     6 (fixed)
-   800                           ;	Chosen strategy is simple_byte
-   801                           
-   802                           	movf 1+(??_main+0)+0,w
-   803  0784  087A               	opt asmopt_push
-   804                           	opt asmopt_off
-   805                           	xorlw	0^0	; case 0
-   806  0785  3A00               	skipnz
-   807  0786  1903               	goto	l893
-   808  0787  2F89               	goto	l805
-   809  0788  2F73               	opt asmopt_pop
+   768                           l34:	
+   769  054D                     	line	105
+   770                           ;pianito.c: 105:                 }
+   771                           	
+   772                           l31:	
+   773  054D                     	line	99
+   774                           ;pianito.c: 99:                 while (INTCONbits.T0IF != 1) {
+   775                           	btfss	(11),2	;volatile
+   776  054D  1D0B               	goto	u41
+   777  054E  2D50               	goto	u40
+   778  054F  2D51               u41:
+   779  0550                     	goto	l743
+   780  0550  2D3F               u40:
+   781  0551                     	goto	l747
+   782  0551  2D52               	
+   783                           l35:	
+   784  0552                     	line	107
+   785                           	
+   786                           l747:	
+   787  0552                     ;pianito.c: 107:                 TMR0 = 18;
+   788                           	movlw	low(012h)
+   789  0552  3012               	bcf	status, 5	;RP0=0, select bank0
+   790  0553  1283               	bcf	status, 6	;RP1=0, select bank0
+   791  0554  1303               	movwf	(1)	;volatile
+   792  0555  0081               	line	108
+   793                           	
+   794                           l749:	
+   795  0556                     ;pianito.c: 108:                 INTCONbits.T0IF = 0;
+   796                           	bcf	(11),2	;volatile
+   797  0556  110B               	line	110
+   798                           	
+   799                           l751:	
+   800  0557                     ;pianito.c: 110:                 if (j == 0) {
+   801                           	movf	((main@j)),w
+   802  0557  0870               iorwf	((main@j+1)),w
+   803  0558  0471               	btfss	status,2
+   804  0559  1D03               	goto	u51
+   805  055A  2D5C               	goto	u50
+   806  055B  2D5D               u51:
+   807  055C                     	goto	l755
+   808  055C  2D62               u50:
+   809  055D                     	line	111
    810                           	
-   811                           l893:	
-   812  0789                     ; Switch size 1, requested type "space"
-   813                           ; Number of cases is 5, Range of values is 0 to 16
-   814                           ; switch strategies available:
-   815                           ; Name         Instructions Cycles
-   816                           ; simple_byte           16     9 (average)
-   817                           ; direct_byte           59     8 (fixed)
-   818                           ; jumptable            260     6 (fixed)
-   819                           ;	Chosen strategy is simple_byte
-   820                           
-   821                           	movf 0+(??_main+0)+0,w
-   822  0789  0879               	opt asmopt_push
-   823                           	opt asmopt_off
-   824                           	xorlw	0^0	; case 0
-   825  078A  3A00               	skipnz
-   826  078B  1903               	goto	l803
-   827  078C  2F65               	xorlw	1^0	; case 1
-   828  078D  3A01               	skipnz
-   829  078E  1903               	goto	l801
-   830  078F  2F57               	xorlw	2^1	; case 2
-   831  0790  3A03               	skipnz
-   832  0791  1903               	goto	l799
-   833  0792  2F49               	xorlw	8^2	; case 8
-   834  0793  3A0A               	skipnz
-   835  0794  1903               	goto	l797
-   836  0795  2F3B               	xorlw	16^8	; case 16
-   837  0796  3A18               	skipnz
-   838  0797  1903               	goto	l795
-   839  0798  2F2D               	goto	l805
-   840  0799  2F73               	opt asmopt_pop
-   841                           
-   842                           	
-   843                           l32:	
-   844  079A                     	line	70
-   845                           ;pianito.c: 70: 
-   846                           	goto	l819
-   847  079A  2FDF               	line	71
-   848                           ;pianito.c: 71:     for (i = 0; i < numTMR0; i++) {
-   849                           	
-   850                           l39:	
-   851  079B                     	line	72
-   852                           	
-   853                           l809:	
-   854  079B                     ;pianito.c: 72:         while (INTCONbits.T0IF != 1) {
-   855                           	movlw	04Dh
-   856  079B  304D               	movwf	(sound@numTMR0)
-   857  079C  00F0               	movlw	01h
-   858  079D  3001               	movwf	((sound@numTMR0))+1
-   859  079E  00F1               	movlw	0A2h
-   860  079F  30A2               	movwf	(sound@numComplementoTMR0)
-   861  07A0  00F2               	movlw	0
-   862  07A1  3000               	movwf	((sound@numComplementoTMR0))+1
-   863  07A2  00F3               	fcall	_sound
-   864  07A3  120A  118A  26CE  120A  118A  	line	73
-   865                           ;pianito.c: 73: 
-   866                           	goto	l789
-   867  07A8  2F27               	line	74
-   868                           ;pianito.c: 74:             if (j == 0)
-   869                           	
-   870                           l41:	
-   871  07A9                     	line	75
-   872                           	
-   873                           l811:	
-   874  07A9                     ;pianito.c: 75:                 PORTCbits.RC3 = 1;
-   875                           	movlw	026h
-   876  07A9  3026               	movwf	(sound@numTMR0)
-   877  07AA  00F0               	movlw	01h
-   878  07AB  3001               	movwf	((sound@numTMR0))+1
-   879  07AC  00F1               	movlw	02Bh
-   880  07AD  302B               	movwf	(sound@numComplementoTMR0)
-   881  07AE  00F2               	movlw	0
-   882  07AF  3000               	movwf	((sound@numComplementoTMR0))+1
-   883  07B0  00F3               	fcall	_sound
-   884  07B1  120A  118A  26CE  120A  118A  	line	76
-   885                           ;pianito.c: 76:             else
-   886                           	goto	l789
-   887  07B6  2F27               	line	77
-   888                           ;pianito.c: 77:                 PORTCbits.RC3 = 0;
-   889                           	
-   890                           l42:	
-   891  07B7                     	line	78
-   892                           	
-   893                           l813:	
-   894  07B7                     ;pianito.c: 78:         }
-   895                           	movlw	07h
-   896  07B7  3007               	movwf	(sound@numTMR0)
-   897  07B8  00F0               	movlw	01h
-   898  07B9  3001               	movwf	((sound@numTMR0))+1
-   899  07BA  00F1               	movlw	012h
-   900  07BB  3012               	movwf	(sound@numComplementoTMR0)
-   901  07BC  00F2               	movlw	0
-   902  07BD  3000               	movwf	((sound@numComplementoTMR0))+1
-   903  07BE  00F3               	fcall	_sound
-   904  07BF  120A  118A  26CE  120A  118A  	line	79
-   905                           ;pianito.c: 79:     }
-   906                           	goto	l789
-   907  07C4  2F27               	line	80
-   908                           ;pianito.c: 80: 
-   909                           	
-   910                           l43:	
-   911  07C5                     	line	81
-   912                           	
-   913                           l815:	
-   914  07C5                     ;pianito.c: 81:     TMR0 = numComplementoTMR0;
-   915                           	movlw	081h
-   916  07C5  3081               	movwf	(sound@numTMR0)
-   917  07C6  00F0               	movlw	01h
-   918  07C7  3001               	movwf	((sound@numTMR0))+1
-   919  07C8  00F1               	movlw	05Dh
-   920  07C9  305D               	movwf	(sound@numComplementoTMR0)
-   921  07CA  00F2               	movlw	0
-   922  07CB  3000               	movwf	((sound@numComplementoTMR0))+1
-   923  07CC  00F3               	fcall	_sound
-   924  07CD  120A  118A  26CE  120A  118A  	line	82
-   925                           ;pianito.c: 82:     INTCONbits.T0IF = 0;
-   926                           	goto	l789
-   927  07D2  2F27               	line	83
-   928                           ;pianito.c: 83: 
-   929                           	
-   930                           l44:	
-   931  07D3                     	line	84
-   932                           	
-   933                           l817:	
-   934  07D3                     ;pianito.c: 84: 
-   935                           	movlw	0
-   936  07D3  3000               	movwf	(sound@numTMR0)
-   937  07D4  00F0               	movwf	(sound@numTMR0+1)
-   938  07D5  00F1               	movlw	0
-   939  07D6  3000               	movwf	(sound@numComplementoTMR0)
-   940  07D7  00F2               	movwf	(sound@numComplementoTMR0+1)
-   941  07D8  00F3               	fcall	_sound
-   942  07D9  120A  118A  26CE  120A  118A  	line	85
-   943                           ;pianito.c: 85:     if (j == 0)
-   944                           	goto	l789
-   945  07DE  2F27               	
-   946                           l38:	
-   947  07DF                     	
-   948                           l819:	
-   949  07DF                     	bcf	status, 5	;RP0=0, select bank0
-   950  07DF  1283               	bcf	status, 6	;RP1=0, select bank0
-   951  07E0  1303               	movf	(8),w	;volatile
-   952  07E1  0808               	movwf	(??_main+0)+0
-   953  07E2  00F9               	clrf	(??_main+0)+0+1
-   954  07E3  01FA               	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-s
-                                 witches
-   955                           ; Switch size 1, requested type "space"
-   956                           ; Number of cases is 1, Range of values is 0 to 0
-   957                           ; switch strategies available:
-   958                           ; Name         Instructions Cycles
-   959                           ; simple_byte            4     3 (average)
-   960                           ; direct_byte           11     8 (fixed)
-   961                           ; jumptable            260     6 (fixed)
-   962                           ;	Chosen strategy is simple_byte
-   963                           
-   964                           	movf 1+(??_main+0)+0,w
-   965  07E4  087A               	opt asmopt_push
-   966                           	opt asmopt_off
-   967                           	xorlw	0^0	; case 0
-   968  07E5  3A00               	skipnz
-   969  07E6  1903               	goto	l895
-   970  07E7  2FE9               	goto	l817
-   971  07E8  2FD3               	opt asmopt_pop
-   972                           	
-   973                           l895:	
-   974  07E9                     ; Switch size 1, requested type "space"
-   975                           ; Number of cases is 4, Range of values is 1 to 64
-   976                           ; switch strategies available:
-   977                           ; Name         Instructions Cycles
-   978                           ; simple_byte           13     7 (average)
-   979                           ; direct_byte          203    11 (fixed)
-   980                           ; jumptable            263     9 (fixed)
-   981                           ;	Chosen strategy is simple_byte
-   982                           
-   983                           	movf 0+(??_main+0)+0,w
-   984  07E9  0879               	opt asmopt_push
-   985                           	opt asmopt_off
-   986                           	xorlw	1^0	; case 1
-   987  07EA  3A01               	skipnz
-   988  07EB  1903               	goto	l815
-   989  07EC  2FC5               	xorlw	2^1	; case 2
-   990  07ED  3A03               	skipnz
-   991  07EE  1903               	goto	l813
-   992  07EF  2FB7               	xorlw	32^2	; case 32
-   993  07F0  3A22               	skipnz
-   994  07F1  1903               	goto	l811
-   995  07F2  2FA9               	xorlw	64^32	; case 64
-   996  07F3  3A60               	skipnz
-   997  07F4  1903               	goto	l809
-   998  07F5  2F9B               	goto	l817
-   999  07F6  2FD3               	opt asmopt_pop
-  1000                           
-  1001                           	
-  1002                           l40:	
-  1003  07F7                     	goto	l789
-  1004  07F7  2F27               	line	86
-  1005                           ;pianito.c: 86:         j = 1;
-  1006                           	
-  1007                           l45:	
-  1008  07F8                     	goto	l789
-  1009  07F8  2F27               	
-  1010                           l46:	
-  1011  07F9                     	line	87
-  1012                           	
-  1013                           l47:	
-  1014  07F9                     	global	start
-  1015                           	ljmp	start
-  1016  07F9  120A  118A  2800   	opt stack 0
-  1017                           GLOBAL	__end_of_main
-  1018                           	__end_of_main:
-  1019  07FC                     	signat	_main,89
-  1020                           	global	_sound
-  1021                           
-  1022 ;; *************** function _sound *****************
-  1023 ;; Defined at:
-  1024 ;;		line 89 in file "pianito.c"
-  1025 ;; Parameters:    Size  Location     Type
-  1026 ;;  numTMR0         2    0[COMMON] int 
-  1027 ;;  numComplemen    2    2[COMMON] int 
-  1028 ;; Auto vars:     Size  Location     Type
-  1029 ;;  j               2    7[COMMON] int 
-  1030 ;;  i               2    5[COMMON] int 
-  1031 ;; Return value:  Size  Location     Type
-  1032 ;;                  1    wreg      void 
-  1033 ;; Registers used:
-  1034 ;;		wreg, status,2, status,0
-  1035 ;; Tracked objects:
-  1036 ;;		On entry : 0/0
-  1037 ;;		On exit  : 0/0
-  1038 ;;		Unchanged: 0/0
-  1039 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1040 ;;      Params:         4       0       0       0       0
-  1041 ;;      Locals:         4       0       0       0       0
-  1042 ;;      Temps:          1       0       0       0       0
-  1043 ;;      Totals:         9       0       0       0       0
-  1044 ;;Total ram usage:        9 bytes
-  1045 ;; Hardware stack levels used:    1
-  1046 ;; This function calls:
-  1047 ;;		Nothing
-  1048 ;; This function is called by:
-  1049 ;;		_main
-  1050 ;; This function uses a non-reentrant model
-  1051 ;;
-  1052                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
-  1053                           	line	89
-  1054                           global __ptext1
-  1055                           __ptext1:	;psect for function _sound
-  1056  06CE                     psect	text1
-  1057                           	file	"pianito.c"
-  1058                           	line	89
-  1059                           	global	__size_of_sound
-  1060                           	__size_of_sound	equ	__end_of_sound-_sound
-  1061  0049                     	
-  1062                           _sound:	
-  1063  06CE                     ;incstack = 0
-  1064                           	opt	stack 7
-  1065                           ; Regs used in _sound: [wreg+status,2+status,0]
-  1066                           	line	92
-  1067                           	
-  1068                           l763:	
-  1069  06CE                     	bsf	status, 5	;RP0=1, select bank1
-  1070  06CE  1683               	bcf	status, 6	;RP1=0, select bank1
-  1071  06CF  1303               	bcf	(129)^080h,2	;volatile
-  1072  06D0  1101               	line	93
-  1073                           	bsf	(129)^080h,1	;volatile
-  1074  06D1  1481               	line	94
-  1075                           	bcf	(129)^080h,0	;volatile
-  1076  06D2  1001               	line	96
-  1077                           	
-  1078                           l765:	
-  1079  06D3                     	movf	(sound@numComplementoTMR0),w
-  1080  06D3  0872               	bcf	status, 5	;RP0=0, select bank0
-  1081  06D4  1283               	bcf	status, 6	;RP1=0, select bank0
-  1082  06D5  1303               	movwf	(1)	;volatile
-  1083  06D6  0081               	line	98
-  1084                           	
-  1085                           l767:	
-  1086  06D7                     	clrf	(sound@i)
-  1087  06D7  01F5               	clrf	(sound@i+1)
-  1088  06D8  01F6               	goto	l50
-  1089  06D9  2EF4               	
-  1090                           l51:	
-  1091  06DA                     	line	99
-  1092                           	goto	l52
-  1093  06DA  2EE9               	
-  1094                           l53:	
-  1095  06DB                     	line	101
+   811                           l753:	
+   812  055D                     ;pianito.c: 111:                     j = 1;
+   813                           	movlw	01h
+   814  055D  3001               	movwf	(main@j)
+   815  055E  00F0               	movlw	0
+   816  055F  3000               	movwf	((main@j))+1
+   817  0560  00F1               	line	112
+   818                           ;pianito.c: 112:                 } else {
+   819                           	goto	l757
+   820  0561  2D65               	
+   821                           l36:	
+   822  0562                     	line	113
+   823                           	
+   824                           l755:	
+   825  0562                     ;pianito.c: 113:                     j = 0;
+   826                           	clrf	(main@j)
+   827  0562  01F0               	clrf	(main@j+1)
+   828  0563  01F1               	goto	l757
+   829  0564  2D65               	line	114
+   830                           ;pianito.c: 114:                 }
+   831                           	
+   832                           l37:	
+   833  0565                     	line	115
+   834                           	
+   835                           l757:	
+   836  0565                     ;pianito.c: 115:             }
+   837                           	movlw	01h
+   838  0565  3001               	addwf	(main@i),f
+   839  0566  07F2               	skipnc
+   840  0567  1803               	incf	(main@i+1),f
+   841  0568  0AF3               	movlw	0
+   842  0569  3000               	addwf	(main@i+1),f
+   843  056A  07F3               	
+   844                           l759:	
+   845  056B                     	movf	(main@i+1),w
+   846  056B  0873               	xorlw	80h
+   847  056C  3A80               	movwf	btemp+1
+   848  056D  00FF               	movlw	(02h)^80h
+   849  056E  3082               	subwf	btemp+1,w
+   850  056F  027F               	skipz
+   851  0570  1D03               	goto	u65
+   852  0571  2D74               	movlw	0Eh
+   853  0572  300E               	subwf	(main@i),w
+   854  0573  0272               u65:
+   855  0574                     
+   856                           	skipc
+   857  0574  1C03               	goto	u61
+   858  0575  2D77               	goto	u60
+   859  0576  2D78               u61:
+   860  0577                     	goto	l31
+   861  0577  2D4D               u60:
+   862  0578                     	goto	l725
+   863  0578  2D19               	
+   864                           l30:	
+   865  0579                     	line	116
+   866                           ;pianito.c: 116:         } else if (PORTBbits.RB4 == 0) {
+   867                           	goto	l725
+   868  0579  2D19               	
+   869                           l28:	
+   870  057A                     	btfsc	(6),4	;volatile
+   871  057A  1A06               	goto	u71
+   872  057B  2D7D               	goto	u70
+   873  057C  2D7E               u71:
+   874  057D                     	goto	l39
+   875  057D  2DD4               u70:
+   876  057E                     	line	118
+   877                           	
+   878                           l761:	
+   879  057E                     ;pianito.c: 118:             OPTION_REGbits.PS2 = 0;
+   880                           	bsf	status, 5	;RP0=1, select bank1
+   881  057E  1683               	bcf	status, 6	;RP1=0, select bank1
+   882  057F  1303               	bcf	(129)^080h,2	;volatile
+   883  0580  1101               	line	119
+   884                           ;pianito.c: 119:             OPTION_REGbits.PS1 = 1;
+   885                           	bsf	(129)^080h,1	;volatile
+   886  0581  1481               	line	120
+   887                           ;pianito.c: 120:             OPTION_REGbits.PS0 = 1;
+   888                           	bsf	(129)^080h,0	;volatile
+   889  0582  1401               	line	122
+   890                           	
+   891                           l763:	
+   892  0583                     ;pianito.c: 122:             TMR0 = 130;
+   893                           	movlw	low(082h)
+   894  0583  3082               	bcf	status, 5	;RP0=0, select bank0
+   895  0584  1283               	bcf	status, 6	;RP1=0, select bank0
+   896  0585  1303               	movwf	(1)	;volatile
+   897  0586  0081               	line	124
+   898                           	
+   899                           l765:	
+   900  0587                     ;pianito.c: 124:             for (i = 0; i < 500; i++) {
+   901                           	clrf	(main@i)
+   902  0587  01F2               	clrf	(main@i+1)
+   903  0588  01F3               	
+   904                           l767:	
+   905  0589                     	movf	(main@i+1),w
+   906  0589  0873               	xorlw	80h
+   907  058A  3A80               	movwf	btemp+1
+   908  058B  00FF               	movlw	(01h)^80h
+   909  058C  3081               	subwf	btemp+1,w
+   910  058D  027F               	skipz
+   911  058E  1D03               	goto	u85
+   912  058F  2D92               	movlw	0F4h
+   913  0590  30F4               	subwf	(main@i),w
+   914  0591  0272               u85:
+   915  0592                     
+   916                           	skipc
+   917  0592  1C03               	goto	u81
+   918  0593  2D95               	goto	u80
+   919  0594  2D96               u81:
+   920  0595                     	goto	l42
+   921  0595  2DA7               u80:
+   922  0596                     	goto	l725
+   923  0596  2D19               	
+   924                           l769:	
+   925  0597                     	goto	l725
+   926  0597  2D19               	
+   927                           l40:	
+   928  0598                     	line	125
+   929                           ;pianito.c: 125:                 while (INTCONbits.T0IF != 1) {
+   930                           	goto	l42
+   931  0598  2DA7               	
+   932                           l43:	
+   933  0599                     	line	126
+   934                           	
+   935                           l771:	
+   936  0599                     ;pianito.c: 126:                     if (j == 0) {
+   937                           	movf	((main@j)),w
+   938  0599  0870               iorwf	((main@j+1)),w
+   939  059A  0471               	btfss	status,2
+   940  059B  1D03               	goto	u91
+   941  059C  2D9E               	goto	u90
+   942  059D  2D9F               u91:
+   943  059E                     	goto	l44
+   944  059E  2DA3               u90:
+   945  059F                     	line	127
+   946                           	
+   947                           l773:	
+   948  059F                     ;pianito.c: 127:                         PORTCbits.RC3 = 1;
+   949                           	bcf	status, 5	;RP0=0, select bank0
+   950  059F  1283               	bcf	status, 6	;RP1=0, select bank0
+   951  05A0  1303               	bsf	(7),3	;volatile
+   952  05A1  1587               	line	128
+   953                           ;pianito.c: 128:                     } else {
+   954                           	goto	l42
+   955  05A2  2DA7               	
+   956                           l44:	
+   957  05A3                     	line	129
+   958                           ;pianito.c: 129:                         PORTCbits.RC3 = 0;
+   959                           	bcf	status, 5	;RP0=0, select bank0
+   960  05A3  1283               	bcf	status, 6	;RP1=0, select bank0
+   961  05A4  1303               	bcf	(7),3	;volatile
+   962  05A5  1187               	goto	l42
+   963  05A6  2DA7               	line	130
+   964                           ;pianito.c: 130:                     }
+   965                           	
+   966                           l45:	
+   967  05A7                     	line	131
+   968                           ;pianito.c: 131:                 }
+   969                           	
+   970                           l42:	
+   971  05A7                     	line	125
+   972                           ;pianito.c: 125:                 while (INTCONbits.T0IF != 1) {
+   973                           	btfss	(11),2	;volatile
+   974  05A7  1D0B               	goto	u101
+   975  05A8  2DAA               	goto	u100
+   976  05A9  2DAB               u101:
+   977  05AA                     	goto	l771
+   978  05AA  2D99               u100:
+   979  05AB                     	goto	l775
+   980  05AB  2DAC               	
+   981                           l46:	
+   982  05AC                     	line	133
+   983                           	
+   984                           l775:	
+   985  05AC                     ;pianito.c: 133:                 TMR0 = 130;
+   986                           	movlw	low(082h)
+   987  05AC  3082               	bcf	status, 5	;RP0=0, select bank0
+   988  05AD  1283               	bcf	status, 6	;RP1=0, select bank0
+   989  05AE  1303               	movwf	(1)	;volatile
+   990  05AF  0081               	line	134
+   991                           	
+   992                           l777:	
+   993  05B0                     ;pianito.c: 134:                 INTCONbits.T0IF = 0;
+   994                           	bcf	(11),2	;volatile
+   995  05B0  110B               	line	136
+   996                           	
+   997                           l779:	
+   998  05B1                     ;pianito.c: 136:                 if (j == 0) {
+   999                           	movf	((main@j)),w
+  1000  05B1  0870               iorwf	((main@j+1)),w
+  1001  05B2  0471               	btfss	status,2
+  1002  05B3  1D03               	goto	u111
+  1003  05B4  2DB6               	goto	u110
+  1004  05B5  2DB7               u111:
+  1005  05B6                     	goto	l783
+  1006  05B6  2DBC               u110:
+  1007  05B7                     	line	137
+  1008                           	
+  1009                           l781:	
+  1010  05B7                     ;pianito.c: 137:                     j = 1;
+  1011                           	movlw	01h
+  1012  05B7  3001               	movwf	(main@j)
+  1013  05B8  00F0               	movlw	0
+  1014  05B9  3000               	movwf	((main@j))+1
+  1015  05BA  00F1               	line	138
+  1016                           ;pianito.c: 138:                 } else {
+  1017                           	goto	l785
+  1018  05BB  2DBF               	
+  1019                           l47:	
+  1020  05BC                     	line	139
+  1021                           	
+  1022                           l783:	
+  1023  05BC                     ;pianito.c: 139:                     j = 0;
+  1024                           	clrf	(main@j)
+  1025  05BC  01F0               	clrf	(main@j+1)
+  1026  05BD  01F1               	goto	l785
+  1027  05BE  2DBF               	line	140
+  1028                           ;pianito.c: 140:                 }
+  1029                           	
+  1030                           l48:	
+  1031  05BF                     	line	141
+  1032                           	
+  1033                           l785:	
+  1034  05BF                     ;pianito.c: 141:             }
+  1035                           	movlw	01h
+  1036  05BF  3001               	addwf	(main@i),f
+  1037  05C0  07F2               	skipnc
+  1038  05C1  1803               	incf	(main@i+1),f
+  1039  05C2  0AF3               	movlw	0
+  1040  05C3  3000               	addwf	(main@i+1),f
+  1041  05C4  07F3               	
+  1042                           l787:	
+  1043  05C5                     	movf	(main@i+1),w
+  1044  05C5  0873               	xorlw	80h
+  1045  05C6  3A80               	movwf	btemp+1
+  1046  05C7  00FF               	movlw	(01h)^80h
+  1047  05C8  3081               	subwf	btemp+1,w
+  1048  05C9  027F               	skipz
+  1049  05CA  1D03               	goto	u125
+  1050  05CB  2DCE               	movlw	0F4h
+  1051  05CC  30F4               	subwf	(main@i),w
+  1052  05CD  0272               u125:
+  1053  05CE                     
+  1054                           	skipc
+  1055  05CE  1C03               	goto	u121
+  1056  05CF  2DD1               	goto	u120
+  1057  05D0  2DD2               u121:
+  1058  05D1                     	goto	l42
+  1059  05D1  2DA7               u120:
+  1060  05D2                     	goto	l725
+  1061  05D2  2D19               	
+  1062                           l41:	
+  1063  05D3                     	line	151
+  1064                           ;pianito.c: 151:         } else if (PORTBbits.RB2 == 0) {
+  1065                           	goto	l725
+  1066  05D3  2D19               	
+  1067                           l39:	
+  1068  05D4                     	btfsc	(6),2	;volatile
+  1069  05D4  1906               	goto	u131
+  1070  05D5  2DD7               	goto	u130
+  1071  05D6  2DD8               u131:
+  1072  05D7                     	goto	l50
+  1073  05D7  2E2E               u130:
+  1074  05D8                     	line	152
+  1075                           	
+  1076                           l789:	
+  1077  05D8                     ;pianito.c: 152:             OPTION_REGbits.PS2 = 0;
+  1078                           	bsf	status, 5	;RP0=1, select bank1
+  1079  05D8  1683               	bcf	status, 6	;RP1=0, select bank1
+  1080  05D9  1303               	bcf	(129)^080h,2	;volatile
+  1081  05DA  1101               	line	153
+  1082                           ;pianito.c: 153:             OPTION_REGbits.PS1 = 1;
+  1083                           	bsf	(129)^080h,1	;volatile
+  1084  05DB  1481               	line	154
+  1085                           ;pianito.c: 154:             OPTION_REGbits.PS0 = 1;
+  1086                           	bsf	(129)^080h,0	;volatile
+  1087  05DC  1401               	line	156
+  1088                           	
+  1089                           l791:	
+  1090  05DD                     ;pianito.c: 156:             TMR0 = 112;
+  1091                           	movlw	low(070h)
+  1092  05DD  3070               	bcf	status, 5	;RP0=0, select bank0
+  1093  05DE  1283               	bcf	status, 6	;RP1=0, select bank0
+  1094  05DF  1303               	movwf	(1)	;volatile
+  1095  05E0  0081               	line	158
   1096                           	
-  1097                           l769:	
-  1098  06DB                     	movf	((sound@j)),w
-  1099  06DB  0877               iorwf	((sound@j+1)),w
-  1100  06DC  0478               	btfss	status,2
-  1101  06DD  1D03               	goto	u51
-  1102  06DE  2EE0               	goto	u50
-  1103  06DF  2EE1               u51:
-  1104  06E0                     	goto	l54
-  1105  06E0  2EE5               u50:
-  1106  06E1                     	line	102
-  1107                           	
-  1108                           l771:	
-  1109  06E1                     	bcf	status, 5	;RP0=0, select bank0
-  1110  06E1  1283               	bcf	status, 6	;RP1=0, select bank0
-  1111  06E2  1303               	bsf	(7),3	;volatile
-  1112  06E3  1587               	goto	l52
-  1113  06E4  2EE9               	line	103
-  1114                           	
-  1115                           l54:	
-  1116  06E5                     	line	104
-  1117                           	bcf	status, 5	;RP0=0, select bank0
-  1118  06E5  1283               	bcf	status, 6	;RP1=0, select bank0
-  1119  06E6  1303               	bcf	(7),3	;volatile
-  1120  06E7  1187               	goto	l52
-  1121  06E8  2EE9               	
-  1122                           l55:	
-  1123  06E9                     	line	105
-  1124                           	
-  1125                           l52:	
-  1126  06E9                     	line	99
-  1127                           	btfss	(11),2	;volatile
-  1128  06E9  1D0B               	goto	u61
-  1129  06EA  2EEC               	goto	u60
-  1130  06EB  2EED               u61:
-  1131  06EC                     	goto	l769
-  1132  06EC  2EDB               u60:
-  1133  06ED                     	goto	l773
-  1134  06ED  2EEE               	
-  1135                           l56:	
-  1136  06EE                     	line	106
-  1137                           	
-  1138                           l773:	
-  1139  06EE                     	movlw	01h
-  1140  06EE  3001               	addwf	(sound@i),f
-  1141  06EF  07F5               	skipnc
-  1142  06F0  1803               	incf	(sound@i+1),f
-  1143  06F1  0AF6               	movlw	0
-  1144  06F2  3000               	addwf	(sound@i+1),f
-  1145  06F3  07F6               	
-  1146                           l50:	
-  1147  06F4                     	movf	(sound@i+1),w
-  1148  06F4  0876               	xorlw	80h
-  1149  06F5  3A80               	movwf	(??_sound+0)+0
-  1150  06F6  00F4               	movf	(sound@numTMR0+1),w
-  1151  06F7  0871               	xorlw	80h
-  1152  06F8  3A80               	subwf	(??_sound+0)+0,w
-  1153  06F9  0274               	skipz
-  1154  06FA  1D03               	goto	u75
-  1155  06FB  2EFE               	movf	(sound@numTMR0),w
-  1156  06FC  0870               	subwf	(sound@i),w
-  1157  06FD  0275               u75:
-  1158  06FE                     
-  1159                           	skipc
-  1160  06FE  1C03               	goto	u71
-  1161  06FF  2F01               	goto	u70
-  1162  0700  2F02               u71:
-  1163  0701                     	goto	l52
-  1164  0701  2EE9               u70:
-  1165  0702                     	goto	l775
-  1166  0702  2F03               	
-  1167                           l57:	
-  1168  0703                     	line	108
-  1169                           	
-  1170                           l775:	
-  1171  0703                     	movf	(sound@numComplementoTMR0),w
-  1172  0703  0872               	bcf	status, 5	;RP0=0, select bank0
-  1173  0704  1283               	bcf	status, 6	;RP1=0, select bank0
-  1174  0705  1303               	movwf	(1)	;volatile
-  1175  0706  0081               	line	109
-  1176                           	
-  1177                           l777:	
-  1178  0707                     	bcf	(11),2	;volatile
-  1179  0707  110B               	line	112
-  1180                           	
-  1181                           l779:	
-  1182  0708                     	movf	((sound@j)),w
-  1183  0708  0877               iorwf	((sound@j+1)),w
-  1184  0709  0478               	btfss	status,2
-  1185  070A  1D03               	goto	u81
-  1186  070B  2F0D               	goto	u80
-  1187  070C  2F0E               u81:
-  1188  070D                     	goto	l783
-  1189  070D  2F13               u80:
-  1190  070E                     	line	113
-  1191                           	
-  1192                           l781:	
-  1193  070E                     	movlw	01h
-  1194  070E  3001               	movwf	(sound@j)
-  1195  070F  00F7               	movlw	0
-  1196  0710  3000               	movwf	((sound@j))+1
-  1197  0711  00F8               	goto	l60
-  1198  0712  2F16               	line	114
-  1199                           	
-  1200                           l58:	
-  1201  0713                     	line	115
-  1202                           	
-  1203                           l783:	
-  1204  0713                     	clrf	(sound@j)
-  1205  0713  01F7               	clrf	(sound@j+1)
-  1206  0714  01F8               	goto	l60
-  1207  0715  2F16               	
-  1208                           l59:	
-  1209  0716                     	line	116
-  1210                           	
-  1211                           l60:	
-  1212  0716                     	return
-  1213  0716  0008               	opt stack 0
-  1214                           GLOBAL	__end_of_sound
-  1215                           	__end_of_sound:
-  1216  0717                     	signat	_sound,8313
-  1217                           global	___latbits
-  1218                           ___latbits	equ	2
-  1219  0002                     	global	btemp
-  1220                           	btemp set 07Eh
-  1221  007E                     
-  1222                           	DABS	1,126,2	;btemp
-  1223                           	global	wtemp0
-  1224                           	wtemp0 set btemp+0
-  1225  007E                     	end
+  1097                           l793:	
+  1098  05E1                     ;pianito.c: 158:             for (i = 0; i < 435; i++) {
+  1099                           	clrf	(main@i)
+  1100  05E1  01F2               	clrf	(main@i+1)
+  1101  05E2  01F3               	
+  1102                           l795:	
+  1103  05E3                     	movf	(main@i+1),w
+  1104  05E3  0873               	xorlw	80h
+  1105  05E4  3A80               	movwf	btemp+1
+  1106  05E5  00FF               	movlw	(01h)^80h
+  1107  05E6  3081               	subwf	btemp+1,w
+  1108  05E7  027F               	skipz
+  1109  05E8  1D03               	goto	u145
+  1110  05E9  2DEC               	movlw	0B3h
+  1111  05EA  30B3               	subwf	(main@i),w
+  1112  05EB  0272               u145:
+  1113  05EC                     
+  1114                           	skipc
+  1115  05EC  1C03               	goto	u141
+  1116  05ED  2DEF               	goto	u140
+  1117  05EE  2DF0               u141:
+  1118  05EF                     	goto	l53
+  1119  05EF  2E01               u140:
+  1120  05F0                     	goto	l725
+  1121  05F0  2D19               	
+  1122                           l797:	
+  1123  05F1                     	goto	l725
+  1124  05F1  2D19               	
+  1125                           l51:	
+  1126  05F2                     	line	159
+  1127                           ;pianito.c: 159:                 while (INTCONbits.T0IF != 1) {
+  1128                           	goto	l53
+  1129  05F2  2E01               	
+  1130                           l54:	
+  1131  05F3                     	line	160
+  1132                           	
+  1133                           l799:	
+  1134  05F3                     ;pianito.c: 160:                     if (j == 0) {
+  1135                           	movf	((main@j)),w
+  1136  05F3  0870               iorwf	((main@j+1)),w
+  1137  05F4  0471               	btfss	status,2
+  1138  05F5  1D03               	goto	u151
+  1139  05F6  2DF8               	goto	u150
+  1140  05F7  2DF9               u151:
+  1141  05F8                     	goto	l55
+  1142  05F8  2DFD               u150:
+  1143  05F9                     	line	161
+  1144                           	
+  1145                           l801:	
+  1146  05F9                     ;pianito.c: 161:                         PORTCbits.RC3 = 1;
+  1147                           	bcf	status, 5	;RP0=0, select bank0
+  1148  05F9  1283               	bcf	status, 6	;RP1=0, select bank0
+  1149  05FA  1303               	bsf	(7),3	;volatile
+  1150  05FB  1587               	line	162
+  1151                           ;pianito.c: 162:                     } else {
+  1152                           	goto	l53
+  1153  05FC  2E01               	
+  1154                           l55:	
+  1155  05FD                     	line	163
+  1156                           ;pianito.c: 163:                         PORTCbits.RC3 = 0;
+  1157                           	bcf	status, 5	;RP0=0, select bank0
+  1158  05FD  1283               	bcf	status, 6	;RP1=0, select bank0
+  1159  05FE  1303               	bcf	(7),3	;volatile
+  1160  05FF  1187               	goto	l53
+  1161  0600  2E01               	line	164
+  1162                           ;pianito.c: 164:                     }
+  1163                           	
+  1164                           l56:	
+  1165  0601                     	line	165
+  1166                           ;pianito.c: 165:                 }
+  1167                           	
+  1168                           l53:	
+  1169  0601                     	line	159
+  1170                           ;pianito.c: 159:                 while (INTCONbits.T0IF != 1) {
+  1171                           	btfss	(11),2	;volatile
+  1172  0601  1D0B               	goto	u161
+  1173  0602  2E04               	goto	u160
+  1174  0603  2E05               u161:
+  1175  0604                     	goto	l799
+  1176  0604  2DF3               u160:
+  1177  0605                     	goto	l803
+  1178  0605  2E06               	
+  1179                           l57:	
+  1180  0606                     	line	167
+  1181                           	
+  1182                           l803:	
+  1183  0606                     ;pianito.c: 167:                 TMR0 = 112;
+  1184                           	movlw	low(070h)
+  1185  0606  3070               	bcf	status, 5	;RP0=0, select bank0
+  1186  0607  1283               	bcf	status, 6	;RP1=0, select bank0
+  1187  0608  1303               	movwf	(1)	;volatile
+  1188  0609  0081               	line	168
+  1189                           	
+  1190                           l805:	
+  1191  060A                     ;pianito.c: 168:                 INTCONbits.T0IF = 0;
+  1192                           	bcf	(11),2	;volatile
+  1193  060A  110B               	line	170
+  1194                           	
+  1195                           l807:	
+  1196  060B                     ;pianito.c: 170:                 if (j == 0) {
+  1197                           	movf	((main@j)),w
+  1198  060B  0870               iorwf	((main@j+1)),w
+  1199  060C  0471               	btfss	status,2
+  1200  060D  1D03               	goto	u171
+  1201  060E  2E10               	goto	u170
+  1202  060F  2E11               u171:
+  1203  0610                     	goto	l811
+  1204  0610  2E16               u170:
+  1205  0611                     	line	171
+  1206                           	
+  1207                           l809:	
+  1208  0611                     ;pianito.c: 171:                     j = 1;
+  1209                           	movlw	01h
+  1210  0611  3001               	movwf	(main@j)
+  1211  0612  00F0               	movlw	0
+  1212  0613  3000               	movwf	((main@j))+1
+  1213  0614  00F1               	line	172
+  1214                           ;pianito.c: 172:                 } else {
+  1215                           	goto	l813
+  1216  0615  2E19               	
+  1217                           l58:	
+  1218  0616                     	line	173
+  1219                           	
+  1220                           l811:	
+  1221  0616                     ;pianito.c: 173:                     j = 0;
+  1222                           	clrf	(main@j)
+  1223  0616  01F0               	clrf	(main@j+1)
+  1224  0617  01F1               	goto	l813
+  1225  0618  2E19               	line	174
+  1226                           ;pianito.c: 174:                 }
+  1227                           	
+  1228                           l59:	
+  1229  0619                     	line	175
+  1230                           	
+  1231                           l813:	
+  1232  0619                     ;pianito.c: 175:             }
+  1233                           	movlw	01h
+  1234  0619  3001               	addwf	(main@i),f
+  1235  061A  07F2               	skipnc
+  1236  061B  1803               	incf	(main@i+1),f
+  1237  061C  0AF3               	movlw	0
+  1238  061D  3000               	addwf	(main@i+1),f
+  1239  061E  07F3               	
+  1240                           l815:	
+  1241  061F                     	movf	(main@i+1),w
+  1242  061F  0873               	xorlw	80h
+  1243  0620  3A80               	movwf	btemp+1
+  1244  0621  00FF               	movlw	(01h)^80h
+  1245  0622  3081               	subwf	btemp+1,w
+  1246  0623  027F               	skipz
+  1247  0624  1D03               	goto	u185
+  1248  0625  2E28               	movlw	0B3h
+  1249  0626  30B3               	subwf	(main@i),w
+  1250  0627  0272               u185:
+  1251  0628                     
+  1252                           	skipc
+  1253  0628  1C03               	goto	u181
+  1254  0629  2E2B               	goto	u180
+  1255  062A  2E2C               u181:
+  1256  062B                     	goto	l53
+  1257  062B  2E01               u180:
+  1258  062C                     	goto	l725
+  1259  062C  2D19               	
+  1260                           l52:	
+  1261  062D                     	line	183
+  1262                           ;pianito.c: 183:         } else if (PORTBbits.RB1 == 0) {
+  1263                           	goto	l725
+  1264  062D  2D19               	
+  1265                           l50:	
+  1266  062E                     	btfsc	(6),1	;volatile
+  1267  062E  1886               	goto	u191
+  1268  062F  2E31               	goto	u190
+  1269  0630  2E32               u191:
+  1270  0631                     	goto	l61
+  1271  0631  2E88               u190:
+  1272  0632                     	line	184
+  1273                           	
+  1274                           l817:	
+  1275  0632                     ;pianito.c: 184:             OPTION_REGbits.PS2 = 0;
+  1276                           	bsf	status, 5	;RP0=1, select bank1
+  1277  0632  1683               	bcf	status, 6	;RP1=0, select bank1
+  1278  0633  1303               	bcf	(129)^080h,2	;volatile
+  1279  0634  1101               	line	185
+  1280                           ;pianito.c: 185:             OPTION_REGbits.PS1 = 1;
+  1281                           	bsf	(129)^080h,1	;volatile
+  1282  0635  1481               	line	186
+  1283                           ;pianito.c: 186:             OPTION_REGbits.PS0 = 1;
+  1284                           	bsf	(129)^080h,0	;volatile
+  1285  0636  1401               	line	188
+  1286                           	
+  1287                           l819:	
+  1288  0637                     ;pianito.c: 188:             TMR0 = 93;
+  1289                           	movlw	low(05Dh)
+  1290  0637  305D               	bcf	status, 5	;RP0=0, select bank0
+  1291  0638  1283               	bcf	status, 6	;RP1=0, select bank0
+  1292  0639  1303               	movwf	(1)	;volatile
+  1293  063A  0081               	line	190
+  1294                           	
+  1295                           l821:	
+  1296  063B                     ;pianito.c: 190:             for (i = 0; i < 385; i++) {
+  1297                           	clrf	(main@i)
+  1298  063B  01F2               	clrf	(main@i+1)
+  1299  063C  01F3               	
+  1300                           l823:	
+  1301  063D                     	movf	(main@i+1),w
+  1302  063D  0873               	xorlw	80h
+  1303  063E  3A80               	movwf	btemp+1
+  1304  063F  00FF               	movlw	(01h)^80h
+  1305  0640  3081               	subwf	btemp+1,w
+  1306  0641  027F               	skipz
+  1307  0642  1D03               	goto	u205
+  1308  0643  2E46               	movlw	081h
+  1309  0644  3081               	subwf	(main@i),w
+  1310  0645  0272               u205:
+  1311  0646                     
+  1312                           	skipc
+  1313  0646  1C03               	goto	u201
+  1314  0647  2E49               	goto	u200
+  1315  0648  2E4A               u201:
+  1316  0649                     	goto	l64
+  1317  0649  2E5B               u200:
+  1318  064A                     	goto	l725
+  1319  064A  2D19               	
+  1320                           l825:	
+  1321  064B                     	goto	l725
+  1322  064B  2D19               	
+  1323                           l62:	
+  1324  064C                     	line	191
+  1325                           ;pianito.c: 191:                 while (INTCONbits.T0IF != 1) {
+  1326                           	goto	l64
+  1327  064C  2E5B               	
+  1328                           l65:	
+  1329  064D                     	line	192
+  1330                           	
+  1331                           l827:	
+  1332  064D                     ;pianito.c: 192:                     if (j == 0) {
+  1333                           	movf	((main@j)),w
+  1334  064D  0870               iorwf	((main@j+1)),w
+  1335  064E  0471               	btfss	status,2
+  1336  064F  1D03               	goto	u211
+  1337  0650  2E52               	goto	u210
+  1338  0651  2E53               u211:
+  1339  0652                     	goto	l66
+  1340  0652  2E57               u210:
+  1341  0653                     	line	193
+  1342                           	
+  1343                           l829:	
+  1344  0653                     ;pianito.c: 193:                         PORTCbits.RC3 = 1;
+  1345                           	bcf	status, 5	;RP0=0, select bank0
+  1346  0653  1283               	bcf	status, 6	;RP1=0, select bank0
+  1347  0654  1303               	bsf	(7),3	;volatile
+  1348  0655  1587               	line	194
+  1349                           ;pianito.c: 194:                     } else {
+  1350                           	goto	l64
+  1351  0656  2E5B               	
+  1352                           l66:	
+  1353  0657                     	line	195
+  1354                           ;pianito.c: 195:                         PORTCbits.RC3 = 0;
+  1355                           	bcf	status, 5	;RP0=0, select bank0
+  1356  0657  1283               	bcf	status, 6	;RP1=0, select bank0
+  1357  0658  1303               	bcf	(7),3	;volatile
+  1358  0659  1187               	goto	l64
+  1359  065A  2E5B               	line	196
+  1360                           ;pianito.c: 196:                     }
+  1361                           	
+  1362                           l67:	
+  1363  065B                     	line	197
+  1364                           ;pianito.c: 197:                 }
+  1365                           	
+  1366                           l64:	
+  1367  065B                     	line	191
+  1368                           ;pianito.c: 191:                 while (INTCONbits.T0IF != 1) {
+  1369                           	btfss	(11),2	;volatile
+  1370  065B  1D0B               	goto	u221
+  1371  065C  2E5E               	goto	u220
+  1372  065D  2E5F               u221:
+  1373  065E                     	goto	l827
+  1374  065E  2E4D               u220:
+  1375  065F                     	goto	l831
+  1376  065F  2E60               	
+  1377                           l68:	
+  1378  0660                     	line	199
+  1379                           	
+  1380                           l831:	
+  1381  0660                     ;pianito.c: 199:                 TMR0 = 93;
+  1382                           	movlw	low(05Dh)
+  1383  0660  305D               	bcf	status, 5	;RP0=0, select bank0
+  1384  0661  1283               	bcf	status, 6	;RP1=0, select bank0
+  1385  0662  1303               	movwf	(1)	;volatile
+  1386  0663  0081               	line	200
+  1387                           	
+  1388                           l833:	
+  1389  0664                     ;pianito.c: 200:                 INTCONbits.T0IF = 0;
+  1390                           	bcf	(11),2	;volatile
+  1391  0664  110B               	line	202
+  1392                           	
+  1393                           l835:	
+  1394  0665                     ;pianito.c: 202:                 if (j == 0) {
+  1395                           	movf	((main@j)),w
+  1396  0665  0870               iorwf	((main@j+1)),w
+  1397  0666  0471               	btfss	status,2
+  1398  0667  1D03               	goto	u231
+  1399  0668  2E6A               	goto	u230
+  1400  0669  2E6B               u231:
+  1401  066A                     	goto	l839
+  1402  066A  2E70               u230:
+  1403  066B                     	line	203
+  1404                           	
+  1405                           l837:	
+  1406  066B                     ;pianito.c: 203:                     j = 1;
+  1407                           	movlw	01h
+  1408  066B  3001               	movwf	(main@j)
+  1409  066C  00F0               	movlw	0
+  1410  066D  3000               	movwf	((main@j))+1
+  1411  066E  00F1               	line	204
+  1412                           ;pianito.c: 204:                 } else {
+  1413                           	goto	l841
+  1414  066F  2E73               	
+  1415                           l69:	
+  1416  0670                     	line	205
+  1417                           	
+  1418                           l839:	
+  1419  0670                     ;pianito.c: 205:                     j = 0;
+  1420                           	clrf	(main@j)
+  1421  0670  01F0               	clrf	(main@j+1)
+  1422  0671  01F1               	goto	l841
+  1423  0672  2E73               	line	206
+  1424                           ;pianito.c: 206:                 }
+  1425                           	
+  1426                           l70:	
+  1427  0673                     	line	207
+  1428                           	
+  1429                           l841:	
+  1430  0673                     ;pianito.c: 207:             }
+  1431                           	movlw	01h
+  1432  0673  3001               	addwf	(main@i),f
+  1433  0674  07F2               	skipnc
+  1434  0675  1803               	incf	(main@i+1),f
+  1435  0676  0AF3               	movlw	0
+  1436  0677  3000               	addwf	(main@i+1),f
+  1437  0678  07F3               	
+  1438                           l843:	
+  1439  0679                     	movf	(main@i+1),w
+  1440  0679  0873               	xorlw	80h
+  1441  067A  3A80               	movwf	btemp+1
+  1442  067B  00FF               	movlw	(01h)^80h
+  1443  067C  3081               	subwf	btemp+1,w
+  1444  067D  027F               	skipz
+  1445  067E  1D03               	goto	u245
+  1446  067F  2E82               	movlw	081h
+  1447  0680  3081               	subwf	(main@i),w
+  1448  0681  0272               u245:
+  1449  0682                     
+  1450                           	skipc
+  1451  0682  1C03               	goto	u241
+  1452  0683  2E85               	goto	u240
+  1453  0684  2E86               u241:
+  1454  0685                     	goto	l64
+  1455  0685  2E5B               u240:
+  1456  0686                     	goto	l725
+  1457  0686  2D19               	
+  1458                           l63:	
+  1459  0687                     	line	215
+  1460                           ;pianito.c: 215:         } else if (PORTBbits.RB0 == 0) {
+  1461                           	goto	l725
+  1462  0687  2D19               	
+  1463                           l61:	
+  1464  0688                     	btfsc	(6),0	;volatile
+  1465  0688  1806               	goto	u251
+  1466  0689  2E8B               	goto	u250
+  1467  068A  2E8C               u251:
+  1468  068B                     	goto	l72
+  1469  068B  2EE2               u250:
+  1470  068C                     	line	217
+  1471                           	
+  1472                           l845:	
+  1473  068C                     ;pianito.c: 217:             OPTION_REGbits.PS2 = 0;
+  1474                           	bsf	status, 5	;RP0=1, select bank1
+  1475  068C  1683               	bcf	status, 6	;RP1=0, select bank1
+  1476  068D  1303               	bcf	(129)^080h,2	;volatile
+  1477  068E  1101               	line	218
+  1478                           ;pianito.c: 218:             OPTION_REGbits.PS1 = 1;
+  1479                           	bsf	(129)^080h,1	;volatile
+  1480  068F  1481               	line	219
+  1481                           ;pianito.c: 219:             OPTION_REGbits.PS0 = 1;
+  1482                           	bsf	(129)^080h,0	;volatile
+  1483  0690  1401               	line	221
+  1484                           	
+  1485                           l847:	
+  1486  0691                     ;pianito.c: 221:             TMR0 = 74;
+  1487                           	movlw	low(04Ah)
+  1488  0691  304A               	bcf	status, 5	;RP0=0, select bank0
+  1489  0692  1283               	bcf	status, 6	;RP1=0, select bank0
+  1490  0693  1303               	movwf	(1)	;volatile
+  1491  0694  0081               	line	223
+  1492                           	
+  1493                           l849:	
+  1494  0695                     ;pianito.c: 223:             for (i = 0; i < 345; i++) {
+  1495                           	clrf	(main@i)
+  1496  0695  01F2               	clrf	(main@i+1)
+  1497  0696  01F3               	
+  1498                           l851:	
+  1499  0697                     	movf	(main@i+1),w
+  1500  0697  0873               	xorlw	80h
+  1501  0698  3A80               	movwf	btemp+1
+  1502  0699  00FF               	movlw	(01h)^80h
+  1503  069A  3081               	subwf	btemp+1,w
+  1504  069B  027F               	skipz
+  1505  069C  1D03               	goto	u265
+  1506  069D  2EA0               	movlw	059h
+  1507  069E  3059               	subwf	(main@i),w
+  1508  069F  0272               u265:
+  1509  06A0                     
+  1510                           	skipc
+  1511  06A0  1C03               	goto	u261
+  1512  06A1  2EA3               	goto	u260
+  1513  06A2  2EA4               u261:
+  1514  06A3                     	goto	l75
+  1515  06A3  2EB5               u260:
+  1516  06A4                     	goto	l725
+  1517  06A4  2D19               	
+  1518                           l853:	
+  1519  06A5                     	goto	l725
+  1520  06A5  2D19               	
+  1521                           l73:	
+  1522  06A6                     	line	224
+  1523                           ;pianito.c: 224:                 while (INTCONbits.T0IF != 1) {
+  1524                           	goto	l75
+  1525  06A6  2EB5               	
+  1526                           l76:	
+  1527  06A7                     	line	225
+  1528                           	
+  1529                           l855:	
+  1530  06A7                     ;pianito.c: 225:                     if (j == 0) {
+  1531                           	movf	((main@j)),w
+  1532  06A7  0870               iorwf	((main@j+1)),w
+  1533  06A8  0471               	btfss	status,2
+  1534  06A9  1D03               	goto	u271
+  1535  06AA  2EAC               	goto	u270
+  1536  06AB  2EAD               u271:
+  1537  06AC                     	goto	l77
+  1538  06AC  2EB1               u270:
+  1539  06AD                     	line	226
+  1540                           	
+  1541                           l857:	
+  1542  06AD                     ;pianito.c: 226:                         PORTCbits.RC3 = 1;
+  1543                           	bcf	status, 5	;RP0=0, select bank0
+  1544  06AD  1283               	bcf	status, 6	;RP1=0, select bank0
+  1545  06AE  1303               	bsf	(7),3	;volatile
+  1546  06AF  1587               	line	227
+  1547                           ;pianito.c: 227:                     } else {
+  1548                           	goto	l75
+  1549  06B0  2EB5               	
+  1550                           l77:	
+  1551  06B1                     	line	228
+  1552                           ;pianito.c: 228:                         PORTCbits.RC3 = 0;
+  1553                           	bcf	status, 5	;RP0=0, select bank0
+  1554  06B1  1283               	bcf	status, 6	;RP1=0, select bank0
+  1555  06B2  1303               	bcf	(7),3	;volatile
+  1556  06B3  1187               	goto	l75
+  1557  06B4  2EB5               	line	229
+  1558                           ;pianito.c: 229:                     }
+  1559                           	
+  1560                           l78:	
+  1561  06B5                     	line	230
+  1562                           ;pianito.c: 230:                 }
+  1563                           	
+  1564                           l75:	
+  1565  06B5                     	line	224
+  1566                           ;pianito.c: 224:                 while (INTCONbits.T0IF != 1) {
+  1567                           	btfss	(11),2	;volatile
+  1568  06B5  1D0B               	goto	u281
+  1569  06B6  2EB8               	goto	u280
+  1570  06B7  2EB9               u281:
+  1571  06B8                     	goto	l855
+  1572  06B8  2EA7               u280:
+  1573  06B9                     	goto	l859
+  1574  06B9  2EBA               	
+  1575                           l79:	
+  1576  06BA                     	line	232
+  1577                           	
+  1578                           l859:	
+  1579  06BA                     ;pianito.c: 232:                 TMR0 = 74;
+  1580                           	movlw	low(04Ah)
+  1581  06BA  304A               	bcf	status, 5	;RP0=0, select bank0
+  1582  06BB  1283               	bcf	status, 6	;RP1=0, select bank0
+  1583  06BC  1303               	movwf	(1)	;volatile
+  1584  06BD  0081               	line	233
+  1585                           	
+  1586                           l861:	
+  1587  06BE                     ;pianito.c: 233:                 INTCONbits.T0IF = 0;
+  1588                           	bcf	(11),2	;volatile
+  1589  06BE  110B               	line	235
+  1590                           	
+  1591                           l863:	
+  1592  06BF                     ;pianito.c: 235:                 if (j == 0) {
+  1593                           	movf	((main@j)),w
+  1594  06BF  0870               iorwf	((main@j+1)),w
+  1595  06C0  0471               	btfss	status,2
+  1596  06C1  1D03               	goto	u291
+  1597  06C2  2EC4               	goto	u290
+  1598  06C3  2EC5               u291:
+  1599  06C4                     	goto	l867
+  1600  06C4  2ECA               u290:
+  1601  06C5                     	line	236
+  1602                           	
+  1603                           l865:	
+  1604  06C5                     ;pianito.c: 236:                     j = 1;
+  1605                           	movlw	01h
+  1606  06C5  3001               	movwf	(main@j)
+  1607  06C6  00F0               	movlw	0
+  1608  06C7  3000               	movwf	((main@j))+1
+  1609  06C8  00F1               	line	237
+  1610                           ;pianito.c: 237:                 } else {
+  1611                           	goto	l869
+  1612  06C9  2ECD               	
+  1613                           l80:	
+  1614  06CA                     	line	238
+  1615                           	
+  1616                           l867:	
+  1617  06CA                     ;pianito.c: 238:                     j = 0;
+  1618                           	clrf	(main@j)
+  1619  06CA  01F0               	clrf	(main@j+1)
+  1620  06CB  01F1               	goto	l869
+  1621  06CC  2ECD               	line	239
+  1622                           ;pianito.c: 239:                 }
+  1623                           	
+  1624                           l81:	
+  1625  06CD                     	line	240
+  1626                           	
+  1627                           l869:	
+  1628  06CD                     ;pianito.c: 240:             }
+  1629                           	movlw	01h
+  1630  06CD  3001               	addwf	(main@i),f
+  1631  06CE  07F2               	skipnc
+  1632  06CF  1803               	incf	(main@i+1),f
+  1633  06D0  0AF3               	movlw	0
+  1634  06D1  3000               	addwf	(main@i+1),f
+  1635  06D2  07F3               	
+  1636                           l871:	
+  1637  06D3                     	movf	(main@i+1),w
+  1638  06D3  0873               	xorlw	80h
+  1639  06D4  3A80               	movwf	btemp+1
+  1640  06D5  00FF               	movlw	(01h)^80h
+  1641  06D6  3081               	subwf	btemp+1,w
+  1642  06D7  027F               	skipz
+  1643  06D8  1D03               	goto	u305
+  1644  06D9  2EDC               	movlw	059h
+  1645  06DA  3059               	subwf	(main@i),w
+  1646  06DB  0272               u305:
+  1647  06DC                     
+  1648                           	skipc
+  1649  06DC  1C03               	goto	u301
+  1650  06DD  2EDF               	goto	u300
+  1651  06DE  2EE0               u301:
+  1652  06DF                     	goto	l75
+  1653  06DF  2EB5               u300:
+  1654  06E0                     	goto	l725
+  1655  06E0  2D19               	
+  1656                           l74:	
+  1657  06E1                     	line	248
+  1658                           ;pianito.c: 248:         } else if (PORTDbits.RD7 == 0) {
+  1659                           	goto	l725
+  1660  06E1  2D19               	
+  1661                           l72:	
+  1662  06E2                     	btfsc	(8),7	;volatile
+  1663  06E2  1B88               	goto	u311
+  1664  06E3  2EE5               	goto	u310
+  1665  06E4  2EE6               u311:
+  1666  06E5                     	goto	l83
+  1667  06E5  2F3C               u310:
+  1668  06E6                     	line	249
+  1669                           	
+  1670                           l873:	
+  1671  06E6                     ;pianito.c: 249:             OPTION_REGbits.PS2 = 1;
+  1672                           	bsf	status, 5	;RP0=1, select bank1
+  1673  06E6  1683               	bcf	status, 6	;RP1=0, select bank1
+  1674  06E7  1303               	bsf	(129)^080h,2	;volatile
+  1675  06E8  1501               	line	250
+  1676                           ;pianito.c: 250:             OPTION_REGbits.PS1 = 0;
+  1677                           	bcf	(129)^080h,1	;volatile
+  1678  06E9  1081               	line	251
+  1679                           ;pianito.c: 251:             OPTION_REGbits.PS0 = 0;
+  1680                           	bcf	(129)^080h,0	;volatile
+  1681  06EA  1001               	line	253
+  1682                           	
+  1683                           l875:	
+  1684  06EB                     ;pianito.c: 253:             TMR0 = 162;
+  1685                           	movlw	low(0A2h)
+  1686  06EB  30A2               	bcf	status, 5	;RP0=0, select bank0
+  1687  06EC  1283               	bcf	status, 6	;RP1=0, select bank0
+  1688  06ED  1303               	movwf	(1)	;volatile
+  1689  06EE  0081               	line	255
+  1690                           	
+  1691                           l877:	
+  1692  06EF                     ;pianito.c: 255:             for (i = 0; i < 333; i++) {
+  1693                           	clrf	(main@i)
+  1694  06EF  01F2               	clrf	(main@i+1)
+  1695  06F0  01F3               	
+  1696                           l879:	
+  1697  06F1                     	movf	(main@i+1),w
+  1698  06F1  0873               	xorlw	80h
+  1699  06F2  3A80               	movwf	btemp+1
+  1700  06F3  00FF               	movlw	(01h)^80h
+  1701  06F4  3081               	subwf	btemp+1,w
+  1702  06F5  027F               	skipz
+  1703  06F6  1D03               	goto	u325
+  1704  06F7  2EFA               	movlw	04Dh
+  1705  06F8  304D               	subwf	(main@i),w
+  1706  06F9  0272               u325:
+  1707  06FA                     
+  1708                           	skipc
+  1709  06FA  1C03               	goto	u321
+  1710  06FB  2EFD               	goto	u320
+  1711  06FC  2EFE               u321:
+  1712  06FD                     	goto	l86
+  1713  06FD  2F0F               u320:
+  1714  06FE                     	goto	l725
+  1715  06FE  2D19               	
+  1716                           l881:	
+  1717  06FF                     	goto	l725
+  1718  06FF  2D19               	
+  1719                           l84:	
+  1720  0700                     	line	256
+  1721                           ;pianito.c: 256:                 while (INTCONbits.T0IF != 1) {
+  1722                           	goto	l86
+  1723  0700  2F0F               	
+  1724                           l87:	
+  1725  0701                     	line	257
+  1726                           	
+  1727                           l883:	
+  1728  0701                     ;pianito.c: 257:                     if (j == 0) {
+  1729                           	movf	((main@j)),w
+  1730  0701  0870               iorwf	((main@j+1)),w
+  1731  0702  0471               	btfss	status,2
+  1732  0703  1D03               	goto	u331
+  1733  0704  2F06               	goto	u330
+  1734  0705  2F07               u331:
+  1735  0706                     	goto	l88
+  1736  0706  2F0B               u330:
+  1737  0707                     	line	258
+  1738                           	
+  1739                           l885:	
+  1740  0707                     ;pianito.c: 258:                         PORTCbits.RC3 = 1;
+  1741                           	bcf	status, 5	;RP0=0, select bank0
+  1742  0707  1283               	bcf	status, 6	;RP1=0, select bank0
+  1743  0708  1303               	bsf	(7),3	;volatile
+  1744  0709  1587               	line	259
+  1745                           ;pianito.c: 259:                     } else {
+  1746                           	goto	l86
+  1747  070A  2F0F               	
+  1748                           l88:	
+  1749  070B                     	line	260
+  1750                           ;pianito.c: 260:                         PORTCbits.RC3 = 0;
+  1751                           	bcf	status, 5	;RP0=0, select bank0
+  1752  070B  1283               	bcf	status, 6	;RP1=0, select bank0
+  1753  070C  1303               	bcf	(7),3	;volatile
+  1754  070D  1187               	goto	l86
+  1755  070E  2F0F               	line	261
+  1756                           ;pianito.c: 261:                     }
+  1757                           	
+  1758                           l89:	
+  1759  070F                     	line	262
+  1760                           ;pianito.c: 262:                 }
+  1761                           	
+  1762                           l86:	
+  1763  070F                     	line	256
+  1764                           ;pianito.c: 256:                 while (INTCONbits.T0IF != 1) {
+  1765                           	btfss	(11),2	;volatile
+  1766  070F  1D0B               	goto	u341
+  1767  0710  2F12               	goto	u340
+  1768  0711  2F13               u341:
+  1769  0712                     	goto	l883
+  1770  0712  2F01               u340:
+  1771  0713                     	goto	l887
+  1772  0713  2F14               	
+  1773                           l90:	
+  1774  0714                     	line	264
+  1775                           	
+  1776                           l887:	
+  1777  0714                     ;pianito.c: 264:                 TMR0 = 162;
+  1778                           	movlw	low(0A2h)
+  1779  0714  30A2               	bcf	status, 5	;RP0=0, select bank0
+  1780  0715  1283               	bcf	status, 6	;RP1=0, select bank0
+  1781  0716  1303               	movwf	(1)	;volatile
+  1782  0717  0081               	line	265
+  1783                           	
+  1784                           l889:	
+  1785  0718                     ;pianito.c: 265:                 INTCONbits.T0IF = 0;
+  1786                           	bcf	(11),2	;volatile
+  1787  0718  110B               	line	267
+  1788                           	
+  1789                           l891:	
+  1790  0719                     ;pianito.c: 267:                 if (j == 0) {
+  1791                           	movf	((main@j)),w
+  1792  0719  0870               iorwf	((main@j+1)),w
+  1793  071A  0471               	btfss	status,2
+  1794  071B  1D03               	goto	u351
+  1795  071C  2F1E               	goto	u350
+  1796  071D  2F1F               u351:
+  1797  071E                     	goto	l895
+  1798  071E  2F24               u350:
+  1799  071F                     	line	268
+  1800                           	
+  1801                           l893:	
+  1802  071F                     ;pianito.c: 268:                     j = 1;
+  1803                           	movlw	01h
+  1804  071F  3001               	movwf	(main@j)
+  1805  0720  00F0               	movlw	0
+  1806  0721  3000               	movwf	((main@j))+1
+  1807  0722  00F1               	line	269
+  1808                           ;pianito.c: 269:                 } else {
+  1809                           	goto	l897
+  1810  0723  2F27               	
+  1811                           l91:	
+  1812  0724                     	line	270
+  1813                           	
+  1814                           l895:	
+  1815  0724                     ;pianito.c: 270:                     j = 0;
+  1816                           	clrf	(main@j)
+  1817  0724  01F0               	clrf	(main@j+1)
+  1818  0725  01F1               	goto	l897
+  1819  0726  2F27               	line	271
+  1820                           ;pianito.c: 271:                 }
+  1821                           	
+  1822                           l92:	
+  1823  0727                     	line	272
+  1824                           	
+  1825                           l897:	
+  1826  0727                     ;pianito.c: 272:             }
+  1827                           	movlw	01h
+  1828  0727  3001               	addwf	(main@i),f
+  1829  0728  07F2               	skipnc
+  1830  0729  1803               	incf	(main@i+1),f
+  1831  072A  0AF3               	movlw	0
+  1832  072B  3000               	addwf	(main@i+1),f
+  1833  072C  07F3               	
+  1834                           l899:	
+  1835  072D                     	movf	(main@i+1),w
+  1836  072D  0873               	xorlw	80h
+  1837  072E  3A80               	movwf	btemp+1
+  1838  072F  00FF               	movlw	(01h)^80h
+  1839  0730  3081               	subwf	btemp+1,w
+  1840  0731  027F               	skipz
+  1841  0732  1D03               	goto	u365
+  1842  0733  2F36               	movlw	04Dh
+  1843  0734  304D               	subwf	(main@i),w
+  1844  0735  0272               u365:
+  1845  0736                     
+  1846                           	skipc
+  1847  0736  1C03               	goto	u361
+  1848  0737  2F39               	goto	u360
+  1849  0738  2F3A               u361:
+  1850  0739                     	goto	l86
+  1851  0739  2F0F               u360:
+  1852  073A                     	goto	l725
+  1853  073A  2D19               	
+  1854                           l85:	
+  1855  073B                     	line	280
+  1856                           ;pianito.c: 280:         } else if (PORTDbits.RD6 == 0) {
+  1857                           	goto	l725
+  1858  073B  2D19               	
+  1859                           l83:	
+  1860  073C                     	btfsc	(8),6	;volatile
+  1861  073C  1B08               	goto	u371
+  1862  073D  2F3F               	goto	u370
+  1863  073E  2F40               u371:
+  1864  073F                     	goto	l94
+  1865  073F  2F96               u370:
+  1866  0740                     	line	281
+  1867                           	
+  1868                           l901:	
+  1869  0740                     ;pianito.c: 281:             OPTION_REGbits.PS2 = 0;
+  1870                           	bsf	status, 5	;RP0=1, select bank1
+  1871  0740  1683               	bcf	status, 6	;RP1=0, select bank1
+  1872  0741  1303               	bcf	(129)^080h,2	;volatile
+  1873  0742  1101               	line	282
+  1874                           ;pianito.c: 282:             OPTION_REGbits.PS1 = 1;
+  1875                           	bsf	(129)^080h,1	;volatile
+  1876  0743  1481               	line	283
+  1877                           ;pianito.c: 283:             OPTION_REGbits.PS0 = 1;
+  1878                           	bsf	(129)^080h,0	;volatile
+  1879  0744  1401               	line	285
+  1880                           	
+  1881                           l903:	
+  1882  0745                     ;pianito.c: 285:             TMR0 = 43;
+  1883                           	movlw	low(02Bh)
+  1884  0745  302B               	bcf	status, 5	;RP0=0, select bank0
+  1885  0746  1283               	bcf	status, 6	;RP1=0, select bank0
+  1886  0747  1303               	movwf	(1)	;volatile
+  1887  0748  0081               	line	287
+  1888                           	
+  1889                           l905:	
+  1890  0749                     ;pianito.c: 287:             for (i = 0; i < 294; i++) {
+  1891                           	clrf	(main@i)
+  1892  0749  01F2               	clrf	(main@i+1)
+  1893  074A  01F3               	
+  1894                           l907:	
+  1895  074B                     	movf	(main@i+1),w
+  1896  074B  0873               	xorlw	80h
+  1897  074C  3A80               	movwf	btemp+1
+  1898  074D  00FF               	movlw	(01h)^80h
+  1899  074E  3081               	subwf	btemp+1,w
+  1900  074F  027F               	skipz
+  1901  0750  1D03               	goto	u385
+  1902  0751  2F54               	movlw	026h
+  1903  0752  3026               	subwf	(main@i),w
+  1904  0753  0272               u385:
+  1905  0754                     
+  1906                           	skipc
+  1907  0754  1C03               	goto	u381
+  1908  0755  2F57               	goto	u380
+  1909  0756  2F58               u381:
+  1910  0757                     	goto	l97
+  1911  0757  2F69               u380:
+  1912  0758                     	goto	l725
+  1913  0758  2D19               	
+  1914                           l909:	
+  1915  0759                     	goto	l725
+  1916  0759  2D19               	
+  1917                           l95:	
+  1918  075A                     	line	288
+  1919                           ;pianito.c: 288:                 while (INTCONbits.T0IF != 1) {
+  1920                           	goto	l97
+  1921  075A  2F69               	
+  1922                           l98:	
+  1923  075B                     	line	289
+  1924                           	
+  1925                           l911:	
+  1926  075B                     ;pianito.c: 289:                     if (j == 0) {
+  1927                           	movf	((main@j)),w
+  1928  075B  0870               iorwf	((main@j+1)),w
+  1929  075C  0471               	btfss	status,2
+  1930  075D  1D03               	goto	u391
+  1931  075E  2F60               	goto	u390
+  1932  075F  2F61               u391:
+  1933  0760                     	goto	l99
+  1934  0760  2F65               u390:
+  1935  0761                     	line	290
+  1936                           	
+  1937                           l913:	
+  1938  0761                     ;pianito.c: 290:                         PORTCbits.RC3 = 1;
+  1939                           	bcf	status, 5	;RP0=0, select bank0
+  1940  0761  1283               	bcf	status, 6	;RP1=0, select bank0
+  1941  0762  1303               	bsf	(7),3	;volatile
+  1942  0763  1587               	line	291
+  1943                           ;pianito.c: 291:                     } else {
+  1944                           	goto	l97
+  1945  0764  2F69               	
+  1946                           l99:	
+  1947  0765                     	line	292
+  1948                           ;pianito.c: 292:                         PORTCbits.RC3 = 0;
+  1949                           	bcf	status, 5	;RP0=0, select bank0
+  1950  0765  1283               	bcf	status, 6	;RP1=0, select bank0
+  1951  0766  1303               	bcf	(7),3	;volatile
+  1952  0767  1187               	goto	l97
+  1953  0768  2F69               	line	293
+  1954                           ;pianito.c: 293:                     }
+  1955                           	
+  1956                           l100:	
+  1957  0769                     	line	294
+  1958                           ;pianito.c: 294:                 }
+  1959                           	
+  1960                           l97:	
+  1961  0769                     	line	288
+  1962                           ;pianito.c: 288:                 while (INTCONbits.T0IF != 1) {
+  1963                           	btfss	(11),2	;volatile
+  1964  0769  1D0B               	goto	u401
+  1965  076A  2F6C               	goto	u400
+  1966  076B  2F6D               u401:
+  1967  076C                     	goto	l911
+  1968  076C  2F5B               u400:
+  1969  076D                     	goto	l915
+  1970  076D  2F6E               	
+  1971                           l101:	
+  1972  076E                     	line	296
+  1973                           	
+  1974                           l915:	
+  1975  076E                     ;pianito.c: 296:                 TMR0 = 43;
+  1976                           	movlw	low(02Bh)
+  1977  076E  302B               	bcf	status, 5	;RP0=0, select bank0
+  1978  076F  1283               	bcf	status, 6	;RP1=0, select bank0
+  1979  0770  1303               	movwf	(1)	;volatile
+  1980  0771  0081               	line	297
+  1981                           	
+  1982                           l917:	
+  1983  0772                     ;pianito.c: 297:                 INTCONbits.T0IF = 0;
+  1984                           	bcf	(11),2	;volatile
+  1985  0772  110B               	line	299
+  1986                           	
+  1987                           l919:	
+  1988  0773                     ;pianito.c: 299:                 if (j == 0) {
+  1989                           	movf	((main@j)),w
+  1990  0773  0870               iorwf	((main@j+1)),w
+  1991  0774  0471               	btfss	status,2
+  1992  0775  1D03               	goto	u411
+  1993  0776  2F78               	goto	u410
+  1994  0777  2F79               u411:
+  1995  0778                     	goto	l923
+  1996  0778  2F7E               u410:
+  1997  0779                     	line	300
+  1998                           	
+  1999                           l921:	
+  2000  0779                     ;pianito.c: 300:                     j = 1;
+  2001                           	movlw	01h
+  2002  0779  3001               	movwf	(main@j)
+  2003  077A  00F0               	movlw	0
+  2004  077B  3000               	movwf	((main@j))+1
+  2005  077C  00F1               	line	301
+  2006                           ;pianito.c: 301:                 } else {
+  2007                           	goto	l925
+  2008  077D  2F81               	
+  2009                           l102:	
+  2010  077E                     	line	302
+  2011                           	
+  2012                           l923:	
+  2013  077E                     ;pianito.c: 302:                     j = 0;
+  2014                           	clrf	(main@j)
+  2015  077E  01F0               	clrf	(main@j+1)
+  2016  077F  01F1               	goto	l925
+  2017  0780  2F81               	line	303
+  2018                           ;pianito.c: 303:                 }
+  2019                           	
+  2020                           l103:	
+  2021  0781                     	line	304
+  2022                           	
+  2023                           l925:	
+  2024  0781                     ;pianito.c: 304:             }
+  2025                           	movlw	01h
+  2026  0781  3001               	addwf	(main@i),f
+  2027  0782  07F2               	skipnc
+  2028  0783  1803               	incf	(main@i+1),f
+  2029  0784  0AF3               	movlw	0
+  2030  0785  3000               	addwf	(main@i+1),f
+  2031  0786  07F3               	
+  2032                           l927:	
+  2033  0787                     	movf	(main@i+1),w
+  2034  0787  0873               	xorlw	80h
+  2035  0788  3A80               	movwf	btemp+1
+  2036  0789  00FF               	movlw	(01h)^80h
+  2037  078A  3081               	subwf	btemp+1,w
+  2038  078B  027F               	skipz
+  2039  078C  1D03               	goto	u425
+  2040  078D  2F90               	movlw	026h
+  2041  078E  3026               	subwf	(main@i),w
+  2042  078F  0272               u425:
+  2043  0790                     
+  2044                           	skipc
+  2045  0790  1C03               	goto	u421
+  2046  0791  2F93               	goto	u420
+  2047  0792  2F94               u421:
+  2048  0793                     	goto	l97
+  2049  0793  2F69               u420:
+  2050  0794                     	goto	l725
+  2051  0794  2D19               	
+  2052                           l96:	
+  2053  0795                     	line	312
+  2054                           ;pianito.c: 312:         } else if (PORTDbits.RD5 == 0) {
+  2055                           	goto	l725
+  2056  0795  2D19               	
+  2057                           l94:	
+  2058  0796                     	btfsc	(8),5	;volatile
+  2059  0796  1A88               	goto	u431
+  2060  0797  2F99               	goto	u430
+  2061  0798  2F9A               u431:
+  2062  0799                     	goto	l725
+  2063  0799  2D19               u430:
+  2064  079A                     	line	313
+  2065                           	
+  2066                           l929:	
+  2067  079A                     ;pianito.c: 313:             OPTION_REGbits.PS2 = 0;
+  2068                           	bsf	status, 5	;RP0=1, select bank1
+  2069  079A  1683               	bcf	status, 6	;RP1=0, select bank1
+  2070  079B  1303               	bcf	(129)^080h,2	;volatile
+  2071  079C  1101               	line	314
+  2072                           ;pianito.c: 314:             OPTION_REGbits.PS1 = 1;
+  2073                           	bsf	(129)^080h,1	;volatile
+  2074  079D  1481               	line	315
+  2075                           ;pianito.c: 315:             OPTION_REGbits.PS0 = 1;
+  2076                           	bsf	(129)^080h,0	;volatile
+  2077  079E  1401               	line	317
+  2078                           	
+  2079                           l931:	
+  2080  079F                     ;pianito.c: 317:             TMR0 = 18;
+  2081                           	movlw	low(012h)
+  2082  079F  3012               	bcf	status, 5	;RP0=0, select bank0
+  2083  07A0  1283               	bcf	status, 6	;RP1=0, select bank0
+  2084  07A1  1303               	movwf	(1)	;volatile
+  2085  07A2  0081               	line	319
+  2086                           	
+  2087                           l933:	
+  2088  07A3                     ;pianito.c: 319:             for (i = 0; i < 263; i++) {
+  2089                           	clrf	(main@i)
+  2090  07A3  01F2               	clrf	(main@i+1)
+  2091  07A4  01F3               	
+  2092                           l935:	
+  2093  07A5                     	movf	(main@i+1),w
+  2094  07A5  0873               	xorlw	80h
+  2095  07A6  3A80               	movwf	btemp+1
+  2096  07A7  00FF               	movlw	(01h)^80h
+  2097  07A8  3081               	subwf	btemp+1,w
+  2098  07A9  027F               	skipz
+  2099  07AA  1D03               	goto	u445
+  2100  07AB  2FAE               	movlw	07h
+  2101  07AC  3007               	subwf	(main@i),w
+  2102  07AD  0272               u445:
+  2103  07AE                     
+  2104                           	skipc
+  2105  07AE  1C03               	goto	u441
+  2106  07AF  2FB1               	goto	u440
+  2107  07B0  2FB2               u441:
+  2108  07B1                     	goto	l108
+  2109  07B1  2FC3               u440:
+  2110  07B2                     	goto	l725
+  2111  07B2  2D19               	
+  2112                           l937:	
+  2113  07B3                     	goto	l725
+  2114  07B3  2D19               	
+  2115                           l106:	
+  2116  07B4                     	line	320
+  2117                           ;pianito.c: 320:                 while (INTCONbits.T0IF != 1) {
+  2118                           	goto	l108
+  2119  07B4  2FC3               	
+  2120                           l109:	
+  2121  07B5                     	line	321
+  2122                           	
+  2123                           l939:	
+  2124  07B5                     ;pianito.c: 321:                     if (j == 0) {
+  2125                           	movf	((main@j)),w
+  2126  07B5  0870               iorwf	((main@j+1)),w
+  2127  07B6  0471               	btfss	status,2
+  2128  07B7  1D03               	goto	u451
+  2129  07B8  2FBA               	goto	u450
+  2130  07B9  2FBB               u451:
+  2131  07BA                     	goto	l110
+  2132  07BA  2FBF               u450:
+  2133  07BB                     	line	322
+  2134                           	
+  2135                           l941:	
+  2136  07BB                     ;pianito.c: 322:                         PORTCbits.RC3 = 1;
+  2137                           	bcf	status, 5	;RP0=0, select bank0
+  2138  07BB  1283               	bcf	status, 6	;RP1=0, select bank0
+  2139  07BC  1303               	bsf	(7),3	;volatile
+  2140  07BD  1587               	line	323
+  2141                           ;pianito.c: 323:                     } else {
+  2142                           	goto	l108
+  2143  07BE  2FC3               	
+  2144                           l110:	
+  2145  07BF                     	line	324
+  2146                           ;pianito.c: 324:                         PORTCbits.RC3 = 0;
+  2147                           	bcf	status, 5	;RP0=0, select bank0
+  2148  07BF  1283               	bcf	status, 6	;RP1=0, select bank0
+  2149  07C0  1303               	bcf	(7),3	;volatile
+  2150  07C1  1187               	goto	l108
+  2151  07C2  2FC3               	line	325
+  2152                           ;pianito.c: 325:                     }
+  2153                           	
+  2154                           l111:	
+  2155  07C3                     	line	326
+  2156                           ;pianito.c: 326:                 }
+  2157                           	
+  2158                           l108:	
+  2159  07C3                     	line	320
+  2160                           ;pianito.c: 320:                 while (INTCONbits.T0IF != 1) {
+  2161                           	btfss	(11),2	;volatile
+  2162  07C3  1D0B               	goto	u461
+  2163  07C4  2FC6               	goto	u460
+  2164  07C5  2FC7               u461:
+  2165  07C6                     	goto	l939
+  2166  07C6  2FB5               u460:
+  2167  07C7                     	goto	l943
+  2168  07C7  2FC8               	
+  2169                           l112:	
+  2170  07C8                     	line	328
+  2171                           	
+  2172                           l943:	
+  2173  07C8                     ;pianito.c: 328:                 TMR0 = 18;
+  2174                           	movlw	low(012h)
+  2175  07C8  3012               	bcf	status, 5	;RP0=0, select bank0
+  2176  07C9  1283               	bcf	status, 6	;RP1=0, select bank0
+  2177  07CA  1303               	movwf	(1)	;volatile
+  2178  07CB  0081               	line	329
+  2179                           	
+  2180                           l945:	
+  2181  07CC                     ;pianito.c: 329:                 INTCONbits.T0IF = 0;
+  2182                           	bcf	(11),2	;volatile
+  2183  07CC  110B               	line	331
+  2184                           	
+  2185                           l947:	
+  2186  07CD                     ;pianito.c: 331:                 if (j == 0) {
+  2187                           	movf	((main@j)),w
+  2188  07CD  0870               iorwf	((main@j+1)),w
+  2189  07CE  0471               	btfss	status,2
+  2190  07CF  1D03               	goto	u471
+  2191  07D0  2FD2               	goto	u470
+  2192  07D1  2FD3               u471:
+  2193  07D2                     	goto	l951
+  2194  07D2  2FD8               u470:
+  2195  07D3                     	line	332
+  2196                           	
+  2197                           l949:	
+  2198  07D3                     ;pianito.c: 332:                     j = 1;
+  2199                           	movlw	01h
+  2200  07D3  3001               	movwf	(main@j)
+  2201  07D4  00F0               	movlw	0
+  2202  07D5  3000               	movwf	((main@j))+1
+  2203  07D6  00F1               	line	333
+  2204                           ;pianito.c: 333:                 } else {
+  2205                           	goto	l953
+  2206  07D7  2FDB               	
+  2207                           l113:	
+  2208  07D8                     	line	334
+  2209                           	
+  2210                           l951:	
+  2211  07D8                     ;pianito.c: 334:                     j = 0;
+  2212                           	clrf	(main@j)
+  2213  07D8  01F0               	clrf	(main@j+1)
+  2214  07D9  01F1               	goto	l953
+  2215  07DA  2FDB               	line	335
+  2216                           ;pianito.c: 335:                 }
+  2217                           	
+  2218                           l114:	
+  2219  07DB                     	line	336
+  2220                           	
+  2221                           l953:	
+  2222  07DB                     ;pianito.c: 336:             }
+  2223                           	movlw	01h
+  2224  07DB  3001               	addwf	(main@i),f
+  2225  07DC  07F2               	skipnc
+  2226  07DD  1803               	incf	(main@i+1),f
+  2227  07DE  0AF3               	movlw	0
+  2228  07DF  3000               	addwf	(main@i+1),f
+  2229  07E0  07F3               	
+  2230                           l955:	
+  2231  07E1                     	movf	(main@i+1),w
+  2232  07E1  0873               	xorlw	80h
+  2233  07E2  3A80               	movwf	btemp+1
+  2234  07E3  00FF               	movlw	(01h)^80h
+  2235  07E4  3081               	subwf	btemp+1,w
+  2236  07E5  027F               	skipz
+  2237  07E6  1D03               	goto	u485
+  2238  07E7  2FEA               	movlw	07h
+  2239  07E8  3007               	subwf	(main@i),w
+  2240  07E9  0272               u485:
+  2241  07EA                     
+  2242                           	skipc
+  2243  07EA  1C03               	goto	u481
+  2244  07EB  2FED               	goto	u480
+  2245  07EC  2FEE               u481:
+  2246  07ED                     	goto	l108
+  2247  07ED  2FC3               u480:
+  2248  07EE                     	goto	l725
+  2249  07EE  2D19               	
+  2250                           l107:	
+  2251  07EF                     	goto	l725
+  2252  07EF  2D19               	line	344
+  2253                           ;pianito.c: 344:         }
+  2254                           	
+  2255                           l105:	
+  2256  07F0                     	goto	l725
+  2257  07F0  2D19               	
+  2258                           l104:	
+  2259  07F1                     	goto	l725
+  2260  07F1  2D19               	
+  2261                           l93:	
+  2262  07F2                     	goto	l725
+  2263  07F2  2D19               	
+  2264                           l82:	
+  2265  07F3                     	goto	l725
+  2266  07F3  2D19               	
+  2267                           l71:	
+  2268  07F4                     	goto	l725
+  2269  07F4  2D19               	
+  2270                           l60:	
+  2271  07F5                     	goto	l725
+  2272  07F5  2D19               	
+  2273                           l49:	
+  2274  07F6                     	goto	l725
+  2275  07F6  2D19               	
+  2276                           l38:	
+  2277  07F7                     	goto	l725
+  2278  07F7  2D19               	line	345
+  2279                           ;pianito.c: 345:     }
+  2280                           	
+  2281                           l115:	
+  2282  07F8                     	goto	l725
+  2283  07F8  2D19               	
+  2284                           l116:	
+  2285  07F9                     	line	346
+  2286                           	
+  2287                           l117:	
+  2288  07F9                     	global	start
+  2289                           	ljmp	start
+  2290  07F9  120A  118A  2800   	opt stack 0
+  2291                           GLOBAL	__end_of_main
+  2292                           	__end_of_main:
+  2293  07FC                     	signat	_main,89
+  2294                           global	___latbits
+  2295                           ___latbits	equ	2
+  2296  0002                     	global	btemp
+  2297                           	btemp set 07Eh
+  2298  007E                     
+  2299                           	DABS	1,126,2	;btemp
+  2300                           	global	wtemp0
+  2301                           	wtemp0 set btemp+0
+  2302  007E                     	end
 
 
 Data Sizes:
@@ -1299,7 +2374,7 @@ Data Sizes:
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14     11      11
+    COMMON           14      4       4
     BANK0            80      0       0
     BANK1            80      0       0
     BANK3            96      0       0
@@ -1311,7 +2386,7 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
-    _main->_sound
+    None.
 
 Critical Paths under _main in BANK0
 
@@ -1334,20 +2409,15 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 2     2      0    1808
-                                              9 COMMON     2     2      0
-                              _sound
+ (0) _main                                                 4     4      0     480
+                                              0 COMMON     4     4      0
  ---------------------------------------------------------------------------------
- (1) _sound                                                9     5      4    1808
-                                              0 COMMON     9     5      4
- ---------------------------------------------------------------------------------
- Estimated maximum stack depth 1
+ Estimated maximum stack depth 0
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
-   _sound
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
@@ -1355,7 +2425,7 @@ BITCOMMON            E      0       0       0        0.0%
 EEDATA             100      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-COMMON               E      B       B       1       78.6%
+COMMON               E      4       4       1       28.6%
 BITSFR0              0      0       0       1        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR1              0      0       0       2        0.0%
@@ -1378,42 +2448,126 @@ DATA                 0      0       0      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Mon Dec 10 23:29:42 2018
+Symbol Table                                                                                   Wed Dec 12 20:58:47 2018
 
-                     l30 077F                       l31 072D                       l40 07F7  
-                     l32 079A                       l41 07A9                       l33 073B  
-                     l50 06F4                       l42 07B7                       l34 0749  
-                     l51 06DA                       l43 07C5                       l35 0757  
-                     l60 0716                       l52 06E9                       l44 07D3  
-                     l36 0765                       l53 06DB                       l45 07F8  
-                     l37 0773                       l29 0727                       l54 06E5  
-                     l46 07F9                       l38 07DF                       l55 06E9  
-                     l47 07F9                       l39 079B                       l56 06EE  
-                     l57 0703                       l58 0713                       l59 0716  
-                     u50 06E1                       u51 06E0                       u60 06ED  
-                     u61 06EC                       u70 0702                       u71 0701  
-                     u80 070E                       u81 070D                       u75 06FE  
-                    l801 0757                      l811 07A9                      l803 0765  
-                    l813 07B7                      l805 0773                      l815 07C5  
-                    l807 077F                      l817 07D3                      l809 079B  
-                    l771 06E1                      l763 06CE                      l819 07DF  
-                    l781 070E                      l773 06EE                      l765 06D3  
-                    l783 0713                      l775 0703                      l767 06D7  
-                    l791 072A                      l777 0707                      l769 06DB  
-                    l793 072B                      l785 0717                      l779 0708  
-                    l795 072D                      l787 0721                      l893 0789  
-                    l797 073B                      l789 0727                      l895 07E9  
-                    l799 0749             __CFG_FOSC$HS 0000                     _TMR0 0001  
-                   _WPUB 0095                     _main 0717                     btemp 007E  
-                   start 0000                    ?_main 0070            __CFG_WDTE$OFF 0000  
-                  _PORTB 0006                    _PORTD 0008                    _TRISB 0086  
-                  _TRISC 0087                    _TRISD 0088                    _sound 06CE  
-                  status 0003                    wtemp0 007E          __initialization 07FC  
-           __end_of_main 07FC                   ??_main 0079                   _ANSELH 0189  
-                 ?_sound 0070                   sound@i 0075                   sound@j 0077  
-           sound@numTMR0 0070  __end_of__initialization 07FC           __pcstackCOMMON 0070  
-          __end_of_sound 0717           _OPTION_REGbits 0081  sound@numComplementoTMR0 0072  
-                ??_sound 0074               __pmaintext 0717                  __ptext1 06CE  
-   end_of_initialization 07FC                _PORTCbits 0007      start_initialization 07FC  
-              ___latbits 0002           __size_of_sound 0049            __size_of_main 00E5  
+                     l30 0579                       l31 054D                       l40 0598  
+                     l32 053F                       l41 05D3                       l33 0549  
+                     l50 062E                       l42 05A7                       l34 054D  
+                     l51 05F2                       l43 0599                       l35 0552  
+                     l27 0519                       l60 07F5                       l52 062D  
+                     l44 05A3                       l36 0562                       l28 057A  
+                     l61 0688                       l53 0601                       l45 05A7  
+                     l37 0565                       l29 053E                       l38 07F7  
+                     l70 0673                       l62 064C                       l54 05F3  
+                     l46 05AC                       l71 07F4                       l63 0687  
+                     l55 05FD                       l47 05BC                       l39 05D4  
+                     l80 06CA                       l72 06E2                       l64 065B  
+                     l56 0601                       l48 05BF                       l49 07F6  
+                     l81 06CD                       l73 06A6                       l65 064D  
+                     l57 0606                       l82 07F3                       l90 0714  
+                     l74 06E1                       l66 0657                       l58 0616  
+                     l91 0724                       l83 073C                       l75 06B5  
+                     l67 065B                       l59 0619                       l92 0727  
+                     l84 0700                       l76 06A7                       l68 0660  
+                     l93 07F2                       l85 073B                       l77 06B1  
+                     l69 0670                       l94 0796                       l86 070F  
+                     l78 06B5                       l95 075A                       l87 0701  
+                     l79 06BA                       l96 0795                       l88 070B  
+                     l97 0769                       l89 070F                       l98 075B  
+                     l99 0765                       u10 0524                       u11 0523  
+                     u20 053C                       u21 053B                       u30 0545  
+                     u31 0544                       u40 0551                       u41 0550  
+                     u25 0538                       u50 055D                       u51 055C  
+                     u60 0578                       u61 0577                       u70 057E  
+                     u71 057D                       u80 0596                       u81 0595  
+                     u65 0574                       u90 059F                       u91 059E  
+                     u85 0592                      l100 0769                      l101 076E  
+                    l110 07BF                      l102 077E                      l111 07C3  
+                    l103 0781                      l104 07F1                      l112 07C8  
+                    l105 07F0                      l113 07D8                      l114 07DB  
+                    l106 07B4                      l115 07F8                      l107 07EF  
+                    l116 07F9                      l108 07C3                      l117 07F9  
+                    l109 07B5                      l711 050B                      l703 0502  
+                    l801 05F9                      l721 0514                      l713 050C  
+                    l705 0506                      l811 0616                      l803 0606  
+                    l731 051E                      l723 0516                      l715 050D  
+                    l707 0509                      l901 0740                      l821 063B  
+                    l813 0619                      l805 060A                      l741 053D  
+                    l733 0524                      l725 0519                      l717 0511  
+                    l709 050A                      l911 075B                      l903 0745  
+                    l831 0660                      l823 063D                      l815 061F  
+                    l807 060B                      l751 0557                      l743 053F  
+                    l735 0529                      l727 051C                      l719 0513  
+                    l921 0779                      l913 0761                      l905 0749  
+                    l841 0673                      l833 0664                      l825 064B  
+                    l817 0632                      l809 0611                      l761 057E  
+                    l753 055D                      l745 0545                      l737 052D  
+                    l729 051D                      l931 079F                      l923 077E  
+                    l915 076E                      l907 074B                      l851 0697  
+                    l843 0679                      l835 0665                      l827 064D  
+                    l819 0637                      l771 0599                      l763 0583  
+                    l755 0562                      l747 0552                      l739 052F  
+                    l941 07BB                      l933 07A3                      l925 0781  
+                    l917 0772                      l909 0759                      l861 06BE  
+                    l853 06A5                      l845 068C                      l837 066B  
+                    l829 0653                      l781 05B7                      l773 059F  
+                    l765 0587                      l757 0565                      l749 0556  
+                    l951 07D8                      l943 07C8                      l935 07A5  
+                    l927 0787                      l919 0773                      l871 06D3  
+                    l863 06BF                      l855 06A7                      l847 0691  
+                    l839 0670                      l791 05DD                      l783 05BC  
+                    l775 05AC                      l767 0589                      l759 056B  
+                    l953 07DB                      l945 07CC                      l937 07B3  
+                    l929 079A                      l881 06FF                      l873 06E6  
+                    l865 06C5                      l857 06AD                      l849 0695  
+                    l793 05E1                      l785 05BF                      l777 05B0  
+                    l769 0597                      l955 07E1                      l947 07CD  
+                    l939 07B5                      l891 0719                      l883 0701  
+                    l875 06EB                      l867 06CA                      l859 06BA  
+                    l795 05E3                      l787 05C5                      l779 05B1  
+                    l949 07D3                      l893 071F                      l885 0707  
+                    l877 06EF                      l869 06CD                      l797 05F1  
+                    l789 05D8                      l895 0724                      l887 0714  
+                    l879 06F1                      l799 05F3                      l897 0727  
+                    l889 0718                      l899 072D                      u100 05AB  
+                    u101 05AA                      u110 05B7                      u111 05B6  
+                    u200 064A                      u120 05D2                      u201 0649  
+                    u121 05D1                      u210 0653                      u130 05D8  
+                    u211 0652                      u131 05D7                      u300 06E0  
+                    u220 065F                      u140 05F0                      u301 06DF  
+                    u221 065E                      u205 0646                      u141 05EF  
+                    u125 05CE                      u310 06E6                      u230 066B  
+                    u150 05F9                      u311 06E5                      u231 066A  
+                    u151 05F8                      u400 076D                      u320 06FE  
+                    u240 0686                      u160 0605                      u401 076C  
+                    u321 06FD                      u305 06DC                      u241 0685  
+                    u161 0604                      u145 05EC                      u410 0779  
+                    u330 0707                      u250 068C                      u170 0611  
+                    u411 0778                      u331 0706                      u251 068B  
+                    u171 0610                      u420 0794                      u340 0713  
+                    u260 06A4                      u180 062C                      u421 0793  
+                    u341 0712                      u325 06FA                      u261 06A3  
+                    u245 0682                      u181 062B                      u430 079A  
+                    u350 071F                      u270 06AD                      u190 0632  
+                    u431 0799                      u351 071E                      u271 06AC  
+                    u191 0631                      u440 07B2                      u360 073A  
+                    u280 06B9                      u441 07B1                      u425 0790  
+                    u361 0739                      u281 06B8                      u265 06A0  
+                    u185 0628                      u450 07BB                      u370 0740  
+                    u290 06C5                      u451 07BA                      u371 073F  
+                    u291 06C4                      u460 07C7                      u380 0758  
+                    u461 07C6                      u445 07AE                      u381 0757  
+                    u365 0736                      u470 07D3                      u390 0761  
+                    u471 07D2                      u391 0760                      u480 07EE  
+                    u481 07ED                      u385 0754                      u485 07EA  
+           __CFG_FOSC$XT 0000                     _TMR0 0001                     _WPUB 0095  
+                   _main 0502                     btemp 007E                     start 0000  
+                  ?_main 0070            __CFG_WDTE$OFF 0000                    _TRISB 0086  
+                  _TRISC 0087                    _TRISD 0088                    main@i 0072  
+                  main@j 0070                    status 0003                    wtemp0 007E  
+        __initialization 07FC             __end_of_main 07FC                   ??_main 0070  
+__end_of__initialization 07FC           __pcstackCOMMON 0070           _OPTION_REGbits 0081  
+             __pmaintext 0502     end_of_initialization 07FC                _PORTBbits 0006  
+              _PORTCbits 0007                _PORTDbits 0008      start_initialization 07FC  
+              ___latbits 0002               _ANSELHbits 0189            __size_of_main 02FA  
              _INTCONbits 000B  

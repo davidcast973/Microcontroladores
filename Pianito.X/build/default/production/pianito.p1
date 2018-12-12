@@ -1,8 +1,16 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"3449 /opt/microchip/xc8/v2.00/pic/include/pic16f887.h
-[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 3449: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
-[v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
+"3455 /opt/microchip/xc8/v2.00/pic/include/pic16f887.h
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 3455:     struct {
+[s S135 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S135 . ANS8 ANS9 ANS10 ANS11 ANS12 ANS13 ]
+"3454
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 3454: typedef union {
+[u S134 `S135 1 ]
+[n S134 . . ]
+"3464
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 3464: extern volatile ANSELHbits_t ANSELHbits __attribute__((address(0x189)));
+[v _ANSELHbits `VS134 ~T0 @X0 0 e@393 ]
 "1478
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 1478: extern volatile unsigned char TRISB __attribute__((address(0x086)));
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
@@ -30,15 +38,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2346
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 2346: extern volatile unsigned char WPUB __attribute__((address(0x095)));
 [v _WPUB `Vuc ~T0 @X0 0 e@149 ]
-"27 pianito.c
-[; ;pianito.c: 27:                 break;
-[v _sound `(v ~T0 @X0 0 ef2`i`i ]
-"228 /opt/microchip/xc8/v2.00/pic/include/pic16f887.h
-[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"352
-[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 352: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"234
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 234:     struct {
+[s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"233
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 233: typedef union {
+[u S7 `S8 1 ]
+[n S7 . . ]
+"245
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
+[v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
 "59
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 59: extern volatile unsigned char TMR0 __attribute__((address(0x001)));
 [v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
@@ -68,6 +78,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "482
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
 [v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
+"358
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 358:     struct {
+[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S12 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"357
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 357: typedef union {
+[u S11 `S12 1 ]
+[n S11 . . ]
+"369
+[; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 369: extern volatile PORTDbits_t PORTDbits __attribute__((address(0x008)));
+[v _PORTDbits `VS11 ~T0 @X0 0 e@8 ]
 "54 /opt/microchip/xc8/v2.00/pic/include/pic16f887.h
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -303,249 +324,903 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;/opt/microchip/xc8/v2.00/pic/include/pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "24 pianito.c
-[; ;pianito.c: 24:         switch (PORTB) {
-[p x FOSC = HS ]
+[; ;pianito.c: 24: 
+[p x FOSC = XT ]
 "25
-[; ;pianito.c: 25:             case 16:
+[; ;pianito.c: 25:         OPTION_REGbits.T0CS = 0;
 [p x WDTE = OFF ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "29
-[; ;pianito.c: 29:                 sound(500, 130);
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"32
-[; ;pianito.c: 32:                 sound(435, 112);
-[e = _ANSELH -> -> 2 `i `uc ]
+"30
+[v _j `i ~T0 @X0 1 a ]
+[e = _j -> 0 `i ]
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
 "34
-[; ;pianito.c: 34:             case 1:
-[e = _TRISB -> -> 255 `i `uc ]
+[e = . . _ANSELHbits 0 5 -> -> 0 `i `uc ]
 "35
-[; ;pianito.c: 35:                 sound(385, 93);
-[e = _TRISD -> -> 255 `i `uc ]
+[e = . . _ANSELHbits 0 4 -> -> 0 `i `uc ]
+"36
+[e = . . _ANSELHbits 0 3 -> -> 0 `i `uc ]
 "37
-[; ;pianito.c: 37:             case 0:
-[e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
-"39
-[; ;pianito.c: 39:                 break;
-[e = _TRISC -> -> 247 `i `uc ]
+[e = . . _ANSELHbits 0 2 -> -> 0 `i `uc ]
+"38
+[e = . . _ANSELHbits 0 0 -> -> 0 `i `uc ]
 "40
-[; ;pianito.c: 40:             default:
+[e = _TRISB -> -> 255 `i `uc ]
+"41
+[e = _TRISD -> -> 255 `i `uc ]
+"43
+[e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
+"45
+[e = _TRISC -> -> 247 `i `uc ]
+"46
 [e = _WPUB -> -> 255 `i `uc ]
-"42
-[; ;pianito.c: 42:         }
+"48
 [e :U 140 ]
 {
-"46
-[; ;pianito.c: 46:                 break;
-[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
-"47
-[; ;pianito.c: 47:             case 32:
-[e = . . _OPTION_REGbits 0 2 -> -> 1 `i `uc ]
-"48
-[; ;pianito.c: 48:                 sound(294, 43);
-[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
-"51
-[; ;pianito.c: 51:                 sound(263, 18);
-[e $U 143  ]
-{
 "52
-[; ;pianito.c: 52:                 break;
-[e :U 144 ]
+[e = . . _OPTION_REGbits 0 3 -> -> 0 `i `uc ]
 "53
-[; ;pianito.c: 53:             case 1:
-[e ( _sound (2 , -> 526 `i -> 18 `i ]
+[e = . . _OPTION_REGbits 0 2 -> -> 1 `i `uc ]
 "54
-[; ;pianito.c: 54:                 sound(385, 93);
-[e $U 142  ]
-"55
-[; ;pianito.c: 55:                 break;
-[e :U 145 ]
-"56
-[; ;pianito.c: 56:             default:
-[e ( _sound (2 , -> 500 `i -> 130 `i ]
-"57
-[; ;pianito.c: 57:                 sound(0, 0);
-[e $U 142  ]
-"58
-[; ;pianito.c: 58:         }
-[e :U 146 ]
-"59
-[; ;pianito.c: 59:     }
-[e ( _sound (2 , -> 435 `i -> 112 `i ]
-"60
-[; ;pianito.c: 60: }
-[e $U 142  ]
-"61
-[; ;pianito.c: 61: 
-[e :U 147 ]
-"62
-[; ;pianito.c: 62: void sound(int numTMR0, int numComplementoTMR0) {
-[e ( _sound (2 , -> 385 `i -> 93 `i ]
-"63
-[; ;pianito.c: 63:     int i, j;
-[e $U 142  ]
-"64
-[; ;pianito.c: 64: 
-[e :U 148 ]
-"65
-[; ;pianito.c: 65:     OPTION_REGbits.PS2 = 0;
-[e ( _sound (2 , -> 345 `i -> 74 `i ]
-"66
-[; ;pianito.c: 66:     OPTION_REGbits.PS1 = 1;
-[e $U 142  ]
-"67
-[; ;pianito.c: 67:     OPTION_REGbits.PS0 = 0;
-[e :U 149 ]
-"68
-[; ;pianito.c: 68: 
-[e ( _sound (2 , -> 0 `i -> 0 `i ]
-"69
-[; ;pianito.c: 69:     TMR0 = numComplementoTMR0;
-}
-[e $U 142  ]
-[e :U 143 ]
-[e [\ -> _PORTB `i , $ -> 16 `i 144
- , $ -> 8 `i 145
- , $ -> 2 `i 146
- , $ -> 1 `i 147
- , $ -> 0 `i 148
- 149 ]
-[e :U 142 ]
-"70
-[; ;pianito.c: 70: 
-[e $U 151  ]
+[e = . . _OPTION_REGbits 0 1 -> -> 0 `i `uc ]
+"89
+[; ;pianito.c: 89:         if (PORTBbits.RB5 == 0) {
+[e $ ! == -> . . _PORTBbits 0 5 `i -> 0 `i 142  ]
 {
-"71
-[; ;pianito.c: 71:     for (i = 0; i < numTMR0; i++) {
-[e :U 152 ]
-"72
-[; ;pianito.c: 72:         while (INTCONbits.T0IF != 1) {
-[e ( _sound (2 , -> 333 `i -> 162 `i ]
-"73
-[; ;pianito.c: 73: 
-[e $U 150  ]
-"74
-[; ;pianito.c: 74:             if (j == 0)
-[e :U 153 ]
-"75
-[; ;pianito.c: 75:                 PORTCbits.RC3 = 1;
-[e ( _sound (2 , -> 294 `i -> 43 `i ]
-"76
-[; ;pianito.c: 76:             else
-[e $U 150  ]
-"77
-[; ;pianito.c: 77:                 PORTCbits.RC3 = 0;
-[e :U 154 ]
-"78
-[; ;pianito.c: 78:         }
-[e ( _sound (2 , -> 263 `i -> 18 `i ]
-"79
-[; ;pianito.c: 79:     }
-[e $U 150  ]
-"80
-[; ;pianito.c: 80: 
-[e :U 155 ]
-"81
-[; ;pianito.c: 81:     TMR0 = numComplementoTMR0;
-[e ( _sound (2 , -> 385 `i -> 93 `i ]
-"82
-[; ;pianito.c: 82:     INTCONbits.T0IF = 0;
-[e $U 150  ]
-"83
-[; ;pianito.c: 83: 
-[e :U 156 ]
-"84
-[; ;pianito.c: 84: 
-[e ( _sound (2 , -> 0 `i -> 0 `i ]
-"85
-[; ;pianito.c: 85:     if (j == 0)
+"92
+[; ;pianito.c: 92:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"93
+[; ;pianito.c: 93:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"94
+[; ;pianito.c: 94:             OPTION_REGbits.PS0 = 0;
+[e = . . _OPTION_REGbits 1 0 -> -> 0 `i `uc ]
+"96
+[; ;pianito.c: 96:             TMR0 = 18;
+[e = _TMR0 -> -> 18 `i `uc ]
+"98
+[; ;pianito.c: 98:             for (i = 0; i < 526; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 526 `i 143  ]
+[e $U 144  ]
+[e :U 143 ]
+{
+"99
+[; ;pianito.c: 99:                 while (INTCONbits.T0IF != 1) {
+[e $U 146  ]
+[e :U 147 ]
+{
+"100
+[; ;pianito.c: 100:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 149  ]
+{
+"101
+[; ;pianito.c: 101:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"102
+[; ;pianito.c: 102:                     } else {
 }
 [e $U 150  ]
-[e :U 151 ]
-[e [\ -> _PORTD `i , $ -> 64 `i 152
- , $ -> 32 `i 153
- , $ -> 2 `i 154
- , $ -> 1 `i 155
- 156 ]
+[e :U 149 ]
+{
+"103
+[; ;pianito.c: 103:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"104
+[; ;pianito.c: 104:                     }
+}
 [e :U 150 ]
-"86
-[; ;pianito.c: 86:         j = 1;
+"105
+[; ;pianito.c: 105:                 }
+}
+[e :U 146 ]
+"99
+[; ;pianito.c: 99:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 147  ]
+[e :U 148 ]
+"107
+[; ;pianito.c: 107:                 TMR0 = 18;
+[e = _TMR0 -> -> 18 `i `uc ]
+"108
+[; ;pianito.c: 108:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"110
+[; ;pianito.c: 110:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 151  ]
+{
+"111
+[; ;pianito.c: 111:                     j = 1;
+[e = _j -> 1 `i ]
+"112
+[; ;pianito.c: 112:                 } else {
+}
+[e $U 152  ]
+[e :U 151 ]
+{
+"113
+[; ;pianito.c: 113:                     j = 0;
+[e = _j -> 0 `i ]
+"114
+[; ;pianito.c: 114:                 }
+}
+[e :U 152 ]
+"115
+[; ;pianito.c: 115:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 526 `i 143  ]
+[e :U 144 ]
+}
+"116
+[; ;pianito.c: 116:         } else if (PORTBbits.RB4 == 0) {
+}
+[e $U 153  ]
+[e :U 142 ]
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 154  ]
+{
+"118
+[; ;pianito.c: 118:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"119
+[; ;pianito.c: 119:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"120
+[; ;pianito.c: 120:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"122
+[; ;pianito.c: 122:             TMR0 = 130;
+[e = _TMR0 -> -> 130 `i `uc ]
+"124
+[; ;pianito.c: 124:             for (i = 0; i < 500; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 500 `i 155  ]
+[e $U 156  ]
+[e :U 155 ]
+{
+"125
+[; ;pianito.c: 125:                 while (INTCONbits.T0IF != 1) {
+[e $U 158  ]
+[e :U 159 ]
+{
+"126
+[; ;pianito.c: 126:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 161  ]
+{
+"127
+[; ;pianito.c: 127:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"128
+[; ;pianito.c: 128:                     } else {
+}
+[e $U 162  ]
+[e :U 161 ]
+{
+"129
+[; ;pianito.c: 129:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"130
+[; ;pianito.c: 130:                     }
+}
+[e :U 162 ]
+"131
+[; ;pianito.c: 131:                 }
+}
+[e :U 158 ]
+"125
+[; ;pianito.c: 125:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 159  ]
+[e :U 160 ]
+"133
+[; ;pianito.c: 133:                 TMR0 = 130;
+[e = _TMR0 -> -> 130 `i `uc ]
+"134
+[; ;pianito.c: 134:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"136
+[; ;pianito.c: 136:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 163  ]
+{
+"137
+[; ;pianito.c: 137:                     j = 1;
+[e = _j -> 1 `i ]
+"138
+[; ;pianito.c: 138:                 } else {
+}
+[e $U 164  ]
+[e :U 163 ]
+{
+"139
+[; ;pianito.c: 139:                     j = 0;
+[e = _j -> 0 `i ]
+"140
+[; ;pianito.c: 140:                 }
+}
+[e :U 164 ]
+"141
+[; ;pianito.c: 141:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 500 `i 155  ]
+[e :U 156 ]
+}
+"151
+[; ;pianito.c: 151:         } else if (PORTBbits.RB2 == 0) {
+}
+[e $U 165  ]
+[e :U 154 ]
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 166  ]
+{
+"152
+[; ;pianito.c: 152:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"153
+[; ;pianito.c: 153:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"154
+[; ;pianito.c: 154:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"156
+[; ;pianito.c: 156:             TMR0 = 112;
+[e = _TMR0 -> -> 112 `i `uc ]
+"158
+[; ;pianito.c: 158:             for (i = 0; i < 435; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 435 `i 167  ]
+[e $U 168  ]
+[e :U 167 ]
+{
+"159
+[; ;pianito.c: 159:                 while (INTCONbits.T0IF != 1) {
+[e $U 170  ]
+[e :U 171 ]
+{
+"160
+[; ;pianito.c: 160:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 173  ]
+{
+"161
+[; ;pianito.c: 161:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"162
+[; ;pianito.c: 162:                     } else {
+}
+[e $U 174  ]
+[e :U 173 ]
+{
+"163
+[; ;pianito.c: 163:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"164
+[; ;pianito.c: 164:                     }
+}
+[e :U 174 ]
+"165
+[; ;pianito.c: 165:                 }
+}
+[e :U 170 ]
+"159
+[; ;pianito.c: 159:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 171  ]
+[e :U 172 ]
+"167
+[; ;pianito.c: 167:                 TMR0 = 112;
+[e = _TMR0 -> -> 112 `i `uc ]
+"168
+[; ;pianito.c: 168:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"170
+[; ;pianito.c: 170:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 175  ]
+{
+"171
+[; ;pianito.c: 171:                     j = 1;
+[e = _j -> 1 `i ]
+"172
+[; ;pianito.c: 172:                 } else {
+}
+[e $U 176  ]
+[e :U 175 ]
+{
+"173
+[; ;pianito.c: 173:                     j = 0;
+[e = _j -> 0 `i ]
+"174
+[; ;pianito.c: 174:                 }
+}
+[e :U 176 ]
+"175
+[; ;pianito.c: 175:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 435 `i 167  ]
+[e :U 168 ]
+}
+"183
+[; ;pianito.c: 183:         } else if (PORTBbits.RB1 == 0) {
+}
+[e $U 177  ]
+[e :U 166 ]
+[e $ ! == -> . . _PORTBbits 0 1 `i -> 0 `i 178  ]
+{
+"184
+[; ;pianito.c: 184:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"185
+[; ;pianito.c: 185:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"186
+[; ;pianito.c: 186:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"188
+[; ;pianito.c: 188:             TMR0 = 93;
+[e = _TMR0 -> -> 93 `i `uc ]
+"190
+[; ;pianito.c: 190:             for (i = 0; i < 385; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 385 `i 179  ]
+[e $U 180  ]
+[e :U 179 ]
+{
+"191
+[; ;pianito.c: 191:                 while (INTCONbits.T0IF != 1) {
+[e $U 182  ]
+[e :U 183 ]
+{
+"192
+[; ;pianito.c: 192:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 185  ]
+{
+"193
+[; ;pianito.c: 193:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"194
+[; ;pianito.c: 194:                     } else {
+}
+[e $U 186  ]
+[e :U 185 ]
+{
+"195
+[; ;pianito.c: 195:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"196
+[; ;pianito.c: 196:                     }
+}
+[e :U 186 ]
+"197
+[; ;pianito.c: 197:                 }
+}
+[e :U 182 ]
+"191
+[; ;pianito.c: 191:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 183  ]
+[e :U 184 ]
+"199
+[; ;pianito.c: 199:                 TMR0 = 93;
+[e = _TMR0 -> -> 93 `i `uc ]
+"200
+[; ;pianito.c: 200:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"202
+[; ;pianito.c: 202:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 187  ]
+{
+"203
+[; ;pianito.c: 203:                     j = 1;
+[e = _j -> 1 `i ]
+"204
+[; ;pianito.c: 204:                 } else {
+}
+[e $U 188  ]
+[e :U 187 ]
+{
+"205
+[; ;pianito.c: 205:                     j = 0;
+[e = _j -> 0 `i ]
+"206
+[; ;pianito.c: 206:                 }
+}
+[e :U 188 ]
+"207
+[; ;pianito.c: 207:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 385 `i 179  ]
+[e :U 180 ]
+}
+"215
+[; ;pianito.c: 215:         } else if (PORTBbits.RB0 == 0) {
+}
+[e $U 189  ]
+[e :U 178 ]
+[e $ ! == -> . . _PORTBbits 0 0 `i -> 0 `i 190  ]
+{
+"217
+[; ;pianito.c: 217:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"218
+[; ;pianito.c: 218:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"219
+[; ;pianito.c: 219:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"221
+[; ;pianito.c: 221:             TMR0 = 74;
+[e = _TMR0 -> -> 74 `i `uc ]
+"223
+[; ;pianito.c: 223:             for (i = 0; i < 345; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 345 `i 191  ]
+[e $U 192  ]
+[e :U 191 ]
+{
+"224
+[; ;pianito.c: 224:                 while (INTCONbits.T0IF != 1) {
+[e $U 194  ]
+[e :U 195 ]
+{
+"225
+[; ;pianito.c: 225:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 197  ]
+{
+"226
+[; ;pianito.c: 226:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"227
+[; ;pianito.c: 227:                     } else {
+}
+[e $U 198  ]
+[e :U 197 ]
+{
+"228
+[; ;pianito.c: 228:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"229
+[; ;pianito.c: 229:                     }
+}
+[e :U 198 ]
+"230
+[; ;pianito.c: 230:                 }
+}
+[e :U 194 ]
+"224
+[; ;pianito.c: 224:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 195  ]
+[e :U 196 ]
+"232
+[; ;pianito.c: 232:                 TMR0 = 74;
+[e = _TMR0 -> -> 74 `i `uc ]
+"233
+[; ;pianito.c: 233:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"235
+[; ;pianito.c: 235:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 199  ]
+{
+"236
+[; ;pianito.c: 236:                     j = 1;
+[e = _j -> 1 `i ]
+"237
+[; ;pianito.c: 237:                 } else {
+}
+[e $U 200  ]
+[e :U 199 ]
+{
+"238
+[; ;pianito.c: 238:                     j = 0;
+[e = _j -> 0 `i ]
+"239
+[; ;pianito.c: 239:                 }
+}
+[e :U 200 ]
+"240
+[; ;pianito.c: 240:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 345 `i 191  ]
+[e :U 192 ]
+}
+"248
+[; ;pianito.c: 248:         } else if (PORTDbits.RD7 == 0) {
+}
+[e $U 201  ]
+[e :U 190 ]
+[e $ ! == -> . . _PORTDbits 0 7 `i -> 0 `i 202  ]
+{
+"249
+[; ;pianito.c: 249:             OPTION_REGbits.PS2 = 1;
+[e = . . _OPTION_REGbits 1 2 -> -> 1 `i `uc ]
+"250
+[; ;pianito.c: 250:             OPTION_REGbits.PS1 = 0;
+[e = . . _OPTION_REGbits 1 1 -> -> 0 `i `uc ]
+"251
+[; ;pianito.c: 251:             OPTION_REGbits.PS0 = 0;
+[e = . . _OPTION_REGbits 1 0 -> -> 0 `i `uc ]
+"253
+[; ;pianito.c: 253:             TMR0 = 162;
+[e = _TMR0 -> -> 162 `i `uc ]
+"255
+[; ;pianito.c: 255:             for (i = 0; i < 333; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 333 `i 203  ]
+[e $U 204  ]
+[e :U 203 ]
+{
+"256
+[; ;pianito.c: 256:                 while (INTCONbits.T0IF != 1) {
+[e $U 206  ]
+[e :U 207 ]
+{
+"257
+[; ;pianito.c: 257:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 209  ]
+{
+"258
+[; ;pianito.c: 258:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"259
+[; ;pianito.c: 259:                     } else {
+}
+[e $U 210  ]
+[e :U 209 ]
+{
+"260
+[; ;pianito.c: 260:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"261
+[; ;pianito.c: 261:                     }
+}
+[e :U 210 ]
+"262
+[; ;pianito.c: 262:                 }
+}
+[e :U 206 ]
+"256
+[; ;pianito.c: 256:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 207  ]
+[e :U 208 ]
+"264
+[; ;pianito.c: 264:                 TMR0 = 162;
+[e = _TMR0 -> -> 162 `i `uc ]
+"265
+[; ;pianito.c: 265:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"267
+[; ;pianito.c: 267:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 211  ]
+{
+"268
+[; ;pianito.c: 268:                     j = 1;
+[e = _j -> 1 `i ]
+"269
+[; ;pianito.c: 269:                 } else {
+}
+[e $U 212  ]
+[e :U 211 ]
+{
+"270
+[; ;pianito.c: 270:                     j = 0;
+[e = _j -> 0 `i ]
+"271
+[; ;pianito.c: 271:                 }
+}
+[e :U 212 ]
+"272
+[; ;pianito.c: 272:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 333 `i 203  ]
+[e :U 204 ]
+}
+"280
+[; ;pianito.c: 280:         } else if (PORTDbits.RD6 == 0) {
+}
+[e $U 213  ]
+[e :U 202 ]
+[e $ ! == -> . . _PORTDbits 0 6 `i -> 0 `i 214  ]
+{
+"281
+[; ;pianito.c: 281:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"282
+[; ;pianito.c: 282:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"283
+[; ;pianito.c: 283:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"285
+[; ;pianito.c: 285:             TMR0 = 43;
+[e = _TMR0 -> -> 43 `i `uc ]
+"287
+[; ;pianito.c: 287:             for (i = 0; i < 294; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 294 `i 215  ]
+[e $U 216  ]
+[e :U 215 ]
+{
+"288
+[; ;pianito.c: 288:                 while (INTCONbits.T0IF != 1) {
+[e $U 218  ]
+[e :U 219 ]
+{
+"289
+[; ;pianito.c: 289:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 221  ]
+{
+"290
+[; ;pianito.c: 290:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"291
+[; ;pianito.c: 291:                     } else {
+}
+[e $U 222  ]
+[e :U 221 ]
+{
+"292
+[; ;pianito.c: 292:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"293
+[; ;pianito.c: 293:                     }
+}
+[e :U 222 ]
+"294
+[; ;pianito.c: 294:                 }
+}
+[e :U 218 ]
+"288
+[; ;pianito.c: 288:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 219  ]
+[e :U 220 ]
+"296
+[; ;pianito.c: 296:                 TMR0 = 43;
+[e = _TMR0 -> -> 43 `i `uc ]
+"297
+[; ;pianito.c: 297:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"299
+[; ;pianito.c: 299:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 223  ]
+{
+"300
+[; ;pianito.c: 300:                     j = 1;
+[e = _j -> 1 `i ]
+"301
+[; ;pianito.c: 301:                 } else {
+}
+[e $U 224  ]
+[e :U 223 ]
+{
+"302
+[; ;pianito.c: 302:                     j = 0;
+[e = _j -> 0 `i ]
+"303
+[; ;pianito.c: 303:                 }
+}
+[e :U 224 ]
+"304
+[; ;pianito.c: 304:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 294 `i 215  ]
+[e :U 216 ]
+}
+"312
+[; ;pianito.c: 312:         } else if (PORTDbits.RD5 == 0) {
+}
+[e $U 225  ]
+[e :U 214 ]
+[e $ ! == -> . . _PORTDbits 0 5 `i -> 0 `i 226  ]
+{
+"313
+[; ;pianito.c: 313:             OPTION_REGbits.PS2 = 0;
+[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
+"314
+[; ;pianito.c: 314:             OPTION_REGbits.PS1 = 1;
+[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
+"315
+[; ;pianito.c: 315:             OPTION_REGbits.PS0 = 1;
+[e = . . _OPTION_REGbits 1 0 -> -> 1 `i `uc ]
+"317
+[; ;pianito.c: 317:             TMR0 = 18;
+[e = _TMR0 -> -> 18 `i `uc ]
+"319
+[; ;pianito.c: 319:             for (i = 0; i < 263; i++) {
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 263 `i 227  ]
+[e $U 228  ]
+[e :U 227 ]
+{
+"320
+[; ;pianito.c: 320:                 while (INTCONbits.T0IF != 1) {
+[e $U 230  ]
+[e :U 231 ]
+{
+"321
+[; ;pianito.c: 321:                     if (j == 0) {
+[e $ ! == _j -> 0 `i 233  ]
+{
+"322
+[; ;pianito.c: 322:                         PORTCbits.RC3 = 1;
+[e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
+"323
+[; ;pianito.c: 323:                     } else {
+}
+[e $U 234  ]
+[e :U 233 ]
+{
+"324
+[; ;pianito.c: 324:                         PORTCbits.RC3 = 0;
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+"325
+[; ;pianito.c: 325:                     }
+}
+[e :U 234 ]
+"326
+[; ;pianito.c: 326:                 }
+}
+[e :U 230 ]
+"320
+[; ;pianito.c: 320:                 while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 231  ]
+[e :U 232 ]
+"328
+[; ;pianito.c: 328:                 TMR0 = 18;
+[e = _TMR0 -> -> 18 `i `uc ]
+"329
+[; ;pianito.c: 329:                 INTCONbits.T0IF = 0;
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"331
+[; ;pianito.c: 331:                 if (j == 0) {
+[e $ ! == _j -> 0 `i 235  ]
+{
+"332
+[; ;pianito.c: 332:                     j = 1;
+[e = _j -> 1 `i ]
+"333
+[; ;pianito.c: 333:                 } else {
+}
+[e $U 236  ]
+[e :U 235 ]
+{
+"334
+[; ;pianito.c: 334:                     j = 0;
+[e = _j -> 0 `i ]
+"335
+[; ;pianito.c: 335:                 }
+}
+[e :U 236 ]
+"336
+[; ;pianito.c: 336:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 263 `i 227  ]
+[e :U 228 ]
+}
+"344
+[; ;pianito.c: 344:         }
+}
+[e :U 226 ]
+[e :U 225 ]
+[e :U 213 ]
+[e :U 201 ]
+[e :U 189 ]
+[e :U 177 ]
+[e :U 165 ]
+[e :U 153 ]
+"345
+[; ;pianito.c: 345:     }
 }
 [e :U 139 ]
 [e $U 140  ]
 [e :U 141 ]
-"87
-[; ;pianito.c: 87:     else
+"346
+[; ;pianito.c: 346: }
 [e :UE 138 ]
 }
-"89
-[; ;pianito.c: 89: }
-[v _sound `(v ~T0 @X0 1 ef2`i`i ]
+"348
+[; ;pianito.c: 348: void sound(int numTMR0, int numComplementoTMR0, int preeS2, int preeS1, int preeS0) {
+[v _sound `(v ~T0 @X0 1 ef5`i`i`i`i`i ]
 {
 [e :U _sound ]
 [v _numTMR0 `i ~T0 @X0 1 r1 ]
 [v _numComplementoTMR0 `i ~T0 @X0 1 r2 ]
+[v _preeS2 `i ~T0 @X0 1 r3 ]
+[v _preeS1 `i ~T0 @X0 1 r4 ]
+[v _preeS0 `i ~T0 @X0 1 r5 ]
 [f ]
-"90
+"349
+[; ;pianito.c: 349:     int i, j;
 [v _i `i ~T0 @X0 1 a ]
 [v _j `i ~T0 @X0 1 a ]
-"92
-[e = . . _OPTION_REGbits 1 2 -> -> 0 `i `uc ]
-"93
-[e = . . _OPTION_REGbits 1 1 -> -> 1 `i `uc ]
-"94
-[e = . . _OPTION_REGbits 1 0 -> -> 0 `i `uc ]
-"96
+"351
+[; ;pianito.c: 351:     OPTION_REGbits.PS2= preeS2;
+[e = . . _OPTION_REGbits 1 2 -> _preeS2 `uc ]
+"352
+[; ;pianito.c: 352:     OPTION_REGbits.PS1= preeS1;
+[e = . . _OPTION_REGbits 1 1 -> _preeS1 `uc ]
+"353
+[; ;pianito.c: 353:     OPTION_REGbits.PS0= preeS0;
+[e = . . _OPTION_REGbits 1 0 -> _preeS0 `uc ]
+"355
+[; ;pianito.c: 355:     TMR0 = numComplementoTMR0;
 [e = _TMR0 -> _numComplementoTMR0 `uc ]
-"98
+"357
+[; ;pianito.c: 357:     for (i = 0; i < numTMR0; i++) {
 {
 [e = _i -> 0 `i ]
-[e $U 161  ]
-[e :U 158 ]
+[e $U 241  ]
+[e :U 238 ]
 {
-"99
-[e $U 162  ]
-[e :U 163 ]
+"358
+[; ;pianito.c: 358:         while (INTCONbits.T0IF != 1) {
+[e $U 242  ]
+[e :U 243 ]
 {
-"101
-[e $ ! == _j -> 0 `i 165  ]
-"102
+"360
+[; ;pianito.c: 360:             if (j == 0)
+[e $ ! == _j -> 0 `i 245  ]
+"361
+[; ;pianito.c: 361:                 PORTCbits.RC3 = 1;
 [e = . . _PORTCbits 0 3 -> -> 1 `i `uc ]
-[e $U 166  ]
-"103
-[e :U 165 ]
-"104
+[e $U 246  ]
+"362
+[; ;pianito.c: 362:             else
+[e :U 245 ]
+"363
+[; ;pianito.c: 363:                 PORTCbits.RC3 = 0;
 [e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
-[e :U 166 ]
-"105
+[e :U 246 ]
+"364
+[; ;pianito.c: 364:         }
 }
-[e :U 162 ]
-"99
-[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 163  ]
-[e :U 164 ]
-"106
+[e :U 242 ]
+"358
+[; ;pianito.c: 358:         while (INTCONbits.T0IF != 1) {
+[e $ != -> . . _INTCONbits 0 2 `i -> 1 `i 243  ]
+[e :U 244 ]
+"365
+[; ;pianito.c: 365:     }
 }
 [e ++ _i -> 1 `i ]
-[e :U 161 ]
-[e $ < _i _numTMR0 158  ]
-[e :U 159 ]
+[e :U 241 ]
+[e $ < _i _numTMR0 238  ]
+[e :U 239 ]
 }
-"108
+"367
+[; ;pianito.c: 367:     TMR0 = numComplementoTMR0;
 [e = _TMR0 -> _numComplementoTMR0 `uc ]
-"109
+"368
+[; ;pianito.c: 368:     INTCONbits.T0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"112
-[e $ ! == _j -> 0 `i 167  ]
-"113
+"371
+[; ;pianito.c: 371:     if (j == 0)
+[e $ ! == _j -> 0 `i 247  ]
+"372
+[; ;pianito.c: 372:         j = 1;
 [e = _j -> 1 `i ]
-[e $U 168  ]
-"114
-[e :U 167 ]
-"115
+[e $U 248  ]
+"373
+[; ;pianito.c: 373:     else
+[e :U 247 ]
+"374
+[; ;pianito.c: 374:         j = 0;
 [e = _j -> 0 `i ]
-[e :U 168 ]
-"116
-[e :UE 157 ]
+[e :U 248 ]
+"375
+[; ;pianito.c: 375: }
+[e :UE 237 ]
 }

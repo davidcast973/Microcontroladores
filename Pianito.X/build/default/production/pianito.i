@@ -2490,15 +2490,21 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.00/pic/include/xc.h" 2 3
 # 23 "pianito.c" 2
 
-#pragma config FOSC = HS
+#pragma config FOSC = XT
 #pragma config WDTE = OFF
 
-void sound(int, int);
+void sound(int, int, int, int, int);
 
 void main(void) {
+    int j= 0, i= 0;
 
 
-    ANSELH = 0b000010;
+
+    ANSELHbits.ANS13 = 0;
+    ANSELHbits.ANS12 = 0;
+    ANSELHbits.ANS11 = 0;
+    ANSELHbits.ANS10 = 0;
+    ANSELHbits.ANS8 = 0;
 
     TRISB = 0xFF;
     TRISD = 0xFF;
@@ -2515,52 +2521,264 @@ void main(void) {
         OPTION_REGbits.T0CS = 0;
         OPTION_REGbits.T0SE = 1;
         OPTION_REGbits.PSA = 0;
+# 89 "pianito.c"
+        if (PORTBbits.RB5 == 0) {
 
 
-        switch (PORTB) {
-            case 16:
-                sound(526, 18);
-                break;
-            case 8:
-                sound(500, 130);
-                break;
-            case 2:
-                sound(435, 112);
-                break;
-            case 1:
-                sound(385, 93);
-                break;
-            case 0:
-                sound(345, 74);
-                break;
-            default:
-                sound(0, 0);
-        }
-        switch (PORTD) {
-            case 64:
-                sound(333, 162);
-                break;
-            case 32:
-                sound(294, 43);
-                break;
-            case 2:
-                sound(263, 18);
-                break;
-            case 1:
-                sound(385, 93);
-                break;
-            default:
-                sound(0, 0);
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 0;
+
+            TMR0 = 18;
+
+            for (i = 0; i < 526; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 18;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+        } else if (PORTBbits.RB4 == 0) {
+
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 130;
+
+            for (i = 0; i < 500; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 130;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+# 151 "pianito.c"
+        } else if (PORTBbits.RB2 == 0) {
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 112;
+
+            for (i = 0; i < 435; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 112;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
+        } else if (PORTBbits.RB1 == 0) {
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 93;
+
+            for (i = 0; i < 385; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 93;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
+        } else if (PORTBbits.RB0 == 0) {
+
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 74;
+
+            for (i = 0; i < 345; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 74;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
+        } else if (PORTDbits.RD7 == 0) {
+            OPTION_REGbits.PS2 = 1;
+            OPTION_REGbits.PS1 = 0;
+            OPTION_REGbits.PS0 = 0;
+
+            TMR0 = 162;
+
+            for (i = 0; i < 333; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 162;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
+        } else if (PORTDbits.RD6 == 0) {
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 43;
+
+            for (i = 0; i < 294; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 43;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
+        } else if (PORTDbits.RD5 == 0) {
+            OPTION_REGbits.PS2 = 0;
+            OPTION_REGbits.PS1 = 1;
+            OPTION_REGbits.PS0 = 1;
+
+            TMR0 = 18;
+
+            for (i = 0; i < 263; i++) {
+                while (INTCONbits.T0IF != 1) {
+                    if (j == 0) {
+                        PORTCbits.RC3 = 1;
+                    } else {
+                        PORTCbits.RC3 = 0;
+                    }
+                }
+
+                TMR0 = 18;
+                INTCONbits.T0IF = 0;
+
+                if (j == 0) {
+                    j = 1;
+                } else {
+                    j = 0;
+                }
+            }
+
+
+
+
+
+
+
         }
     }
 }
 
-void sound(int numTMR0, int numComplementoTMR0) {
+void sound(int numTMR0, int numComplementoTMR0, int preeS2, int preeS1, int preeS0) {
     int i, j;
 
-    OPTION_REGbits.PS2 = 0;
-    OPTION_REGbits.PS1 = 1;
-    OPTION_REGbits.PS0 = 0;
+    OPTION_REGbits.PS2= preeS2;
+    OPTION_REGbits.PS1= preeS1;
+    OPTION_REGbits.PS0= preeS0;
 
     TMR0 = numComplementoTMR0;
 
