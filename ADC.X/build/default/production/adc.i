@@ -2605,20 +2605,19 @@ void dato(unsigned int dat);
 
 void main(void) {
     unsigned char msb, lsb;
-    float temp;
+# 41 "adc.c"
+    SPBRG = 25;
+
+
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.BRGH = 1;
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.CREN = 1;
 
 
 
-    TRISE=0xF8;
-    ANSEL=0;
-    confBusLCD();
-    comando(0x0C);
-    comando(0x28);
-    comando(0x01);
-    comando(0x80);
-    printf("%s", "Temperatura:");
-# 53 "adc.c"
-    ANSEL = 0;
+
+
     TRISAbits.TRISA3 = 1;
 
 
@@ -2638,7 +2637,7 @@ void main(void) {
 
 
 
-    ADCON1bits.ADFM = 1;
+    ADCON1bits.ADFM = 0;
 
 
     ADCON1bits.VCFG1 = 0;
@@ -2653,27 +2652,15 @@ void main(void) {
 
 
 
-        while(ADCON0bits.nDONE == 1) ;
 
 
-
-
-
-
-        temp = ADRESH * 256;
-        temp += ADRESL;
-
-
-        temp *= 0.004887586;
-        temp *= 100;
-
-        comando(0xC0);
-        printf("%3.1f", temp);
-
-        comando(0xC4);
-        printf("%3.1f", temp);
-
-
+        while (PIR1bits.ADIF != 1) {
+            __nop();
+        }
+# 102 "adc.c"
+        while (PIR1bits.TXIF != 1) ;
+        TXREG = ADRESH;
+# 112 "adc.c"
     }
 }
 
