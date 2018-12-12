@@ -2591,31 +2591,35 @@ extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 # 11 "adc.c" 2
 
+
 #pragma config FOSC = INTRC_CLKOUT
 #pragma config WDTE = OFF
+#pragma config WDTE = OFF
+#pragma config PWRTE = ON
+#pragma config IESO = OFF
+#pragma config FCMEN = OFF
 
-
-void initUSART(void);
-void initADC(void);
-void escribeUSART(unsigned char dato);
+void confBusLCD(void);
+void comando(unsigned int com);
+void dato(unsigned int dat);
 
 void main(void) {
-    unsigned char msb, lsb, res;
+    unsigned char msb, lsb;
+    float temp;
 
 
 
-    SPBRG = 25;
-
-
-    TXSTAbits.TXEN = 1;
-    TXSTAbits.BRGH = 1;
-    RCSTAbits.SPEN = 1;
-    RCSTAbits.CREN = 1;
-
-
-
-    TRISA = 0xFF;
-    ANSEL = 1;
+    TRISE=0xF8;
+    ANSEL=0;
+    confBusLCD();
+    comando(0x0C);
+    comando(0x28);
+    comando(0x01);
+    comando(0x80);
+    printf("%s", "Temperatura:");
+# 53 "adc.c"
+    ANSEL = 0;
+    TRISAbits.TRISA3 = 1;
 
 
 
@@ -2649,23 +2653,94 @@ void main(void) {
 
 
 
+        while(ADCON0bits.nDONE == 1) ;
 
 
-        while (PIR1bits.ADIF != 1) {
-            __nop();
-        }
 
 
-        res = ADRESH * 256;
-        res += ADRESL;
 
 
-        res *= 0.004887586;
-        res *= 100;
+        temp = ADRESH * 256;
+        temp += ADRESL;
 
-        while (PIR1bits.TXIF != 1) ;
-        TXREG = res;
 
-        PIR1bits.ADIF = 0;
+        temp *= 0.004887586;
+        temp *= 100;
+
+        comando(0xC0);
+        printf("%3.1f", temp);
+
+        comando(0xC4);
+        printf("%3.1f", temp);
+
+
     }
+}
+
+void confBusLCD(void) {
+    int t, estado;
+
+
+    PORTEbits.RE0=0; t=0;
+    PORTEbits.RE1=1; t=0;
+    do {
+        PORTEbits.RE2=1; t=0;
+        estado=(PORTD&0x80);
+        PORTEbits.RE2=0; t=0;
+    } while (estado!=0);
+    PORTEbits.RE1=0;
+    TRISD=0x0F;
+    PORTD=0x20;
+    PORTEbits.RE2=1; t=0;
+    PORTEbits.RE2=0; t=0;
+    TRISD=0xFF;
+}
+
+void comando(unsigned int com) {
+    int t, estado;
+
+
+    PORTEbits.RE0=0; t=0;
+    PORTEbits.RE1=1; t=0;
+    do {
+        PORTEbits.RE2=1; t=0;
+        estado=(PORTD&0x80);
+        PORTEbits.RE2=0; t=0;
+        PORTEbits.RE2=1; t=0;
+        PORTEbits.RE2=0; t=0;
+    } while (estado!=0);
+    PORTEbits.RE1=0;
+    TRISD=0x0F;
+    PORTD=com;
+    PORTEbits.RE2=1; t=0;
+    PORTEbits.RE2=0; t=0;
+    PORTD=(com<<4);
+    PORTEbits.RE2=1; t=0;
+    PORTEbits.RE2=0; t=0;
+    TRISD=0xFF;
+}
+
+void dato(unsigned int dat) {
+    int t, estado;
+
+
+    PORTEbits.RE0=0; t=0;
+    PORTEbits.RE1=1; t=0;
+    do {
+        PORTEbits.RE2=1; t=0;
+        estado=(PORTD&0x80);
+        PORTEbits.RE2=0; t=0;
+        PORTEbits.RE2=1; t=0;
+        PORTEbits.RE2=0; t=0;
+    } while (estado!=0);
+    PORTEbits.RE0=1; t=0;
+    PORTEbits.RE1=0;
+    TRISD=0x0F;
+    PORTD=dat;
+    PORTEbits.RE2=1; t=0;
+    PORTEbits.RE2=0; t=0;
+    PORTD=(dat<<4);
+    PORTEbits.RE2=1; t=0;
+    PORTEbits.RE2=0; t=0;
+    TRISD=0xFF;
 }
