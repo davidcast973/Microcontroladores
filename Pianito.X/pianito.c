@@ -87,7 +87,7 @@ void main(void) {
         // }
 
         if (PORTBbits.RB5 == 0) {
-            // tecla DO 5ta
+            // tecla DO 5ta a 256 Hz
 
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:8
@@ -114,7 +114,7 @@ void main(void) {
                 }
             }
         } else if (PORTBbits.RB4 == 0) {
-            // tecla SI
+            // tecla SI     a 162 Hz
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:16
             OPTION_REGbits.PS0 = 1;
@@ -148,7 +148,7 @@ void main(void) {
                 PORTCbits.RC3 = 0;
                 __delay_us(1000);
             }*/
-        } else if (PORTBbits.RB2 == 0) { // tecla LA
+        } else if (PORTBbits.RB2 == 0) { // tecla LA a 434 Hz
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:16
             OPTION_REGbits.PS0 = 1;
@@ -180,7 +180,7 @@ void main(void) {
                 PORTCbits.RC3 = 0;
                 __delay_us(1150);
             }*/
-        } else if (PORTBbits.RB1 == 0) { // tecla SOL
+        } else if (PORTBbits.RB1 == 0) { // tecla SOL a 383 Hz
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:16
             OPTION_REGbits.PS0 = 1;
@@ -213,7 +213,7 @@ void main(void) {
                 __delay_us(1300);
             }*/
         } else if (PORTBbits.RB0 == 0) {
-            // tecla FA
+            // tecla FA a 343 Hz
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:16
             OPTION_REGbits.PS0 = 1;
@@ -245,7 +245,7 @@ void main(void) {
                 PORTCbits.RC3 = 0;
                 __delay_us(1450);
             }*/
-        } else if (PORTDbits.RD7 == 0) { // tecla MI
+        } else if (PORTDbits.RD7 == 0) { // tecla MI a 664 Hz
             OPTION_REGbits.PS2 = 1;
             OPTION_REGbits.PS1 = 0; // Escala 1:32
             OPTION_REGbits.PS0 = 0;
@@ -277,7 +277,7 @@ void main(void) {
                 PORTCbits.RC3 = 0;
                 __delay_us(1500);
             }*/
-        } else if (PORTDbits.RD6 == 0) { // tecla RE
+        } else if (PORTDbits.RD6 == 0) { // tecla RE a 293 Hz
             OPTION_REGbits.PS2 = 0;
             OPTION_REGbits.PS1 = 1; // Escala 1:16
             OPTION_REGbits.PS0 = 1;

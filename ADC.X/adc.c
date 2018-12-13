@@ -50,7 +50,7 @@ void main(void) {
 
     // TRISA = 0xFF; // Declarar puerto A como  entrada
     // ANSEL = 1; // Declara entradas del puerto A como analogicas
-    TRISAbits.TRISA3 = 1;   // Puerto RA 3 analogico como entrada.
+    TRISAbits.TRISA1 = 1;   // Puerto RA 3 analogico como entrada.
 
     //////// Registro ADCON0 Pag. 387 de "PICmicreo Mid-Range MCU Family"
     //////// Registro ADCON0 Pag. 106 de "PICF1688x"
@@ -59,7 +59,7 @@ void main(void) {
     ADCON0bits.ADCS = 0b01; // ADCS1: 0 y ADCS0: 1
                             // Fosc(4MHz)/8 para TAD a 2 microsegundos.
     // Seleccion del canal analogico
-    ADCON0bits.CHS = 0b0011;    // CHS3: 0, CHS2: 0, CHS1: 1, CHS0: 1
+    ADCON0bits.CHS = 0b0001;    // CHS3: 0, CHS2: 0, CHS1: 1, CHS0: 1
                                 // Canal 3, (AN3) Pin 3 del puerto A
                                 // Pin 5 del PIC16F887.
     // A/D en bit
@@ -72,8 +72,8 @@ void main(void) {
     ADCON1bits.ADFM = 0;    // Justificado a la izquierda.
                             // Los 6 MSB de ADRESH son leidos como '0'.
     // Bit de voltaje de referencia
-    ADCON1bits.VCFG1 = 0; // El voltaje de referencia negativo sera VSS.
-    ADCON1bits.VCFG0 = 0; // El voltaje de referencia positivo sera VDD.
+    ADCON1bits.VCFG1 = 1; // El voltaje de referencia negativo sera VSS.
+    ADCON1bits.VCFG0 = 1; // El voltaje de referencia positivo sera VDD.
 
     while (1) {
         __delay_ms(1000);

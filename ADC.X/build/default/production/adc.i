@@ -2618,7 +2618,7 @@ void main(void) {
 
 
 
-    TRISAbits.TRISA3 = 1;
+    TRISAbits.TRISA1 = 1;
 
 
 
@@ -2627,7 +2627,7 @@ void main(void) {
     ADCON0bits.ADCS = 0b01;
 
 
-    ADCON0bits.CHS = 0b0011;
+    ADCON0bits.CHS = 0b0001;
 
 
 
@@ -2640,8 +2640,8 @@ void main(void) {
     ADCON1bits.ADFM = 0;
 
 
-    ADCON1bits.VCFG1 = 0;
-    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 1;
+    ADCON1bits.VCFG0 = 1;
 
     while (1) {
         _delay((unsigned long)((1000)*(4000000/4000.0)));

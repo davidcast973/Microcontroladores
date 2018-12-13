@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Wed Dec 12 23:14:54 2018
+                                                                                               Wed Dec 12 23:21:49 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -494,7 +494,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    432                           __CFG_IESO$OFF equ 0x0
    433  0000                     global __CFG_FCMEN$OFF
    434                           __CFG_FCMEN$OFF equ 0x0
-   435  0000                     	file	"/tmp/xcX60gfPD"
+   435  0000                     	file	"/tmp/xcXWR9S0Z"
    436                           	line	#
    437                           psect cinit,class=CODE,delta=2
    438                           global start_initialization
@@ -688,11 +688,11 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    626  07C2  1618               	line	53
    627                           	
    628                           l640:	
-   629  07C3                     ;adc.c: 53:     TRISAbits.TRISA3 = 1;
+   629  07C3                     ;adc.c: 53:     TRISAbits.TRISA1 = 1;
    630                           	bsf	status, 5	;RP0=1, select bank1
    631  07C3  1683               	bcf	status, 6	;RP1=0, select bank1
-   632  07C4  1303               	bsf	(133)^080h,3	;volatile
-   633  07C5  1585               	line	59
+   632  07C4  1303               	bsf	(133)^080h,1	;volatile
+   633  07C5  1485               	line	59
    634                           	
    635                           l642:	
    636  07C6                     ;adc.c: 59:     ADCON0bits.ADCS = 0b01;
@@ -705,11 +705,11 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    643  07CB  009F               	line	62
    644                           	
    645                           l644:	
-   646  07CC                     ;adc.c: 62:     ADCON0bits.CHS = 0b0011;
+   646  07CC                     ;adc.c: 62:     ADCON0bits.CHS = 0b0001;
    647                           	movf	(31),w	;volatile
    648  07CC  081F               	andlw	not (((1<<4)-1)<<2)
-   649  07CD  39C3               	iorlw	(03h & ((1<<4)-1))<<2
-   650  07CE  380C               	movwf	(31)	;volatile
+   649  07CD  39C3               	iorlw	(01h & ((1<<4)-1))<<2
+   650  07CE  3804               	movwf	(31)	;volatile
    651  07CF  009F               	line	66
    652                           	
    653                           l646:	
@@ -725,14 +725,14 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    663  07D3  139F               	line	75
    664                           	
    665                           l650:	
-   666  07D4                     ;adc.c: 75:     ADCON1bits.VCFG1 = 0;
-   667                           	bcf	(159)^080h,5	;volatile
-   668  07D4  129F               	line	76
+   666  07D4                     ;adc.c: 75:     ADCON1bits.VCFG1 = 1;
+   667                           	bsf	(159)^080h,5	;volatile
+   668  07D4  169F               	line	76
    669                           	
    670                           l652:	
-   671  07D5                     ;adc.c: 76:     ADCON1bits.VCFG0 = 0;
-   672                           	bcf	(159)^080h,4	;volatile
-   673  07D5  121F               	line	78
+   671  07D5                     ;adc.c: 76:     ADCON1bits.VCFG0 = 1;
+   672                           	bsf	(159)^080h,4	;volatile
+   673  07D5  161F               	line	78
    674                           ;adc.c: 78:     while (1) {
    675                           	
    676                           l33:	
@@ -925,7 +925,7 @@ DATA                 0      0       0      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Wed Dec 12 23:14:54 2018
+Symbol Table                                                                                   Wed Dec 12 23:21:49 2018
 
                      l40 07F8                       l41 07F9                       l33 07D6  
                      l42 07F9                       l34 07E8                       l35 07E7  
